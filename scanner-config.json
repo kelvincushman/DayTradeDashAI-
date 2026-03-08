@@ -1,0 +1,16 @@
+{
+  "min_gap_pct": 10.0,
+  "max_gap_pct": 500.0,
+  "min_relvol": 5.0,
+  "max_float_m": 10.0,
+  "min_price": 2.0,
+  "max_price": 20.0,
+  "scan_interval": 60,
+  "active_hours_start": "04:00",
+  "active_hours_end": "12:00",
+  "telegram_alerts": true,
+  "alert_new_candidate": true,
+  "alert_scout_done": true,
+  "alert_trade_executed": true,
+  "min_gap_alert": 20.0
+}

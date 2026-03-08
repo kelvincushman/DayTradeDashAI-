@@ -1,0 +1,47 @@
+# Secrets & credentials
+.env
+*.key
+*secrets*
+*api_token*
+
+# Database files (large, use backups instead)
+*.db
+*.db-shm
+*.db-wal
+backups/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Node / Dashboard build
+dashboard/node_modules/
+dashboard/dist/
+
+# Logs
+*.log
+logs/
+
+# Large training data & models (store on ai-server)
+training_data/
+models/
+*.pt
+*.onnx
+
+# Temp files
+/tmp/
+*.tmp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Screenshots (generated, not versioned)
+screenshots/
+inference_cache/

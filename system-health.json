@@ -1,0 +1,59 @@
+{
+  "timestamp": "2026-03-08T18:45:11.553811Z",
+  "overall": "healthy",
+  "watchdog_ok": true,
+  "services": {
+    "rc-ws-bridge": {
+      "status": "up",
+      "label": "WebSocket Bridge",
+      "port_ok": true,
+      "uptime_mins": 455.8
+    },
+    "rc-research-server": {
+      "status": "up",
+      "label": "Research Server",
+      "port_ok": true,
+      "uptime_mins": 372.3
+    },
+    "daytrade-dash": {
+      "status": "up",
+      "label": "Dashboard",
+      "port_ok": true,
+      "uptime_mins": 445.7
+    },
+    "trading-signals": {
+      "status": "up",
+      "label": "Trading Signals",
+      "port_ok": true,
+      "uptime_mins": 3532.0
+    }
+  },
+  "eodhd": {
+    "status": "up",
+    "last_check": "2026-03-08T18:45:11.553811Z"
+  },
+  "db": {
+    "status": "up",
+    "size_mb": 0.1,
+    "candidates": 251,
+    "trades": 1
+  },
+  "alerts": [
+    {
+      "time": "2026-03-08T12:23:54.708555Z",
+      "message": "T1 RESTART: Research Server"
+    },
+    {
+      "time": "2026-03-08T12:25:58.432331Z",
+      "message": "T2 TELEGRAM: Research Server down 2m"
+    },
+    {
+      "time": "2026-03-08T12:29:12.479893Z",
+      "message": "T3 SMS: Research Server down 5m"
+    },
+    {
+      "time": "2026-03-08T12:33:27.285363Z",
+      "message": "RECOVERED: Research Server after 10m"
+    }
+  ]
+}

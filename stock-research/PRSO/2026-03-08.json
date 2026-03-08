@@ -1,0 +1,17 @@
+{
+  "ticker": "PRSO",
+  "date": "2026-03-08",
+  "what_it_does": "Fabless semiconductor — 60GHz mmWave beamforming chips for wireless, industrial and defence. Formerly MoSys Inc.",
+  "catalyst": "Military contract: 60GHz chip selected by InTACT (Israeli defence) for drone IFF (Identification Friend or Foe) system. No dollar value disclosed. Defence + drone narrative driving retail FOMO.",
+  "ceo": "Ron Glibbery (since 2009) — owns 0.055% of stock",
+  "risk_flags": [
+    {"flag": "1-for-40 Reverse Split (Jan 2024)", "level": "🔴 CRITICAL"},
+    {"flag": "No revenue value on contract", "level": "🔴 HIGH"},
+    {"flag": "Earnings March 16 — 8 days away (binary event)", "level": "🟠 HIGH"},
+    {"flag": "Micro-cap dilution risk post-run", "level": "🔴 HIGH"},
+    {"flag": "CEO near-zero ownership (0.055%)", "level": "🟠 MEDIUM"}
+  ],
+  "verdict": "C-",
+  "verdict_note": "Day-trade scalp only. Tight stop below Friday close. DO NOT hold into March 16 earnings.",
+  "sentiment": "Retail FOMO driven by defence/drone narrative. Real catalyst but serial diluter with 1:40 reverse split history. Already +151% — chasing risk is high."
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" style="background:#0d1117;color-scheme:dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>DayTrade Dash</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0d1117 !important; color-scheme: dark !important; overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+
+    /* ── Desktop: hide pills, show sidebar ── */
+    .dt-scanner-pills { display: none !important; }
+    .dt-sidebar       { display: flex; flex-direction: column; }
+
+    /* ── Mobile ── */
+    @media (max-width: 767px) {
+      /* Sidebar → hide */
+      .dt-sidebar { display: none !important; }
+
+      /* Pills → show */
+      .dt-scanner-pills {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        align-items: center !important;
+        gap: 6px !important;
+        padding: 8px 12px !important;
+        background: #0d1117 !important;
+        border-bottom: 1px solid #1e2433 !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        flex-shrink: 0 !important;
+        width: 100% !important;
+      }
+      .dt-scanner-pills::-webkit-scrollbar { display: none; }
+
+      /* Each pill — SMALL compact button */
+      .dt-scanner-pill {
+        display: inline-flex !important;
+        align-items: center !important;
+        height: 28px !important;
+        white-space: nowrap !important;
+        padding: 0 12px !important;
+        border-radius: 14px !important;
+        border: 1px solid #2d3748 !important;
+        background: #161b2e !important;
+        color: #94a3b8 !important;
+        font-size: 12px !important;
+        cursor: pointer !important;
+        flex-shrink: 0 !important;
+        width: auto !important;
+        min-width: unset !important;
+        max-width: unset !important;
+      }
+      .dt-scanner-pill.active {
+        background: #1e3a5f !important;
+        color: #93c5fd !important;
+        border-color: #3b82f6 !important;
+      }
+
+      /* Nav + topbar */
+      .dt-topbar { flex-wrap: wrap !important; height: auto !important; min-height: 48px !important; padding: 8px 12px !important; }
+      .dt-nav { overflow-x: auto !important; white-space: nowrap !important; scrollbar-width: none !important; }
+      .dt-nav::-webkit-scrollbar { display: none; }
+      .dt-nav button { padding: 0 10px !important; font-size: 11px !important; height: 44px !important; }
+
+      /* Table scroll */
+      .dt-scroll { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+      .dt-table  { min-width: 560px !important; }
+
+      /* Hide noisy columns */
+      .dt-col-company, .dt-col-time { display: none !important; }
+
+      /* Stack panels */
+      .dt-research-grid { grid-template-columns: 1fr !important; }
+      .dt-settings-grid { grid-template-columns: 1fr !important; }
+      .dt-pnl-grid      { grid-template-columns: 1fr 1fr !important; }
+
+      /* Stats wrap */
+      .dt-stats { flex-wrap: wrap !important; }
+      .dt-stat-card { min-width: calc(50% - 8px) !important; }
+
+      /* Content padding */
+      .dt-content { padding: 8px !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
