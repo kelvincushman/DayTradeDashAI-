@@ -1,0 +1,14 @@
+[Unit]
+Description=Trading System Watchdog
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/pai-server/bin/trading-watchdog.py
+Restart=always
+RestartSec=10
+StandardOutput=append:/home/pai-server/trading/watchdog.log
+StandardError=append:/home/pai-server/trading/watchdog.log
+
+[Install]
+WantedBy=default.target

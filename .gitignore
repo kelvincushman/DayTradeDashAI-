@@ -45,3 +45,5 @@ Thumbs.db
 # Screenshots (generated, not versioned)
 screenshots/
 inference_cache/
+system-health.json
+watchdog-heartbeat.json

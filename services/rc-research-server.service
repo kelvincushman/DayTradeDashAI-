@@ -1,0 +1,13 @@
+[Unit]
+Description=RC Research Server
+After=network.target
+
+[Service]
+Type=simple
+Environment=PYTHONPATH=/home/pai-server/bin
+ExecStart=/usr/bin/python3 /home/pai-server/bin/rc-research-server.py
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target

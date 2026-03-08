@@ -1,0 +1,14 @@
+[Unit]
+Description=RC Gap Scanner (Ross Cameron Pre-Market)
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/pai-server/bin/rc-gap-scanner.py
+Restart=on-failure
+RestartSec=60
+StandardOutput=append:/home/pai-server/trading/scanner.log
+StandardError=append:/home/pai-server/trading/scanner.log
+
+[Install]
+WantedBy=default.target
