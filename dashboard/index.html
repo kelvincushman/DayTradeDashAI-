@@ -12,7 +12,36 @@
     .dt-scanner-pills { display: none !important; }
     .dt-sidebar       { display: flex; flex-direction: column; }
 
-    /* ── Mobile ── */
+    /* ── Table always horizontally scrollable ── */
+    .dt-scroll { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+    .dt-table  { min-width: 700px !important; }
+
+    /* ── Tablet (768px–1199px) — iPad portrait + landscape ── */
+    @media (max-width: 1199px) {
+      /* Shrink sidebar */
+      .dt-sidebar { width: 170px !important; }
+
+      /* Nav scrollable, no clip */
+      .dt-nav { overflow-x: auto !important; white-space: nowrap !important; scrollbar-width: none !important; flex-shrink: 0 !important; }
+      .dt-nav::-webkit-scrollbar { display: none; }
+      .dt-nav button { padding: 0 10px !important; font-size: 11px !important; }
+
+      /* Topbar safe */
+      .dt-topbar { height: auto !important; min-height: 48px !important; padding: 6px 12px !important; flex-wrap: nowrap !important; overflow: hidden !important; }
+
+      /* Hide less-important table columns on tablet */
+      .dt-col-vol, .dt-col-rvol5m { display: none !important; }
+
+      /* Stats wrap */
+      .dt-stats { flex-wrap: wrap !important; }
+      .dt-stat-card { min-width: calc(50% - 8px) !important; }
+
+      /* Stack panels */
+      .dt-research-grid { grid-template-columns: 1fr !important; }
+      .dt-settings-grid { grid-template-columns: 1fr !important; }
+    }
+
+    /* ── Mobile (<768px) ── */
     @media (max-width: 767px) {
       /* Sidebar → hide */
       .dt-sidebar { display: none !important; }
@@ -34,7 +63,6 @@
       }
       .dt-scanner-pills::-webkit-scrollbar { display: none; }
 
-      /* Each pill — SMALL compact button */
       .dt-scanner-pill {
         display: inline-flex !important;
         align-items: center !important;
@@ -58,29 +86,22 @@
         border-color: #3b82f6 !important;
       }
 
-      /* Nav + topbar */
+      /* Nav */
       .dt-topbar { flex-wrap: wrap !important; height: auto !important; min-height: 48px !important; padding: 8px 12px !important; }
-      .dt-nav { overflow-x: auto !important; white-space: nowrap !important; scrollbar-width: none !important; }
-      .dt-nav::-webkit-scrollbar { display: none; }
       .dt-nav button { padding: 0 10px !important; font-size: 11px !important; height: 44px !important; }
 
-      /* Table scroll */
-      .dt-scroll { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
-      .dt-table  { min-width: 560px !important; }
-
-      /* Hide noisy columns */
-      .dt-col-company, .dt-col-time { display: none !important; }
+      /* Hide more columns on phone */
+      .dt-col-vol, .dt-col-rvol5m, .dt-col-company, .dt-col-time, .dt-col-chg { display: none !important; }
 
       /* Stack panels */
       .dt-research-grid { grid-template-columns: 1fr !important; }
       .dt-settings-grid { grid-template-columns: 1fr !important; }
       .dt-pnl-grid      { grid-template-columns: 1fr 1fr !important; }
 
-      /* Stats wrap */
+      /* Stats */
       .dt-stats { flex-wrap: wrap !important; }
       .dt-stat-card { min-width: calc(50% - 8px) !important; }
 
-      /* Content padding */
       .dt-content { padding: 8px !important; }
     }
   </style>

@@ -166,9 +166,36 @@ function Toast({ message, type, onDone }) {
   )
 }
 
+
+const PATTERN_SHORT = {
+  bull_flag_breakout: 'BF↑',
+  bull_flag_forming: 'BF~',
+  bear_flag_breakout: 'BF↓',
+  macd_momentum: 'MACD',
+  gap_and_go: 'GAP',
+  orb: 'ORB',
+  no_pattern: null,
+}
+
+function AiBadge({ aiData }) {
+  if (!aiData || aiData.pattern === 'no_pattern') return <span style={{ color: '#4b5563', fontSize: 11 }}>⚪ —</span>
+  const short = PATTERN_SHORT[aiData.pattern] || aiData.pattern
+  const conf = aiData.confidence || 0
+  const green = conf >= 0.65, amber = conf >= 0.45
+  if (!green && !amber) return <span style={{ color: '#4b5563', fontSize: 11 }}>⚪ —</span>
+  const bg = green ? 'rgba(34,197,94,0.15)' : 'rgba(245,158,11,0.15)'
+  const color = green ? '#22c55e' : '#f59e0b'
+  const border = green ? 'rgba(34,197,94,0.4)' : 'rgba(245,158,11,0.4)'
+  return (
+    <span style={{ background: bg, color, border: '1px solid ' + border, borderRadius: 4, padding: '2px 6px', fontSize: 10, fontWeight: 700, whiteSpace: 'nowrap' }}>
+      {green ? '🟢' : '🟡'} {short} {(conf * 100).toFixed(0)}%
+    </span>
+  )
+}
+
 // ── Scanner Row (with TRADE button) ─────────────────────────────────────
 
-function ScannerRow({ s, research, idx, onTickerClick, onTrade }) {
+function ScannerRow({ s, research, idx, onTickerClick, onTrade, aiData }) {
   const [open, setOpen] = useState(false)
   const scoutStatus = research ? 'done' : (s.scout_status === 'pending' ? 'pending' : 'none')
   const isGainer = (s.gap_pct || 0) >= 0
@@ -181,13 +208,14 @@ function ScannerRow({ s, research, idx, onTickerClick, onTrade }) {
         onMouseLeave={function (e) { e.currentTarget.style.background = open ? '#0d1525' : rowBg }}>
         <td onClick={function () { onTickerClick(s.ticker) }} style={{ padding: '8px 12px', fontWeight: 700, color: C.accent, fontSize: 13, fontFamily: mono, cursor: 'pointer' }}>{s.ticker}</td>
         <td style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', fontWeight: 600, color: C.textPrimary }}>${fmt(s.price)}</td>
-        <td style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', color: C.textSecondary, fontSize: 12 }}>{fmtVol(s.avgvol_1d || s.volume)}</td>
+        <td className="dt-col-vol" style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', color: C.textSecondary, fontSize: 12 }}>{fmtVol(s.avgvol_1d || s.volume)}</td>
         <td style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', fontWeight: 700, color: floatColor(s.float_m), fontSize: 12 }}>{s.float_m != null ? fmt(s.float_m, 1) + 'M' : '—'}</td>
         <td style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', color: relvolDaily >= 10 ? '#22c55e' : relvolDaily >= 5 ? '#f59e0b' : C.textSecondary, fontWeight: relvolDaily >= 5 ? 700 : 400 }}>{relvolDaily != null ? fmt(relvolDaily, 1) + 'x' : '—'}</td>
-        <td style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', color: C.textMuted }}>—</td>
+        <td className="dt-col-rvol5m" style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', color: C.textMuted }}>—</td>
         <td style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', fontWeight: 700, color: isGainer ? gapGreen(s.gap_pct) : negColor(s.gap_pct), fontSize: 13 }}>{isGainer ? '+' : ''}{fmt(s.gap_pct)}%</td>
-        <td style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', fontWeight: 600, color: isGainer ? gapGreen(s.gap_pct) : negColor(s.gap_pct), fontSize: 12 }}>{isGainer ? '+' : ''}{fmt(s.gap_pct)}%</td>
+        <td className="dt-col-chg" style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', fontWeight: 600, color: isGainer ? gapGreen(s.gap_pct) : negColor(s.gap_pct), fontSize: 12 }}>{isGainer ? '+' : ''}{fmt(s.gap_pct)}%</td>
         <td onClick={function () { setOpen(function (o) { return !o }) }} style={{ padding: '8px 10px', fontSize: 11, color: C.textMuted, maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{s.news || '—'}</td>
+        <td style={{ padding: '8px 8px', textAlign: 'center' }}><AiBadge aiData={aiData} /></td>
         <td style={{ padding: '8px 8px', textAlign: 'center' }}><ScoutBadge status={scoutStatus} /></td>
         <td style={{ padding: '8px 8px', textAlign: 'center' }}>
           <button onClick={function (e) { e.stopPropagation(); onTrade(s.ticker, s.price) }} style={{ background: '#1e3a5f', border: '1px solid #2563eb44', color: '#60a5fa', padding: '3px 8px', borderRadius: 3, fontSize: 10, fontWeight: 700, cursor: 'pointer' }}
@@ -195,13 +223,39 @@ function ScannerRow({ s, research, idx, onTickerClick, onTrade }) {
             onMouseLeave={function (e) { e.currentTarget.style.background = '#1e3a5f' }}>TRADE</button>
         </td>
       </tr>
-      {open && <tr style={{ borderBottom: '2px solid ' + C.border }}><td colSpan={11} style={{ padding: 0 }}><ResearchPanel r={research} /></td></tr>}
+      {open && <tr style={{ borderBottom: '2px solid ' + C.border }}><td colSpan={12} style={{ padding: 0 }}><ResearchPanel r={research} /></td></tr>}
     </>
   )
 }
 
 function ScannerTable({ stocks, research, title, emptyMsg, onTickerClick, onTrade }) {
-  const cols = ['Symbol', 'Price', 'Vol Today', 'Float', 'RelVol', 'RV 5min', 'Gap %', 'Chg %', 'News', '', '']
+  const [aiPatterns, setAiPatterns] = React.useState({})
+  React.useEffect(function () {
+    function fetchAI() {
+      fetch('http://localhost:8769/patterns/today').then(function(r){ return r.json() }).then(function(data){
+        var map = {}
+        data.forEach(function(d){ map[d.ticker] = d })
+        setAiPatterns(map)
+      }).catch(function(){})
+    }
+    fetchAI()
+    var t = setInterval(fetchAI, 90000)
+    return function(){ clearInterval(t) }
+  }, [])
+  const cols = [
+    { label: 'Symbol',   cls: '' },
+    { label: 'Price',    cls: '' },
+    { label: 'Vol Today',cls: 'dt-col-vol' },
+    { label: 'Float',    cls: '' },
+    { label: 'RelVol',   cls: '' },
+    { label: 'RV 5min',  cls: 'dt-col-rvol5m' },
+    { label: 'Gap %',    cls: '' },
+    { label: 'Chg %',    cls: 'dt-col-chg' },
+    { label: 'News',     cls: '' },
+    { label: '🤖 AI',   cls: '' },
+    { label: '',         cls: '' },
+    { label: '',         cls: '' },
+  ]
   const _cf = React.useState({ sym: '', minPrice: '', maxPrice: '', minFloat: '', maxFloat: '', minRV: '', maxRV: '', minGap: '', maxGap: '', news: '' })
   const cf = _cf[0], setCf = _cf[1]
   const set = function(k,v){ setCf(function(p){ return Object.assign({},p,{[k]:v}) }) }
@@ -243,25 +297,25 @@ function ScannerTable({ stocks, research, title, emptyMsg, onTickerClick, onTrad
         <table className="dt-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead style={{ position: 'sticky', top: 0, zIndex: 1 }}>
             <tr style={{ background: C.header, borderBottom: '1px solid #1e2a44' }}>
-              {cols.map(function (c, i) { return <th key={i} style={{ padding: '7px 12px', color: C.textMuted, fontSize: 10, textAlign: i === 0 || i === 8 ? 'left' : i >= 9 ? 'center' : 'right', textTransform: 'uppercase', letterSpacing: 0.8, fontWeight: 600, whiteSpace: 'nowrap' }}>{c}</th> })}
+              {cols.map(function (c, i) { return <th key={i} className={c.cls} style={{ padding: '7px 12px', color: C.textMuted, fontSize: 10, textAlign: i === 0 || i === 8 ? 'left' : i >= 9 ? 'center' : 'right', textTransform: 'uppercase', letterSpacing: 0.8, fontWeight: 600, whiteSpace: 'nowrap' }}>{c.label}</th> })}
             </tr>
             <tr style={{ background: '#0d1117', borderBottom: '2px solid ' + C.border }}>
               <td style={{ padding: '3px 8px' }}>{inp('sym','SYM',50)}</td>
               <td style={{ padding: '3px 4px', textAlign: 'right' }}>{inp('minPrice','min')}{' '}{inp('maxPrice','max')}</td>
-              <td style={{ padding: '3px 4px' }}></td>
+              <td className="dt-col-vol" style={{ padding: '3px 4px' }}></td>
               <td style={{ padding: '3px 4px', textAlign: 'right' }}>{inp('minFloat','min')}{' '}{inp('maxFloat','max')}</td>
               <td style={{ padding: '3px 4px', textAlign: 'right' }}>{inp('minRV','min')}{' '}{inp('maxRV','max')}</td>
-              <td style={{ padding: '3px 4px' }}></td>
+              <td className="dt-col-rvol5m" style={{ padding: '3px 4px' }}></td>
               <td style={{ padding: '3px 4px', textAlign: 'right' }}>{inp('minGap','min')}{' '}{inp('maxGap','max')}</td>
-              <td style={{ padding: '3px 4px' }}></td>
+              <td className="dt-col-chg" style={{ padding: '3px 4px' }}></td>
               <td style={{ padding: '3px 8px' }}>{inp('news','keyword',78)}</td>
-              <td></td><td></td>
+              <td></td><td></td><td></td>
             </tr>
           </thead>
           <tbody>
             {displayed.length === 0
-              ? <tr><td colSpan={11} style={{ padding: '40px 20px', textAlign: 'center', color: C.textMuted, fontSize: 12 }}>{hasFilter ? 'No stocks match filters' : emptyMsg}</td></tr>
-              : displayed.map(function (s, i) { return <ScannerRow key={s.ticker + i} s={s} research={research[s.ticker]} idx={i} onTickerClick={onTickerClick} onTrade={onTrade} /> })}
+              ? <tr><td colSpan={12} style={{ padding: '40px 20px', textAlign: 'center', color: C.textMuted, fontSize: 12 }}>{hasFilter ? 'No stocks match filters' : emptyMsg}</td></tr>
+              : displayed.map(function (s, i) { return <ScannerRow key={s.ticker + i} s={s} research={research[s.ticker]} idx={i} onTickerClick={onTickerClick} onTrade={onTrade} aiData={aiPatterns[s.ticker]} /> })}
           </tbody>
         </table>
       </div>
@@ -271,21 +325,21 @@ function ScannerTable({ stocks, research, title, emptyMsg, onTickerClick, onTrad
 
 // ── TradingView Chart ───────────────────────────────────────────────────────
 
-function TradingViewChart({ symbol }) {
+function TradingViewChart({ symbol, interval, height }) {
   const containerRef = useRef(null)
   const widgetRef = useRef(null)
   useEffect(function () {
     if (!containerRef.current) return
     containerRef.current.innerHTML = ''
-    const div = document.createElement('div'); div.id = 'tv_' + Date.now()
+    const div = document.createElement('div'); div.id = 'tv_' + interval + '_' + Date.now()
     div.style.width = '100%'; div.style.height = '100%'; containerRef.current.appendChild(div)
     function init() {
       if (window.TradingView) {
         widgetRef.current = new window.TradingView.widget({
-          container_id: div.id, symbol: symbol || 'SPY', interval: '1', theme: 'dark', style: '1',
+          container_id: div.id, symbol: symbol || 'SPY', interval: interval || '1', theme: 'dark', style: '1',
           locale: 'en', width: '100%', height: '100%',
-          studies: ['Volume@tv-basicstudies', 'MACD@tv-basicstudies'],
-          hide_top_toolbar: false, allow_symbol_change: true, save_image: false,
+          studies: ['Volume@tv-basicstudies', 'MAExp@tv-basicstudies', 'MAExp@tv-basicstudies', 'MAExp@tv-basicstudies', 'VWAP@tv-basicstudies'],
+          hide_top_toolbar: false, allow_symbol_change: false, save_image: false,
           timezone: 'America/New_York', backgroundColor: C.bg,
         })
       }
@@ -295,8 +349,45 @@ function TradingViewChart({ symbol }) {
       s.async = true; s.onload = init; document.head.appendChild(s)
     }
     return function () { widgetRef.current = null }
-  }, [symbol])
-  return <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
+  }, [symbol, interval])
+  return <div ref={containerRef} style={{ width: '100%', height: height || '100%' }} />
+}
+
+// ── Multi-Timeframe Chart Grid (Ross Cameron style) ─────────────────────────
+
+const ALL_FRAMES = [
+  { label: '5min', interval: '5' },
+  { label: '1min', interval: '1' },
+  { label: '1D',   interval: '1D' },
+  { label: '10s',  interval: '10S' },
+]
+
+const GRID_LAYOUTS = {
+  1: { cols: '1fr',        rows: '1fr',        count: 1 },
+  2: { cols: '1fr 1fr',   rows: '1fr',        count: 2 },
+  3: { cols: '1fr 1fr',   rows: '1fr 1fr',    count: 3 },
+  4: { cols: '1fr 1fr',   rows: '1fr 1fr',    count: 4 },
+}
+
+function MultiTimeframeCharts({ symbol, viewCount }) {
+  const layout = GRID_LAYOUTS[viewCount] || GRID_LAYOUTS[4]
+  const frames = ALL_FRAMES.slice(0, layout.count)
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: layout.cols, gridTemplateRows: layout.rows, gap: 6, width: '100%', height: '100%' }}>
+      {frames.map(function (f) {
+        return (
+          <div key={f.interval} style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden', border: '1px solid ' + C.border, borderRadius: 4 }}>
+            <div style={{ padding: '3px 8px', background: C.panel, borderBottom: '1px solid ' + C.border, fontSize: 10, fontWeight: 700, color: C.textMuted, letterSpacing: 1, flexShrink: 0 }}>
+              {f.label}
+            </div>
+            <div style={{ flex: 1, minHeight: 0 }}>
+              <TradingViewChart symbol={symbol} interval={f.interval} height="100%" />
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  )
 }
 
 // ── Breaking News Item ──────────────────────────────────────────────────────
@@ -351,12 +442,15 @@ function TradeForm({ prefill, alpacaMode, settings, onSubmit, onAlpaca }) {
   const [side, setSide] = useState('buy')
   const [qty, setQty] = useState('')
   const [price, setPrice] = useState('')
+  const [stopPrice, setStopPrice] = useState('')
+  const [qtyOverride, setQtyOverride] = useState(false)
   const [notes, setNotes] = useState('')
 
   useEffect(function () {
     if (prefill) {
       if (prefill.ticker) setTicker(prefill.ticker)
       if (prefill.price) setPrice(String(prefill.price))
+      setQty(''); setStopPrice(''); setQtyOverride(false)
     }
   }, [prefill])
 
@@ -365,52 +459,124 @@ function TradeForm({ prefill, alpacaMode, settings, onSubmit, onAlpaca }) {
   var maxPosPct = parseFloat(settings.max_position_pct || '20')
   var riskPerTrade = startingBalance * maxRiskPct / 100
   var maxPosSize = startingBalance * maxPosPct / 100
-  var entryPrice = parseFloat(price) || 0
-  var suggestedQty = entryPrice > 0 ? Math.floor(maxPosSize / entryPrice) : 0
-  var suggestedTotal = suggestedQty * entryPrice
-  var proposedTotal = (parseFloat(qty) || 0) * entryPrice
 
-  var posWarning = null
-  if (proposedTotal > startingBalance * 0.5) {
-    posWarning = { color: '#ef4444', text: '⚠️ Exceeds 50% of account — are you sure?' }
-  } else if (proposedTotal > startingBalance * 0.25) {
-    posWarning = { color: '#f97316', text: 'Large position — high risk' }
+  var entryPrice = parseFloat(price) || 0
+  var stop = parseFloat(stopPrice) || 0
+  var riskPerShare = (entryPrice > 0 && stop > 0 && stop < entryPrice) ? entryPrice - stop : 0
+
+  // Foolproof qty: risk-based if stop set, else max-position-based
+  var calcQty = 0
+  var sizeMethod = ''
+  if (riskPerShare > 0) {
+    calcQty = Math.floor(riskPerTrade / riskPerShare)
+    sizeMethod = 'risk-based'
+  } else if (entryPrice > 0) {
+    calcQty = Math.floor(maxPosSize / entryPrice)
+    sizeMethod = 'position-based'
+  }
+  // Cap at max position size
+  if (calcQty > 0 && entryPrice > 0) {
+    calcQty = Math.min(calcQty, Math.floor(maxPosSize / entryPrice))
+  }
+
+  // Use override qty or calculated qty
+  var effectiveQty = qtyOverride ? (parseInt(qty) || 0) : calcQty
+  var totalCost = effectiveQty * entryPrice
+  var totalRisk = riskPerShare > 0 ? effectiveQty * riskPerShare : null
+  var riskPct = totalRisk ? (totalRisk / startingBalance * 100) : null
+
+  // Risk status
+  var riskStatus = null
+  if (totalRisk != null) {
+    if (totalRisk > riskPerTrade * 1.5) riskStatus = { color: '#ef4444', label: '🚨 OVER LIMIT', bg: '#5c1a1a' }
+    else if (totalRisk > riskPerTrade) riskStatus = { color: '#f97316', label: '⚠️ Above max risk', bg: '#3a1f00' }
+    else riskStatus = { color: '#22c55e', label: '✅ Within limits', bg: '#0a2a0a' }
+  } else if (totalCost > startingBalance * 0.5) {
+    riskStatus = { color: '#ef4444', label: '🚨 >50% of account — set a stop!', bg: '#5c1a1a' }
   }
 
   var inputStyle = { background: C.header, border: '1px solid ' + C.border, color: C.textPrimary, padding: '6px 10px', borderRadius: 3, fontSize: 13, fontFamily: mono, outline: 'none', width: 90 }
   var labelStyle = { fontSize: 11, color: C.textMuted, marginBottom: 2 }
 
+  function handleSubmit(useAlpaca) {
+    var finalQty = effectiveQty
+    if (!finalQty || finalQty <= 0) return
+    var payload = { ticker, side, qty: finalQty, entry_price: entryPrice, stop_price: stop || null, notes }
+    if (useAlpaca) onAlpaca(payload)
+    else onSubmit(payload)
+    setQty(''); setStopPrice(''); setQtyOverride(false); setNotes('')
+  }
+
   return (
     <div style={{ background: C.panel, border: '1px solid ' + C.border, borderRadius: 4, padding: 16 }}>
       <div style={{ fontSize: 14, fontWeight: 700, color: C.textPrimary, marginBottom: 12 }}>📝 New Trade</div>
-      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'flex-end' }}>
-        <div><div style={labelStyle}>Ticker</div><input value={ticker} onChange={function (e) { setTicker(e.target.value.toUpperCase()) }} style={{ ...inputStyle, width: 80 }} placeholder="PRSO" /></div>
+
+      {/* Row 1: inputs */}
+      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'flex-end', marginBottom: 10 }}>
+        <div><div style={labelStyle}>Ticker</div>
+          <input value={ticker} onChange={function(e){setTicker(e.target.value.toUpperCase())}} style={{...inputStyle,width:80}} placeholder="PRSO" />
+        </div>
         <div><div style={labelStyle}>Side</div>
-          <select value={side} onChange={function (e) { setSide(e.target.value) }} style={{ ...inputStyle, width: 80 }}>
+          <select value={side} onChange={function(e){setSide(e.target.value)}} style={{...inputStyle,width:80}}>
             <option value="buy">BUY</option><option value="sell">SELL</option>
           </select>
         </div>
-        <div><div style={labelStyle}>Qty</div><input type="number" value={qty} onChange={function (e) { setQty(e.target.value) }} style={inputStyle} placeholder={suggestedQty > 0 ? String(suggestedQty) : '100'} /></div>
-        <div><div style={labelStyle}>Price</div><input type="number" step="0.01" value={price} onChange={function (e) { setPrice(e.target.value) }} style={inputStyle} placeholder="2.04" /></div>
-        <div style={{ flex: 1, minWidth: 150 }}><div style={labelStyle}>Notes</div><input value={notes} onChange={function (e) { setNotes(e.target.value) }} style={{ ...inputStyle, width: '100%' }} placeholder="Bull flag setup" /></div>
-        <button onClick={function () { onSubmit({ ticker: ticker, side: side, qty: parseInt(qty), entry_price: parseFloat(price), notes: notes }); setQty(''); setNotes('') }}
-          style={{ background: '#1e3a5f', border: '1px solid #2563eb', color: '#60a5fa', padding: '8px 16px', borderRadius: 4, fontWeight: 700, fontSize: 12, cursor: 'pointer' }}
-          onMouseEnter={function (e) { e.currentTarget.style.background = '#2563eb' }}
-          onMouseLeave={function (e) { e.currentTarget.style.background = '#1e3a5f' }}>Submit Manual</button>
-        <button onClick={function () { onAlpaca({ ticker: ticker, side: side, qty: parseInt(qty), entry_price: parseFloat(price) }) }}
-          style={{ background: alpacaMode === 'live' ? '#5c1a1a' : '#1a3a1a', border: '1px solid ' + (alpacaMode === 'live' ? '#ef4444' : '#22c55e'), color: alpacaMode === 'live' ? '#fca5a5' : '#86efac', padding: '8px 16px', borderRadius: 4, fontWeight: 700, fontSize: 12, cursor: 'pointer' }}
-          onMouseEnter={function (e) { e.currentTarget.style.opacity = '0.8' }}
-          onMouseLeave={function (e) { e.currentTarget.style.opacity = '1' }}>
-          {alpacaMode === 'live' ? '⚠️ Via Alpaca LIVE' : '📄 Via Alpaca Paper'}
+        <div><div style={labelStyle}>Entry $</div>
+          <input type="number" step="0.01" value={price} onChange={function(e){setPrice(e.target.value)}} style={inputStyle} placeholder="2.04" />
+        </div>
+        <div>
+          <div style={labelStyle}>Stop $ <span style={{color:'#f59e0b',fontSize:10}}>(bottom of flag)</span></div>
+          <input type="number" step="0.01" value={stopPrice} onChange={function(e){setStopPrice(e.target.value)}} style={{...inputStyle, borderColor: stop > 0 && stop < entryPrice ? '#22c55e' : C.border}} placeholder="1.94" />
+        </div>
+        <div>
+          <div style={labelStyle}>
+            Shares
+            {!qtyOverride && calcQty > 0 && <span style={{color:'#22c55e',marginLeft:6,fontSize:10}}>auto ✓</span>}
+            {!qtyOverride && <button onClick={function(){setQtyOverride(true);setQty(String(calcQty))}} style={{marginLeft:8,background:'none',border:'none',color:C.textMuted,fontSize:10,cursor:'pointer',textDecoration:'underline'}}>override</button>}
+            {qtyOverride && <button onClick={function(){setQtyOverride(false);setQty('')}} style={{marginLeft:8,background:'none',border:'none',color:'#f59e0b',fontSize:10,cursor:'pointer',textDecoration:'underline'}}>reset</button>}
+          </div>
+          {qtyOverride
+            ? <input type="number" value={qty} onChange={function(e){setQty(e.target.value)}} style={{...inputStyle,borderColor:'#f59e0b'}} />
+            : <div style={{...inputStyle, color: calcQty > 0 ? '#22c55e' : C.textMuted, fontWeight:700, display:'flex', alignItems:'center', height:32}}>
+                {calcQty > 0 ? calcQty : '—'}
+              </div>
+          }
+        </div>
+        <div style={{flex:1,minWidth:140}}><div style={labelStyle}>Notes</div>
+          <input value={notes} onChange={function(e){setNotes(e.target.value)}} style={{...inputStyle,width:'100%'}} placeholder="Bull flag setup" />
+        </div>
+      </div>
+
+      {/* Row 2: risk breakdown */}
+      {entryPrice > 0 && effectiveQty > 0 && (
+        <div style={{background: riskStatus ? riskStatus.bg : C.header, border:'1px solid '+(riskStatus ? riskStatus.color+'44' : C.border), borderRadius:4, padding:'8px 12px', marginBottom:10, display:'flex', gap:24, flexWrap:'wrap', alignItems:'center'}}>
+          {riskPerShare > 0 && <span style={{fontSize:12}}><span style={{color:C.textMuted}}>Risk/share: </span><span style={{color:'#f59e0b',fontWeight:700}}>${riskPerShare.toFixed(2)}</span></span>}
+          <span style={{fontSize:12}}><span style={{color:C.textMuted}}>Shares: </span><span style={{color:C.accent,fontWeight:700}}>{effectiveQty}</span></span>
+          <span style={{fontSize:12}}><span style={{color:C.textMuted}}>Total cost: </span><span style={{color:C.textPrimary,fontWeight:700}}>${totalCost.toFixed(2)}</span></span>
+          {totalRisk != null && <span style={{fontSize:12}}><span style={{color:C.textMuted}}>Max loss: </span><span style={{color:riskStatus.color,fontWeight:700}}>${totalRisk.toFixed(2)} ({riskPct.toFixed(1)}%)</span></span>}
+          {riskStatus && <span style={{fontSize:12,fontWeight:700,color:riskStatus.color,marginLeft:'auto'}}>{riskStatus.label}</span>}
+          {sizeMethod && !qtyOverride && <span style={{fontSize:10,color:C.textMuted}}>({sizeMethod})</span>}
+        </div>
+      )}
+
+      {/* Row 3: action buttons */}
+      <div style={{display:'flex',gap:10,flexWrap:'wrap'}}>
+        <button onClick={function(){handleSubmit(false)}} disabled={effectiveQty <= 0 || !ticker}
+          style={{background: effectiveQty > 0 ? '#1e3a5f' : '#111', border:'1px solid '+(effectiveQty > 0 ? '#2563eb' : C.border), color: effectiveQty > 0 ? '#60a5fa' : C.textMuted, padding:'8px 16px', borderRadius:4, fontWeight:700, fontSize:12, cursor: effectiveQty > 0 ? 'pointer' : 'not-allowed'}}
+          onMouseEnter={function(e){if(effectiveQty>0)e.currentTarget.style.background='#2563eb'}}
+          onMouseLeave={function(e){e.currentTarget.style.background=effectiveQty>0?'#1e3a5f':'#111'}}>
+          Log Manual
         </button>
+        <button onClick={function(){handleSubmit(true)}} disabled={effectiveQty <= 0 || !ticker || (riskStatus && riskStatus.label.includes('OVER'))}
+          style={{background: alpacaMode==='live' ? '#5c1a1a' : '#1a3a1a', border:'1px solid '+(alpacaMode==='live'?'#ef4444':'#22c55e'), color: alpacaMode==='live'?'#fca5a5':'#86efac', padding:'8px 16px', borderRadius:4, fontWeight:700, fontSize:12, cursor:'pointer'}}
+          onMouseEnter={function(e){e.currentTarget.style.opacity='0.8'}}
+          onMouseLeave={function(e){e.currentTarget.style.opacity='1'}}>
+          {alpacaMode==='live' ? '⚠️ SEND LIVE ORDER' : '📄 Send Paper Order'}
+        </button>
+        <span style={{fontSize:11,color:C.textMuted,alignSelf:'center'}}>
+          Budget: <b style={{color:'#f59e0b'}}>${riskPerTrade.toFixed(2)}</b> risk · <b style={{color:'#f59e0b'}}>${maxPosSize.toFixed(2)}</b> max pos
+        </span>
       </div>
-      {/* Position sizing hints */}
-      <div style={{ marginTop: 10, display: 'flex', gap: 20, flexWrap: 'wrap', fontSize: 11 }}>
-        <span style={{ color: C.textMuted }}>Max risk/trade ({maxRiskPct}%): <span style={{ color: '#f59e0b', fontWeight: 600 }}>${riskPerTrade.toFixed(2)}</span></span>
-        <span style={{ color: C.textMuted }}>Max position ({maxPosPct}%): <span style={{ color: '#f59e0b', fontWeight: 600 }}>${maxPosSize.toFixed(2)}</span></span>
-        {entryPrice > 0 && suggestedQty > 0 && <span style={{ color: C.textMuted }}>Suggested: <span style={{ color: C.accent }}>~{suggestedQty} shares</span> @ ${entryPrice.toFixed(2)} = ${suggestedTotal.toFixed(2)}</span>}
-      </div>
-      {posWarning && <div style={{ marginTop: 6, fontSize: 12, fontWeight: 700, color: posWarning.color, background: posWarning.color + '15', border: '1px solid ' + posWarning.color + '44', borderRadius: 3, padding: '4px 10px' }}>{posWarning.text}</div>}
     </div>
   )
 }
@@ -545,6 +711,7 @@ function App() {
   var _cn = _s(false), connected = _cn[0], setConnected = _cn[1]
   var _lu = _s(null), lastUpdate = _lu[0], setLastUpdate = _lu[1]
   var _cs = _s('SPY'), chartSymbol = _cs[0], setChartSymbol = _cs[1]
+  var _cv = _s(4), chartViewCount = _cv[0], setChartViewCount = _cv[1]
   var _am = _s('paper'), alpacaMode = _am[0], setAlpacaMode = _am[1]
   var _aa = _s(null), alpacaAcct = _aa[0], setAlpacaAcct = _aa[1]
   var _ot = _s([]), openTrades = _ot[0], setOpenTrades = _ot[1]
@@ -731,6 +898,7 @@ function App() {
     ['settings', '⚙️ Settings'],
     ['system', '🛡️ System'],
     ['backtest', '🔁 Backtest'],
+    ['training', '🏷️ Training'],
   ]
 
   var startingBalance = parseFloat(settings.starting_balance || '600')
@@ -770,11 +938,11 @@ function App() {
         <div className="dt-topbar-title" style={{ fontWeight: 900, fontSize: 17, color: C.accent, letterSpacing: -0.5, marginRight: 32 }}>
           📈 Day<span style={{ color: '#22c55e' }}>Trade</span><span style={{ color: C.textPrimary, fontWeight: 400 }}> Dash</span>
         </div>
-        <div className="dt-tabs">{tabs.map(function (t) {
+        <div className="dt-tabs dt-nav" style={{ display: 'flex', overflow: 'hidden' }}>{tabs.map(function (t) {
           return <button key={t[0]} onClick={function () { setActiveTab(t[0]) }} style={{
             background: 'none', border: 'none', color: activeTab === t[0] ? '#60a5fa' : C.textMuted,
             borderBottom: activeTab === t[0] ? '2px solid #60a5fa' : '2px solid transparent',
-            padding: '0 16px', height: 48, cursor: 'pointer', fontSize: 12, fontWeight: activeTab === t[0] ? 700 : 400,
+            padding: '0 16px', height: 48, cursor: 'pointer', fontSize: 12, fontWeight: activeTab === t[0] ? 700 : 400, whiteSpace: 'nowrap',
           }}>{t[1]}</button>
         })}</div>
         <div className="dt-topbar-right" style={{ marginLeft: 'auto', display: 'flex', gap: 12, alignItems: 'center' }}>
@@ -862,13 +1030,27 @@ function App() {
 
           {activeTab === 'charts' && (
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-              <div style={{ padding: '8px 16px', background: C.panel, borderBottom: '1px solid ' + C.border, display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+              <div style={{ padding: '8px 16px', background: C.panel, borderBottom: '1px solid ' + C.border, display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0, flexWrap: 'wrap' }}>
                 <span style={{ fontSize: 12, color: C.textMuted }}>Symbol:</span>
                 <input type="text" value={chartSymbol} onChange={function (e) { setChartSymbol(e.target.value.toUpperCase()) }}
                   style={{ background: C.header, border: '1px solid ' + C.border, color: C.accent, padding: '4px 10px', borderRadius: 3, fontSize: 14, fontWeight: 700, fontFamily: mono, width: 100, outline: 'none' }} />
                 <span style={{ fontSize: 14, fontWeight: 700, color: C.textPrimary }}>{chartSymbol}</span>
+                <div style={{ marginLeft: 'auto', display: 'flex', gap: 4 }}>
+                  {[1,2,3,4].map(function(n) {
+                    const icons = ['▣','⊞','⊟','⊞⊞']
+                    const labels = ['1','2','3','4']
+                    return (
+                      <button key={n} onClick={function(){ setChartViewCount(n) }} style={{
+                        background: chartViewCount === n ? '#1e3a5f' : C.header,
+                        border: '1px solid ' + (chartViewCount === n ? '#2563eb' : C.border),
+                        color: chartViewCount === n ? '#60a5fa' : C.textMuted,
+                        padding: '4px 10px', borderRadius: 3, fontSize: 12, fontWeight: 700, cursor: 'pointer', minWidth: 32
+                      }}>{labels[n-1]}</button>
+                    )
+                  })}
+                </div>
               </div>
-              <div style={{ flex: 1, padding: 12 }}><TradingViewChart symbol={chartSymbol} /></div>
+              <div style={{ flex: 1, padding: 8, minHeight: 0 }}><MultiTimeframeCharts symbol={chartSymbol} viewCount={chartViewCount} /></div>
             </div>
           )}
 
@@ -1314,6 +1496,8 @@ function App() {
         </div>
       )}
 
+      {activeTab === 'training' && React.createElement(TrainingLab, null)}
+
       {/* Confirm Modal */}
       {confirmModal && <ConfirmModal title={confirmModal.title} message={confirmModal.message} onConfirm={confirmModal.onConfirm} onCancel={function () { setConfirmModal(null) }} />}
 
@@ -1324,6 +1508,266 @@ function App() {
         .pulse-dot { width:7px; height:7px; border-radius:50%; background:#ef4444; display:inline-block; animation:pulse-red 1.2s ease-in-out infinite; margin-left:4px; flex-shrink:0; }\
       '}</style>
     </div>
+  )
+}
+
+
+// ── Training Lab ────────────────────────────────────────────────────────────
+function TrainingLab() {
+  var VISION = 'http://localhost:8769'
+  var _s = React.useState
+  var _e = React.useEffect
+  var _cb = React.useCallback
+  var _ref = React.useRef
+
+  var _ticker = _s(''); var ticker = _ticker[0]; var setTicker = _ticker[1]
+  var _queue = _s([]); var queue = _queue[0]; var setQueue = _queue[1]
+  var _idx = _s(0); var idx = _idx[0]; var setIdx = _idx[1]
+  var _stats = _s(null); var stats = _stats[0]; var setStats = _stats[1]
+  var _capturing = _s(false); var capturing = _capturing[0]; var setCapturing = _capturing[1]
+  var _capMsg = _s(''); var capMsg = _capMsg[0]; var setCapMsg = _capMsg[1]
+  var _selectedLabel = _s(null); var selectedLabel = _selectedLabel[0]; var setSelectedLabel = _selectedLabel[1]
+  var _selectedOutcome = _s(null); var selectedOutcome = _selectedOutcome[0]; var setSelectedOutcome = _selectedOutcome[1]
+  var _submitting = _s(false); var submitting = _submitting[0]; var setSubmitting = _submitting[1]
+  var _imgErr = _s({}); var imgErr = _imgErr[0]; var setImgErr = _imgErr[1]
+
+  var loadQueue = _cb(function () {
+    fetch(VISION + '/pattern/unlabeled?limit=50')
+      .then(function(r){return r.json()}).then(function(d){setQueue(d||[])}).catch(function(){})
+  }, [])
+
+  var loadStats = _cb(function () {
+    fetch(VISION + '/training/stats')
+      .then(function(r){return r.json()}).then(function(d){setStats(d)}).catch(function(){})
+  }, [])
+
+  _e(function () { loadQueue(); loadStats(); }, [])
+
+  var current = queue[idx] || null
+
+  // Reset label/outcome when card changes
+  _e(function () { setSelectedLabel(null); setSelectedOutcome(null) }, [idx, current && current.id])
+
+  // Keyboard shortcuts
+  _e(function () {
+    var labelMap = { b: 'bull_flag_confirmed', f: 'bull_flag_forming', d: 'bear', m: 'macd', g: 'gap', o: 'orb', n: 'none' }
+    var outcomeMap = { w: 'win', l: 'loss' }
+    function onKey(e) {
+      if (e.target.tagName === 'INPUT') return
+      var lbl = labelMap[e.key]
+      var out = outcomeMap[e.key]
+      if (lbl) { setSelectedLabel(lbl); return }
+      if (out) { setSelectedOutcome(out); return }
+      if (e.key === 'ArrowRight' || e.key === 's') {
+        setIdx(function(i){ return Math.min(i+1, queue.length-1) })
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return function () { window.removeEventListener('keydown', onKey) }
+  }, [queue.length])
+
+  var submitLabel = _cb(function (label, outcome) {
+    if (!current || submitting) return
+    setSubmitting(true)
+    fetch(VISION + '/pattern/label', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({id: current.id, label: label, outcome: outcome})
+    }).then(function(){
+      setQueue(function(q){ return q.filter(function(item){ return item.id !== current.id }) })
+      setIdx(function(i){ return Math.max(0, Math.min(i, queue.length - 2)) })
+      setSelectedLabel(null); setSelectedOutcome(null)
+      loadStats()
+    }).catch(function(){}).finally(function(){ setSubmitting(false) })
+  }, [current, submitting, queue.length])
+
+  var doCapture = _cb(function () {
+    if (!ticker.trim() || capturing) return
+    setCapturing(true); setCapMsg('📸 Capturing ' + ticker.toUpperCase() + '...')
+    fetch(VISION + '/capture/' + ticker.trim().toUpperCase(), {method:'POST'})
+      .then(function(r){return r.json()}).then(function(d){
+        setCapMsg('✅ ' + d.ticker + ' captured · pattern: ' + d.pattern + ' (' + (d.confidence*100).toFixed(0) + '%)')
+        loadQueue(); loadStats()
+      }).catch(function(e){ setCapMsg('❌ Capture failed') })
+      .finally(function(){ setCapturing(false); setTimeout(function(){setCapMsg('')}, 5000) })
+  }, [ticker, capturing])
+
+  var LABELS = [
+    {key:'bull_flag_confirmed', emoji:'🚩', text:'Bull Flag↑', short:'b'},
+    {key:'bull_flag_forming',   emoji:'🏳', text:'Bull Flag~', short:'f'},
+    {key:'bear',                emoji:'📉', text:'Bear',       short:'d'},
+    {key:'macd',                emoji:'📊', text:'MACD',       short:'m'},
+    {key:'gap',                 emoji:'🚀', text:'GAP',        short:'g'},
+    {key:'orb',                 emoji:'⭕', text:'ORB',        short:'o'},
+    {key:'none',                emoji:'❌', text:'None',       short:'n'},
+  ]
+
+  var bg = '#0f1320'; var panel = '#161b2e'; var border = '#1e2a44'
+  var text = '#e2e8f0'; var muted = '#6b7280'; var accent = '#60a5fa'
+
+  return React.createElement('div', {style:{padding:20, maxWidth:1100, margin:'0 auto'}},
+    // Top bar
+    React.createElement('div', {style:{display:'flex',alignItems:'center',gap:12,marginBottom:16,flexWrap:'wrap'}},
+      React.createElement('input', {
+        value: ticker,
+        onChange: function(e){setTicker(e.target.value.toUpperCase())},
+        onKeyDown: function(e){ if(e.key==='Enter') doCapture() },
+        placeholder: 'Ticker e.g. AAPL',
+        style:{background:'#1a2035',border:'1px solid '+border,color:text,padding:'8px 12px',borderRadius:6,fontSize:14,width:140,fontFamily:'monospace'}
+      }),
+      React.createElement('button', {
+        onClick: doCapture,
+        disabled: capturing || !ticker.trim(),
+        style:{background:capturing?'#374151':'#2563eb',color:'#fff',border:'none',padding:'8px 16px',borderRadius:6,cursor:capturing?'not-allowed':'pointer',fontWeight:600,fontSize:14}
+      }, capturing ? '⏳ Capturing...' : '📸 Capture'),
+      capMsg && React.createElement('span', {style:{color:'#94a3b8',fontSize:13}}, capMsg),
+      React.createElement('div', {style:{marginLeft:'auto',display:'flex',gap:16,fontSize:13,color:muted}},
+        stats && [
+          React.createElement('span', {key:'l'}, React.createElement('b', {style:{color:'#22c55e'}}, stats.labeled), ' labeled'),
+          React.createElement('span', {key:'p'}, React.createElement('b', {style:{color:'#f59e0b'}}, stats.pending_label), ' pending'),
+          React.createElement('span', {key:'t'}, React.createElement('b', {style:{color:accent}}, stats.used_in_training), ' trained'),
+        ]
+      )
+    ),
+
+    // Main content
+    queue.length === 0
+      ? React.createElement('div', {style:{textAlign:'center',padding:80,color:muted}},
+          React.createElement('div', {style:{fontSize:40,marginBottom:12}}, '🎉'),
+          React.createElement('div', {style:{fontSize:16}}, 'No unlabeled patterns — queue is clear!'),
+          React.createElement('div', {style:{fontSize:13,marginTop:8}}, 'Use the Capture button above to add new charts.')
+        )
+      : React.createElement('div', {style:{display:'grid',gridTemplateColumns:'1fr 320px',gap:20,alignItems:'start'}},
+          // Left: chart card
+          React.createElement('div', {style:{background:panel,borderRadius:10,border:'1px solid '+border,overflow:'hidden'}},
+            current && React.createElement('div', null,
+              // Image
+              React.createElement('div', {style:{background:'#0a0f1a',position:'relative'}},
+                imgErr[current.id]
+                  ? React.createElement('div', {style:{height:300,display:'flex',alignItems:'center',justifyContent:'center',color:muted,fontSize:13}}, '🖼 No screenshot stored')
+                  : React.createElement('img', {
+                      src: VISION + '/pattern/' + current.id + '/image',
+                      alt: 'chart',
+                      style:{width:'100%',display:'block',maxHeight:380,objectFit:'contain'},
+                      onError: function(){ setImgErr(function(e){ var n={};Object.assign(n,e);n[current.id]=true;return n }) }
+                    })
+              ),
+              // Card info
+              React.createElement('div', {style:{padding:'14px 16px'}},
+                React.createElement('div', {style:{display:'flex',alignItems:'center',gap:10,marginBottom:10}},
+                  React.createElement('span', {style:{fontSize:22,fontWeight:700,fontFamily:'monospace',color:text}}, current.ticker),
+                  React.createElement('span', {style:{fontSize:12,color:muted}},
+                    new Date(current.detected_at).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}) + ' ET'
+                  ),
+                  React.createElement('span', {style:{marginLeft:'auto',background:'#1a2a4a',padding:'3px 10px',borderRadius:20,fontSize:12,color:accent,fontWeight:600}},
+                    'YOLO: ' + (current.pattern||'?') + ' ' + ((current.confidence||0)*100).toFixed(0) + '%'
+                  )
+                ),
+                // Label buttons
+                React.createElement('div', {style:{marginBottom:10}},
+                  React.createElement('div', {style:{fontSize:11,color:muted,marginBottom:6,textTransform:'uppercase',letterSpacing:'0.05em'}}, 'Pattern Label'),
+                  React.createElement('div', {style:{display:'flex',gap:6,flexWrap:'wrap'}},
+                    LABELS.map(function(l){
+                      var active = selectedLabel === l.key
+                      return React.createElement('button', {
+                        key: l.key,
+                        onClick: function(){ setSelectedLabel(active ? null : l.key) },
+                        style:{
+                          background: active ? '#1d4ed8' : '#1a2035',
+                          border: '1px solid ' + (active ? '#3b82f6' : border),
+                          color: active ? '#fff' : text,
+                          padding:'6px 12px',borderRadius:6,cursor:'pointer',fontSize:13,fontWeight:active?700:400
+                        }
+                      }, l.emoji + ' ' + l.text + ' [' + l.short + ']')
+                    })
+                  )
+                ),
+                // Outcome buttons
+                React.createElement('div', {style:{marginBottom:14}},
+                  React.createElement('div', {style:{fontSize:11,color:muted,marginBottom:6,textTransform:'uppercase',letterSpacing:'0.05em'}}, 'Outcome'),
+                  React.createElement('div', {style:{display:'flex',gap:8}},
+                    React.createElement('button', {
+                      onClick: function(){ setSelectedOutcome(selectedOutcome==='win'?null:'win') },
+                      style:{background:selectedOutcome==='win'?'#166534':'#1a2035',border:'1px solid '+(selectedOutcome==='win'?'#22c55e':border),color:text,padding:'7px 18px',borderRadius:6,cursor:'pointer',fontSize:14,fontWeight:600}
+                    }, '✅ Win [w]'),
+                    React.createElement('button', {
+                      onClick: function(){ setSelectedOutcome(selectedOutcome==='loss'?null:'loss') },
+                      style:{background:selectedOutcome==='loss'?'#7f1d1d':'#1a2035',border:'1px solid '+(selectedOutcome==='loss'?'#ef4444':border),color:text,padding:'7px 18px',borderRadius:6,cursor:'pointer',fontSize:14,fontWeight:600}
+                    }, '❌ Loss [l]'),
+                    React.createElement('button', {
+                      onClick: function(){ setIdx(function(i){return Math.min(i+1,queue.length-1)}) },
+                      style:{background:'#1a2035',border:'1px solid '+border,color:muted,padding:'7px 18px',borderRadius:6,cursor:'pointer',fontSize:14}
+                    }, '⏭ Skip [→]')
+                  )
+                ),
+                // Submit
+                React.createElement('button', {
+                  onClick: function(){ if(selectedLabel) submitLabel(selectedLabel, selectedOutcome) },
+                  disabled: !selectedLabel || submitting,
+                  style:{
+                    width:'100%',background:selectedLabel?'#1d4ed8':'#1a2035',color:selectedLabel?'#fff':muted,
+                    border:'1px solid '+(selectedLabel?'#3b82f6':border),
+                    padding:'10px',borderRadius:6,cursor:selectedLabel?'pointer':'not-allowed',
+                    fontWeight:700,fontSize:15
+                  }
+                }, submitting ? '⏳ Saving...' : selectedLabel ? '💾 Save Label' : 'Select a label above')
+              )
+            )
+          ),
+
+          // Right: queue list
+          React.createElement('div', {style:{background:panel,borderRadius:10,border:'1px solid '+border,overflow:'hidden'}},
+            React.createElement('div', {style:{padding:'12px 16px',borderBottom:'1px solid '+border,fontWeight:600,fontSize:13,color:text}},
+              '📋 Queue (' + queue.length + ')'
+            ),
+            React.createElement('div', {style:{overflowY:'auto',maxHeight:500}},
+              queue.map(function(item, i){
+                var active = i === idx
+                return React.createElement('div', {
+                  key: item.id,
+                  onClick: function(){ setIdx(i) },
+                  style:{
+                    padding:'10px 14px',cursor:'pointer',
+                    background: active ? '#1a2a4a' : i%2===0?panel:'#0f1320',
+                    borderLeft: '3px solid ' + (active ? accent : 'transparent'),
+                    borderBottom: '1px solid ' + border
+                  }
+                },
+                  React.createElement('div', {style:{display:'flex',justifyContent:'space-between',alignItems:'center'}},
+                    React.createElement('span', {style:{fontWeight:600,fontFamily:'monospace',color:active?accent:text,fontSize:14}}, item.ticker),
+                    React.createElement('span', {style:{fontSize:11,color:muted}}, ((item.confidence||0)*100).toFixed(0)+'%')
+                  ),
+                  React.createElement('div', {style:{fontSize:11,color:muted,marginTop:2}}, item.pattern||'unknown')
+                )
+              })
+            )
+          )
+        ),
+
+    // Keyboard shortcut legend
+    React.createElement('div', {style:{marginTop:16,padding:'10px 16px',background:panel,borderRadius:8,border:'1px solid '+border,fontSize:12,color:muted}},
+      '⌨️ Shortcuts: ',
+      React.createElement('b',{style:{color:text}},'b'),
+      '=bull↑  ',
+      React.createElement('b',{style:{color:text}},'f'),
+      '=forming  ',
+      React.createElement('b',{style:{color:text}},'d'),
+      '=bear  ',
+      React.createElement('b',{style:{color:text}},'m'),
+      '=macd  ',
+      React.createElement('b',{style:{color:text}},'g'),
+      '=gap  ',
+      React.createElement('b',{style:{color:text}},'o'),
+      '=orb  ',
+      React.createElement('b',{style:{color:text}},'n'),
+      '=none  ',
+      React.createElement('b',{style:{color:text}},'w'),
+      '=win  ',
+      React.createElement('b',{style:{color:text}},'l'),
+      '=loss  ',
+      React.createElement('b',{style:{color:text}},'→'),
+      '=skip'
+    )
   )
 }
 
