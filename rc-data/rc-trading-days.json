@@ -1,0 +1,5410 @@
+{
+  "records": [
+    {
+      "date": "2021-01-04",
+      "gross_pl": 36394.04,
+      "net_pl": 28625.95,
+      "result": "Win",
+      "source": "2021_January-Retirement.png"
+    },
+    {
+      "date": "2021-01-05",
+      "gross_pl": 20409.9,
+      "net_pl": 24668.81,
+      "result": "Win",
+      "source": "2021_January-Retirement.png"
+    },
+    {
+      "date": "2021-01-06",
+      "gross_pl": 19898.21,
+      "net_pl": 12273.43,
+      "result": "Win",
+      "source": "2021_January-Retirement.png"
+    },
+    {
+      "date": "2021-01-07",
+      "gross_pl": 35203.91,
+      "net_pl": 38461.79,
+      "result": "Win",
+      "source": "2021_January-Retirement.png"
+    },
+    {
+      "date": "2021-01-08",
+      "gross_pl": 28181.55,
+      "net_pl": 31874.2,
+      "result": "Win",
+      "source": "2021_January-Retirement.png"
+    },
+    {
+      "date": "2021-01-11",
+      "gross_pl": 31465.16,
+      "net_pl": 28695.42,
+      "result": "Win",
+      "source": "2021_January-Retirement.png"
+    },
+    {
+      "date": "2021-01-12",
+      "gross_pl": 57572.58,
+      "net_pl": 59750.31,
+      "result": "Win",
+      "source": "2021_January-Retirement.png"
+    },
+    {
+      "date": "2021-01-13",
+      "gross_pl": 10915.55,
+      "net_pl": 10183.21,
+      "result": "Win",
+      "source": "2021_January-Retirement.png"
+    },
+    {
+      "date": "2021-01-14",
+      "gross_pl": 17057.75,
+      "net_pl": 17993.37,
+      "result": "Win",
+      "source": "2021_January-Retirement.png"
+    },
+    {
+      "date": "2021-01-15",
+      "gross_pl": 25791.46,
+      "net_pl": 26094.39,
+      "result": "Win",
+      "source": "2021_January-Main.png"
+    },
+    {
+      "date": "2021-01-19",
+      "gross_pl": 6987.49,
+      "net_pl": 3863.7,
+      "result": "Win",
+      "source": "2021_January-Retirement.png"
+    },
+    {
+      "date": "2021-01-20",
+      "gross_pl": 30873.12,
+      "net_pl": 27694.31,
+      "result": "Win",
+      "source": "2021_January-Retirement.png"
+    },
+    {
+      "date": "2021-01-21",
+      "gross_pl": 47814.63,
+      "net_pl": 42649.89,
+      "result": "Win",
+      "source": "2021_January-Retirement.png"
+    },
+    {
+      "date": "2021-01-22",
+      "gross_pl": 7187.23,
+      "net_pl": 4817.91,
+      "result": "Win",
+      "source": "2021_January-Retirement.png"
+    },
+    {
+      "date": "2021-01-25",
+      "gross_pl": 34620.92,
+      "net_pl": 31296.45,
+      "result": "Win",
+      "source": "2021_January-Main.png"
+    },
+    {
+      "date": "2021-01-26",
+      "gross_pl": 37910.68,
+      "net_pl": 37045.77,
+      "result": "Win",
+      "source": "2021_January-Main.png"
+    },
+    {
+      "date": "2021-01-27",
+      "gross_pl": 195740.99,
+      "net_pl": 189102.63,
+      "result": "Win",
+      "source": "2021_January-Retirement.png"
+    },
+    {
+      "date": "2021-01-28",
+      "gross_pl": 451802.79,
+      "net_pl": 445882.22,
+      "result": "Win",
+      "source": "2021_January-Retirement.png"
+    },
+    {
+      "date": "2021-01-29",
+      "gross_pl": 127177.63,
+      "net_pl": 120392.99,
+      "result": "Win",
+      "source": "2021_January-Retirement.png"
+    },
+    {
+      "date": "2021-02-01",
+      "gross_pl": 94335.45,
+      "net_pl": 99186.12,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Retire-1.png"
+    },
+    {
+      "date": "2021-02-02",
+      "gross_pl": 7417.57,
+      "net_pl": 7249.25,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Margin.png"
+    },
+    {
+      "date": "2021-02-03",
+      "gross_pl": 50560.31,
+      "net_pl": 44275.78,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Retire-1.png"
+    },
+    {
+      "date": "2021-02-04",
+      "gross_pl": 274961.43,
+      "net_pl": 280079.93,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Retire-1.png"
+    },
+    {
+      "date": "2021-02-05",
+      "gross_pl": 11397.9,
+      "net_pl": 9913.41,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Margin.png"
+    },
+    {
+      "date": "2021-02-08",
+      "gross_pl": 37260.48,
+      "net_pl": 40018.75,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Margin.png"
+    },
+    {
+      "date": "2021-02-09",
+      "gross_pl": 14001.76,
+      "net_pl": 13312.1,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Retire-1.png"
+    },
+    {
+      "date": "2021-02-10",
+      "gross_pl": 27837.28,
+      "net_pl": 24552.5,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Retire-1.png"
+    },
+    {
+      "date": "2021-02-11",
+      "gross_pl": 21598.55,
+      "net_pl": 21766.63,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Margin.png"
+    },
+    {
+      "date": "2021-02-12",
+      "gross_pl": 20675.66,
+      "net_pl": 18366.72,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Retire-1.png"
+    },
+    {
+      "date": "2021-02-16",
+      "gross_pl": 41163.9,
+      "net_pl": 36996.68,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Retire-1.png"
+    },
+    {
+      "date": "2021-02-17",
+      "gross_pl": 111551.01,
+      "net_pl": 105330.92,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Retire-1.png"
+    },
+    {
+      "date": "2021-02-18",
+      "gross_pl": 65286.95,
+      "net_pl": 61777.09,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Retire-1.png"
+    },
+    {
+      "date": "2021-02-19",
+      "gross_pl": 84219.62,
+      "net_pl": 76865.13,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Retire-1.png"
+    },
+    {
+      "date": "2021-02-22",
+      "gross_pl": 19973.63,
+      "net_pl": 17366.13,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Retire-1.png"
+    },
+    {
+      "date": "2021-02-23",
+      "gross_pl": 35656.0,
+      "net_pl": 30720.62,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Retire-1.png"
+    },
+    {
+      "date": "2021-02-24",
+      "gross_pl": 53698.92,
+      "net_pl": 46156.99,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Retire-1.png"
+    },
+    {
+      "date": "2021-02-25",
+      "gross_pl": 185973.47,
+      "net_pl": 184915.64,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Retire-1.png"
+    },
+    {
+      "date": "2021-02-26",
+      "gross_pl": 22386.55,
+      "net_pl": 20548.71,
+      "result": "Win",
+      "source": "2021_Lightspeed-Feb-Retire-1.png"
+    },
+    {
+      "date": "2021-03-01",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2021_Lightspeed-Margin-March.png"
+    },
+    {
+      "date": "2021-03-02",
+      "gross_pl": 74209.57,
+      "net_pl": 71943.53,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-03",
+      "gross_pl": null,
+      "net_pl": 56632.81,
+      "result": "Win",
+      "source": "2021_Lightspeed-Margin-March.png"
+    },
+    {
+      "date": "2021-03-04",
+      "gross_pl": 5426.58,
+      "net_pl": 6914.44,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-05",
+      "gross_pl": 74722.85,
+      "net_pl": 67041.21,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-08",
+      "gross_pl": 6028.01,
+      "net_pl": 1605.74,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-09",
+      "gross_pl": 47705.61,
+      "net_pl": 41713.67,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-10",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2021_Lightspeed-Margin-March.png"
+    },
+    {
+      "date": "2021-03-11",
+      "gross_pl": 20231.63,
+      "net_pl": 17964.51,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-12",
+      "gross_pl": 13536.51,
+      "net_pl": 11720.1,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-15",
+      "gross_pl": 26695.89,
+      "net_pl": 30782.38,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-16",
+      "gross_pl": 31788.85,
+      "net_pl": 27865.72,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-17",
+      "gross_pl": 8996.52,
+      "net_pl": 6785.47,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-18",
+      "gross_pl": 47767.03,
+      "net_pl": 45765.05,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-19",
+      "gross_pl": null,
+      "net_pl": 46381.16,
+      "result": "Win",
+      "source": "2021_Lightspeed-Margin-March.png"
+    },
+    {
+      "date": "2021-03-22",
+      "gross_pl": 18004.07,
+      "net_pl": 15834.78,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-23",
+      "gross_pl": 43913.23,
+      "net_pl": 42932.99,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-24",
+      "gross_pl": 6783.51,
+      "net_pl": 5650.72,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-25",
+      "gross_pl": 20090.42,
+      "net_pl": 18070.01,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-26",
+      "gross_pl": 30709.55,
+      "net_pl": 26987.81,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-29",
+      "gross_pl": 10819.51,
+      "net_pl": 10593.19,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-30",
+      "gross_pl": 7844.67,
+      "net_pl": 7586.2,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-03-31",
+      "gross_pl": 10402.16,
+      "net_pl": 8502.68,
+      "result": "Win",
+      "source": "2021_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2021-04-01",
+      "gross_pl": null,
+      "net_pl": 16815.99,
+      "result": "Win",
+      "source": "2021_Retirement-April-2021.png"
+    },
+    {
+      "date": "2021-04-05",
+      "gross_pl": null,
+      "net_pl": 9873.52,
+      "result": "Win",
+      "source": "2021_Retirement-April-2021.png"
+    },
+    {
+      "date": "2021-04-06",
+      "gross_pl": null,
+      "net_pl": 20899.21,
+      "result": "Win",
+      "source": "2021_Retirement-April-2021.png"
+    },
+    {
+      "date": "2021-04-07",
+      "gross_pl": null,
+      "net_pl": 28919.88,
+      "result": "Win",
+      "source": "2021_Retirement-April-2021.png"
+    },
+    {
+      "date": "2021-04-08",
+      "gross_pl": null,
+      "net_pl": 14217.11,
+      "result": "Win",
+      "source": "2021_Retirement-April-2021.png"
+    },
+    {
+      "date": "2021-04-09",
+      "gross_pl": null,
+      "net_pl": 11739.97,
+      "result": "Win",
+      "source": "2021_Retirement-April-2021.png"
+    },
+    {
+      "date": "2021-04-12",
+      "gross_pl": null,
+      "net_pl": 7841.71,
+      "result": "Win",
+      "source": "2021_Retirement-April-2021.png"
+    },
+    {
+      "date": "2021-04-13",
+      "gross_pl": null,
+      "net_pl": 5595.75,
+      "result": "Win",
+      "source": "2021_Retirement-April-2021.png"
+    },
+    {
+      "date": "2021-04-14",
+      "gross_pl": null,
+      "net_pl": 10584.71,
+      "result": "Win",
+      "source": "2021_Retirement-April-2021.png"
+    },
+    {
+      "date": "2021-04-15",
+      "gross_pl": null,
+      "net_pl": 60842.86,
+      "result": "Win",
+      "source": "2021_Main-April-2021.png"
+    },
+    {
+      "date": "2021-04-16",
+      "gross_pl": null,
+      "net_pl": 34109.28,
+      "result": "Win",
+      "source": "2021_Main-April-2021.png"
+    },
+    {
+      "date": "2021-04-19",
+      "gross_pl": null,
+      "net_pl": 44469.9,
+      "result": "Win",
+      "source": "2021_Retirement-April-2021.png"
+    },
+    {
+      "date": "2021-04-20",
+      "gross_pl": null,
+      "net_pl": 36099.5,
+      "result": "Win",
+      "source": "2021_Retirement-April-2021.png"
+    },
+    {
+      "date": "2021-04-21",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2021_Main-April-2021.png"
+    },
+    {
+      "date": "2021-04-22",
+      "gross_pl": null,
+      "net_pl": 10280.9,
+      "result": "Win",
+      "source": "2021_Retirement-April-2021.png"
+    },
+    {
+      "date": "2021-04-23",
+      "gross_pl": null,
+      "net_pl": 13672.8,
+      "result": "Win",
+      "source": "2021_Retirement-April-2021.png"
+    },
+    {
+      "date": "2021-04-26",
+      "gross_pl": null,
+      "net_pl": 11293.39,
+      "result": "Win",
+      "source": "2021_Main-April-2021.png"
+    },
+    {
+      "date": "2021-04-27",
+      "gross_pl": null,
+      "net_pl": 4182.97,
+      "result": "Win",
+      "source": "2021_Main-April-2021.png"
+    },
+    {
+      "date": "2021-04-28",
+      "gross_pl": null,
+      "net_pl": 5812.33,
+      "result": "Win",
+      "source": "2021_Main-April-2021.png"
+    },
+    {
+      "date": "2021-04-29",
+      "gross_pl": null,
+      "net_pl": 12811.95,
+      "result": "Win",
+      "source": "2021_Main-April-2021.png"
+    },
+    {
+      "date": "2021-04-30",
+      "gross_pl": null,
+      "net_pl": 1393.41,
+      "result": "Win",
+      "source": "2021_Main-April-2021.png"
+    },
+    {
+      "date": "2021-05-03",
+      "gross_pl": 21256.51,
+      "net_pl": 20982.41,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-05-04",
+      "gross_pl": 11359.77,
+      "net_pl": 10160.19,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-05-05",
+      "gross_pl": 10793.67,
+      "net_pl": 10134.12,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-05-06",
+      "gross_pl": 20856.64,
+      "net_pl": 19121.35,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-05-07",
+      "gross_pl": 29129.65,
+      "net_pl": 27221.62,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-05-10",
+      "gross_pl": 3550.11,
+      "net_pl": 2253.46,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-05-11",
+      "gross_pl": 7869.33,
+      "net_pl": 9068.52,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-05-12",
+      "gross_pl": 8106.26,
+      "net_pl": 6586.13,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-05-13",
+      "gross_pl": 6968.53,
+      "net_pl": 6002.36,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-05-14",
+      "gross_pl": 9011.46,
+      "net_pl": 9473.1,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-05-17",
+      "gross_pl": 6247.16,
+      "net_pl": 6355.76,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-05-18",
+      "gross_pl": 6995.61,
+      "net_pl": 7020.5,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-05-19",
+      "gross_pl": 524504.56,
+      "net_pl": 0.0,
+      "result": "Win",
+      "source": "2021_Margin-May.png"
+    },
+    {
+      "date": "2021-05-20",
+      "gross_pl": 519131.01,
+      "net_pl": 5373.55,
+      "result": "Win",
+      "source": "2021_Margin-May.png"
+    },
+    {
+      "date": "2021-05-21",
+      "gross_pl": 539910.92,
+      "net_pl": 20779.91,
+      "result": "Win",
+      "source": "2021_Margin-May.png"
+    },
+    {
+      "date": "2021-05-24",
+      "gross_pl": 31034.27,
+      "net_pl": 30542.34,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-05-25",
+      "gross_pl": 5342.36,
+      "net_pl": 4663.94,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-05-26",
+      "gross_pl": 18025.59,
+      "net_pl": 17695.55,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-05-27",
+      "gross_pl": 18176.8,
+      "net_pl": 17816.39,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-05-28",
+      "gross_pl": 24374.34,
+      "net_pl": 23662.12,
+      "result": "Win",
+      "source": "2021_Retirement-May.png"
+    },
+    {
+      "date": "2021-06-01",
+      "gross_pl": 545427.12,
+      "net_pl": 0.0,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-06-02",
+      "gross_pl": 548898.56,
+      "net_pl": 3537.44,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-06-03",
+      "gross_pl": 557168.36,
+      "net_pl": 8269.8,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-06-04",
+      "gross_pl": 612949.03,
+      "net_pl": 55780.67,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-06-07",
+      "gross_pl": 643502.43,
+      "net_pl": 30553.41,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-06-08",
+      "gross_pl": 472034.63,
+      "net_pl": 619.58,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Retirement.png"
+    },
+    {
+      "date": "2021-06-09",
+      "gross_pl": 661798.13,
+      "net_pl": 17943.29,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-06-10",
+      "gross_pl": 514255.43,
+      "net_pl": 32072.94,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Retirement.png"
+    },
+    {
+      "date": "2021-06-11",
+      "gross_pl": 532065.02,
+      "net_pl": 17809.59,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Retirement.png"
+    },
+    {
+      "date": "2021-06-14",
+      "gross_pl": 672926.24,
+      "net_pl": 11680.55,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-06-15",
+      "gross_pl": 551236.87,
+      "net_pl": 19171.85,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Retirement.png"
+    },
+    {
+      "date": "2021-06-16",
+      "gross_pl": 712616.69,
+      "net_pl": 31598.96,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-06-17",
+      "gross_pl": 508626.2,
+      "net_pl": 28968.8,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Retirement.png"
+    },
+    {
+      "date": "2021-06-18",
+      "gross_pl": 494103.04,
+      "net_pl": 14523.16,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Retirement.png"
+    },
+    {
+      "date": "2021-06-21",
+      "gross_pl": 682182.98,
+      "net_pl": 8007.71,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-06-22",
+      "gross_pl": 695602.21,
+      "net_pl": 13419.23,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-06-23",
+      "gross_pl": 520596.69,
+      "net_pl": 18746.54,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Retirement.png"
+    },
+    {
+      "date": "2021-06-24",
+      "gross_pl": 711363.53,
+      "net_pl": 6831.3,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-06-25",
+      "gross_pl": 738093.5,
+      "net_pl": 26729.97,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-06-28",
+      "gross_pl": 767142.67,
+      "net_pl": 29049.17,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-06-29",
+      "gross_pl": 793991.6,
+      "net_pl": 26848.94,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-06-30",
+      "gross_pl": 841540.99,
+      "net_pl": 47549.39,
+      "result": "Win",
+      "source": "2021_June-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-01",
+      "gross_pl": 867911.61,
+      "net_pl": 26370.62,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-02",
+      "gross_pl": 915227.19,
+      "net_pl": 47315.58,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-06",
+      "gross_pl": 922923.14,
+      "net_pl": 7695.95,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-07",
+      "gross_pl": 943870.22,
+      "net_pl": 20947.08,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-08",
+      "gross_pl": 925405.93,
+      "net_pl": 18398.29,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-09",
+      "gross_pl": 971712.42,
+      "net_pl": 46306.49,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-12",
+      "gross_pl": 992576.42,
+      "net_pl": 20864.0,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-13",
+      "gross_pl": 1029976.57,
+      "net_pl": 37400.15,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-14",
+      "gross_pl": 1064536.88,
+      "net_pl": 34560.31,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-15",
+      "gross_pl": 1072997.9,
+      "net_pl": 8461.02,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-16",
+      "gross_pl": 1089563.75,
+      "net_pl": 16565.85,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-19",
+      "gross_pl": 1065569.27,
+      "net_pl": 23994.48,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-20",
+      "gross_pl": 253263.88,
+      "net_pl": 19634.64,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Retirement.png"
+    },
+    {
+      "date": "2021-07-21",
+      "gross_pl": 1117595.4,
+      "net_pl": 47954.33,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-22",
+      "gross_pl": 1205710.7,
+      "net_pl": 88117.95,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-23",
+      "gross_pl": 1166563.33,
+      "net_pl": 39147.37,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-26",
+      "gross_pl": 1139179.95,
+      "net_pl": 27383.38,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-27",
+      "gross_pl": 1145561.2,
+      "net_pl": 6381.25,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-28",
+      "gross_pl": 1117928.56,
+      "net_pl": 27632.63,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-07-29",
+      "gross_pl": 218858.59,
+      "net_pl": 26962.46,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Retirement.png"
+    },
+    {
+      "date": "2021-07-30",
+      "gross_pl": 1119840.08,
+      "net_pl": 0.0,
+      "result": "Win",
+      "source": "2021_July-Broker-Statement-Main.png"
+    },
+    {
+      "date": "2021-08-02",
+      "gross_pl": null,
+      "net_pl": 3878.19,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-03",
+      "gross_pl": null,
+      "net_pl": 4686.01,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-04",
+      "gross_pl": 210686.29,
+      "net_pl": 8172.29,
+      "result": "Win",
+      "source": "2021_Sept-Retirement.png"
+    },
+    {
+      "date": "2021-08-05",
+      "gross_pl": null,
+      "net_pl": 376.57,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-06",
+      "gross_pl": null,
+      "net_pl": 37437.81,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-09",
+      "gross_pl": null,
+      "net_pl": 1845.41,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-10",
+      "gross_pl": null,
+      "net_pl": 11195.84,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-11",
+      "gross_pl": null,
+      "net_pl": 14199.8,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-12",
+      "gross_pl": null,
+      "net_pl": 21523.29,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-13",
+      "gross_pl": null,
+      "net_pl": 10629.53,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-16",
+      "gross_pl": null,
+      "net_pl": 6299.85,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-17",
+      "gross_pl": null,
+      "net_pl": 9616.59,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-18",
+      "gross_pl": null,
+      "net_pl": 31040.55,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-19",
+      "gross_pl": 233691.38,
+      "net_pl": 23005.09,
+      "result": "Win",
+      "source": "2021_Sept-Retirement.png"
+    },
+    {
+      "date": "2021-08-20",
+      "gross_pl": 235730.98,
+      "net_pl": 2039.61,
+      "result": "Win",
+      "source": "2021_Sept-Retirement.png"
+    },
+    {
+      "date": "2021-08-23",
+      "gross_pl": null,
+      "net_pl": 34284.49,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-24",
+      "gross_pl": null,
+      "net_pl": 29106.52,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-25",
+      "gross_pl": null,
+      "net_pl": 48216.67,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-26",
+      "gross_pl": null,
+      "net_pl": 34736.84,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-27",
+      "gross_pl": null,
+      "net_pl": 15834.14,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-30",
+      "gross_pl": null,
+      "net_pl": 13410.94,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-08-31",
+      "gross_pl": null,
+      "net_pl": 9051.65,
+      "result": "Win",
+      "source": "2021_Sept-Main.png"
+    },
+    {
+      "date": "2021-09-01",
+      "gross_pl": 42352.34,
+      "net_pl": 40188.58,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-02",
+      "gross_pl": 17572.81,
+      "net_pl": 16110.27,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-03",
+      "gross_pl": 41014.92,
+      "net_pl": 41261.82,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-07",
+      "gross_pl": 22809.7,
+      "net_pl": 23410.34,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-09",
+      "gross_pl": 40232.34,
+      "net_pl": 38743.89,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-10",
+      "gross_pl": 12986.84,
+      "net_pl": 12280.19,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-13",
+      "gross_pl": 9761.67,
+      "net_pl": 9043.7,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-14",
+      "gross_pl": 2358.24,
+      "net_pl": 1300.71,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-15",
+      "gross_pl": 102172.89,
+      "net_pl": 97787.12,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-16",
+      "gross_pl": 7388.39,
+      "net_pl": 8580.26,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-17",
+      "gross_pl": 20972.92,
+      "net_pl": 18763.69,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-20",
+      "gross_pl": 37821.48,
+      "net_pl": 42915.78,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-21",
+      "gross_pl": 55604.28,
+      "net_pl": 54552.73,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-23",
+      "gross_pl": 5901.76,
+      "net_pl": 4784.34,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-24",
+      "gross_pl": 37391.63,
+      "net_pl": 38249.15,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-27",
+      "gross_pl": 1560.0,
+      "net_pl": 907.65,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-28",
+      "gross_pl": 1599.23,
+      "net_pl": 892.55,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-09-29",
+      "gross_pl": 31232.82,
+      "net_pl": 26021.46,
+      "result": "Win",
+      "source": "2021_Sept-Main-.png"
+    },
+    {
+      "date": "2021-10-01",
+      "gross_pl": null,
+      "net_pl": 1070.67,
+      "result": "Win",
+      "source": "2021_Margin-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-04",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-05",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-06",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-07",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-08",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-11",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-12",
+      "gross_pl": null,
+      "net_pl": 19341.3,
+      "result": "Win",
+      "source": "2021_Margin-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-13",
+      "gross_pl": null,
+      "net_pl": 20991.8,
+      "result": "Win",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-14",
+      "gross_pl": null,
+      "net_pl": 20881.81,
+      "result": "Win",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-15",
+      "gross_pl": null,
+      "net_pl": 58714.73,
+      "result": "Win",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-18",
+      "gross_pl": null,
+      "net_pl": 6251.39,
+      "result": "Win",
+      "source": "2021_Margin-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-19",
+      "gross_pl": null,
+      "net_pl": 3374.37,
+      "result": "Win",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-20",
+      "gross_pl": null,
+      "net_pl": 8984.34,
+      "result": "Win",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-21",
+      "gross_pl": null,
+      "net_pl": 8626.47,
+      "result": "Win",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-22",
+      "gross_pl": null,
+      "net_pl": 82905.38,
+      "result": "Win",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-25",
+      "gross_pl": null,
+      "net_pl": 57022.88,
+      "result": "Win",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-26",
+      "gross_pl": null,
+      "net_pl": 68974.48,
+      "result": "Win",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-27",
+      "gross_pl": null,
+      "net_pl": 21698.68,
+      "result": "Win",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-28",
+      "gross_pl": null,
+      "net_pl": 25301.93,
+      "result": "Win",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-10-29",
+      "gross_pl": null,
+      "net_pl": 517.35,
+      "result": "Win",
+      "source": "2021_IRA-Oct-2021.png"
+    },
+    {
+      "date": "2021-11-01",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2021_Lightspeed-Main-Nov.png"
+    },
+    {
+      "date": "2021-11-02",
+      "gross_pl": null,
+      "net_pl": 78582.87,
+      "result": "Win",
+      "source": "2021_Lightspeed-Retirement-Nov.png"
+    },
+    {
+      "date": "2021-11-03",
+      "gross_pl": null,
+      "net_pl": 57341.05,
+      "result": "Win",
+      "source": "2021_Lightspeed-Retirement-Nov.png"
+    },
+    {
+      "date": "2021-11-04",
+      "gross_pl": null,
+      "net_pl": 9058.08,
+      "result": "Win",
+      "source": "2021_Lightspeed-Retirement-Nov.png"
+    },
+    {
+      "date": "2021-11-05",
+      "gross_pl": null,
+      "net_pl": 22729.4,
+      "result": "Win",
+      "source": "2021_Lightspeed-Retirement-Nov.png"
+    },
+    {
+      "date": "2021-11-08",
+      "gross_pl": null,
+      "net_pl": 18921.17,
+      "result": "Win",
+      "source": "2021_Lightspeed-Retirement-Nov.png"
+    },
+    {
+      "date": "2021-11-09",
+      "gross_pl": null,
+      "net_pl": 2537.24,
+      "result": "Win",
+      "source": "2021_Lightspeed-Retirement-Nov.png"
+    },
+    {
+      "date": "2021-11-10",
+      "gross_pl": null,
+      "net_pl": 37547.77,
+      "result": "Win",
+      "source": "2021_Lightspeed-Main-Nov.png"
+    },
+    {
+      "date": "2021-11-11",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2021_Lightspeed-Main-Nov.png"
+    },
+    {
+      "date": "2021-11-12",
+      "gross_pl": null,
+      "net_pl": 12537.25,
+      "result": "Win",
+      "source": "2021_Lightspeed-Retirement-Nov.png"
+    },
+    {
+      "date": "2021-11-15",
+      "gross_pl": null,
+      "net_pl": 8678.98,
+      "result": "Win",
+      "source": "2021_Lightspeed-Retirement-Nov.png"
+    },
+    {
+      "date": "2021-11-16",
+      "gross_pl": null,
+      "net_pl": 15493.21,
+      "result": "Win",
+      "source": "2021_Lightspeed-Retirement-Nov.png"
+    },
+    {
+      "date": "2021-11-17",
+      "gross_pl": null,
+      "net_pl": 3001.0,
+      "result": "Win",
+      "source": "2021_Lightspeed-Retirement-Nov.png"
+    },
+    {
+      "date": "2021-11-18",
+      "gross_pl": null,
+      "net_pl": 5000.75,
+      "result": "Win",
+      "source": "2021_Lightspeed-Retirement-Nov.png"
+    },
+    {
+      "date": "2021-11-19",
+      "gross_pl": null,
+      "net_pl": 32358.22,
+      "result": "Win",
+      "source": "2021_Lightspeed-Main-Nov.png"
+    },
+    {
+      "date": "2021-11-22",
+      "gross_pl": null,
+      "net_pl": 40187.17,
+      "result": "Win",
+      "source": "2021_Lightspeed-Main-Nov.png"
+    },
+    {
+      "date": "2021-11-23",
+      "gross_pl": null,
+      "net_pl": 10757.02,
+      "result": "Win",
+      "source": "2021_Lightspeed-Retirement-Nov.png"
+    },
+    {
+      "date": "2021-11-24",
+      "gross_pl": null,
+      "net_pl": 9613.87,
+      "result": "Win",
+      "source": "2021_Lightspeed-Retirement-Nov.png"
+    },
+    {
+      "date": "2021-11-26",
+      "gross_pl": null,
+      "net_pl": 42269.49,
+      "result": "Win",
+      "source": "2021_Lightspeed-Retirement-Nov.png"
+    },
+    {
+      "date": "2021-11-29",
+      "gross_pl": null,
+      "net_pl": 12904.1,
+      "result": "Win",
+      "source": "2021_Lightspeed-Retirement-Nov.png"
+    },
+    {
+      "date": "2021-11-30",
+      "gross_pl": null,
+      "net_pl": 3874.54,
+      "result": "Win",
+      "source": "2021_Lightspeed-Retirement-Nov.png"
+    },
+    {
+      "date": "2021-12-01",
+      "gross_pl": null,
+      "net_pl": 35786.27,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-02",
+      "gross_pl": null,
+      "net_pl": 46370.63,
+      "result": "Win",
+      "source": "2021_Dec-Statement-MG.png"
+    },
+    {
+      "date": "2021-12-03",
+      "gross_pl": null,
+      "net_pl": 10858.51,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-06",
+      "gross_pl": null,
+      "net_pl": 11218.85,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-07",
+      "gross_pl": null,
+      "net_pl": 3.26,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-08",
+      "gross_pl": null,
+      "net_pl": 48592.66,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-09",
+      "gross_pl": null,
+      "net_pl": 31277.9,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-10",
+      "gross_pl": null,
+      "net_pl": 30300.91,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-13",
+      "gross_pl": null,
+      "net_pl": 13335.88,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-14",
+      "gross_pl": null,
+      "net_pl": 3007.88,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-15",
+      "gross_pl": null,
+      "net_pl": 21998.86,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-16",
+      "gross_pl": null,
+      "net_pl": 9174.43,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-17",
+      "gross_pl": null,
+      "net_pl": 7066.38,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-20",
+      "gross_pl": null,
+      "net_pl": 14119.08,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-21",
+      "gross_pl": null,
+      "net_pl": 19922.79,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-22",
+      "gross_pl": null,
+      "net_pl": 2453.24,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-23",
+      "gross_pl": null,
+      "net_pl": 28321.75,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-27",
+      "gross_pl": null,
+      "net_pl": 2197.62,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-28",
+      "gross_pl": null,
+      "net_pl": 19248.63,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-29",
+      "gross_pl": null,
+      "net_pl": 43506.47,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-30",
+      "gross_pl": null,
+      "net_pl": 8360.11,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2021-12-31",
+      "gross_pl": null,
+      "net_pl": 65429.53,
+      "result": "Win",
+      "source": "2021_Dec-Statement.png"
+    },
+    {
+      "date": "2022-01-03",
+      "gross_pl": 22965.41,
+      "net_pl": 20915.73,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-04",
+      "gross_pl": 5574.02,
+      "net_pl": 4843.18,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-05",
+      "gross_pl": 21212.16,
+      "net_pl": 18844.36,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-06",
+      "gross_pl": 21050.23,
+      "net_pl": 18979.26,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-07",
+      "gross_pl": 614.23,
+      "net_pl": 398.02,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-10",
+      "gross_pl": 2923.88,
+      "net_pl": 1842.47,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-11",
+      "gross_pl": 16410.46,
+      "net_pl": 15609.76,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-12",
+      "gross_pl": 15112.47,
+      "net_pl": 13065.34,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-13",
+      "gross_pl": 2196.53,
+      "net_pl": 1606.27,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-14",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2022_Lightspeed-Jan-Main.png"
+    },
+    {
+      "date": "2022-01-18",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2022_Lightspeed-Jan-Main.png"
+    },
+    {
+      "date": "2022-01-19",
+      "gross_pl": 16480.59,
+      "net_pl": 18069.74,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-20",
+      "gross_pl": 2442.41,
+      "net_pl": 2766.15,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-21",
+      "gross_pl": 39653.01,
+      "net_pl": 40521.78,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-24",
+      "gross_pl": 3479.5,
+      "net_pl": 3186.22,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-25",
+      "gross_pl": 38365.33,
+      "net_pl": 39289.54,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-26",
+      "gross_pl": 8182.64,
+      "net_pl": 8344.0,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-27",
+      "gross_pl": 8484.19,
+      "net_pl": 7318.77,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-28",
+      "gross_pl": 19342.88,
+      "net_pl": 17680.89,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-01-31",
+      "gross_pl": 8824.0,
+      "net_pl": 8437.98,
+      "result": "Win",
+      "source": "2022_Lightspeed-Jan-Retirement.png"
+    },
+    {
+      "date": "2022-02-01",
+      "gross_pl": null,
+      "net_pl": 1802.61,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-02-02",
+      "gross_pl": null,
+      "net_pl": 549.6,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-02-03",
+      "gross_pl": null,
+      "net_pl": 4031.79,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-02-04",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2022_Feb-Margin.png"
+    },
+    {
+      "date": "2022-02-07",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2022_Feb-Margin.png"
+    },
+    {
+      "date": "2022-02-08",
+      "gross_pl": null,
+      "net_pl": 12129.88,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-02-09",
+      "gross_pl": null,
+      "net_pl": 10843.59,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-02-10",
+      "gross_pl": null,
+      "net_pl": 12774.11,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-02-11",
+      "gross_pl": null,
+      "net_pl": 9832.83,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-02-14",
+      "gross_pl": null,
+      "net_pl": 6092.16,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-02-15",
+      "gross_pl": null,
+      "net_pl": 18334.13,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-02-16",
+      "gross_pl": null,
+      "net_pl": 9608.61,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-02-17",
+      "gross_pl": null,
+      "net_pl": 65574.44,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-02-18",
+      "gross_pl": null,
+      "net_pl": 50454.06,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-02-22",
+      "gross_pl": null,
+      "net_pl": 4529.42,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-02-23",
+      "gross_pl": null,
+      "net_pl": 21346.25,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-02-24",
+      "gross_pl": null,
+      "net_pl": 3533.92,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-02-25",
+      "gross_pl": null,
+      "net_pl": 16733.28,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-02-28",
+      "gross_pl": null,
+      "net_pl": 1004.13,
+      "result": "Win",
+      "source": "2022_Feb-Retirement.png"
+    },
+    {
+      "date": "2022-03-01",
+      "gross_pl": null,
+      "net_pl": 4877.42,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-02",
+      "gross_pl": null,
+      "net_pl": 6721.17,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-03",
+      "gross_pl": null,
+      "net_pl": 10507.23,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-04",
+      "gross_pl": null,
+      "net_pl": 1813.71,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-07",
+      "gross_pl": null,
+      "net_pl": 21828.58,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-08",
+      "gross_pl": null,
+      "net_pl": 20854.15,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-09",
+      "gross_pl": null,
+      "net_pl": 19098.2,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-10",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2022_Main-Acct-March.png"
+    },
+    {
+      "date": "2022-03-11",
+      "gross_pl": null,
+      "net_pl": 13736.27,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-14",
+      "gross_pl": null,
+      "net_pl": 346.42,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-15",
+      "gross_pl": null,
+      "net_pl": 26255.99,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-16",
+      "gross_pl": null,
+      "net_pl": 12431.24,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-17",
+      "gross_pl": null,
+      "net_pl": 9588.1,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-18",
+      "gross_pl": null,
+      "net_pl": 21952.05,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-21",
+      "gross_pl": null,
+      "net_pl": 15825.61,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-22",
+      "gross_pl": null,
+      "net_pl": 20162.3,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-23",
+      "gross_pl": null,
+      "net_pl": 13644.38,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-24",
+      "gross_pl": null,
+      "net_pl": 5474.23,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-25",
+      "gross_pl": null,
+      "net_pl": 7815.19,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-28",
+      "gross_pl": null,
+      "net_pl": 7218.76,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-29",
+      "gross_pl": null,
+      "net_pl": 8080.39,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-30",
+      "gross_pl": null,
+      "net_pl": 16946.99,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-03-31",
+      "gross_pl": null,
+      "net_pl": 1586.34,
+      "result": "Win",
+      "source": "2022_Retirement-Acct-March.png"
+    },
+    {
+      "date": "2022-04-01",
+      "gross_pl": null,
+      "net_pl": 2432.98,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-04",
+      "gross_pl": null,
+      "net_pl": 2326.64,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-05",
+      "gross_pl": null,
+      "net_pl": 29539.9,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-06",
+      "gross_pl": null,
+      "net_pl": 9020.66,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-07",
+      "gross_pl": null,
+      "net_pl": 17995.11,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-08",
+      "gross_pl": null,
+      "net_pl": 3419.8,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-11",
+      "gross_pl": null,
+      "net_pl": 8808.62,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-12",
+      "gross_pl": null,
+      "net_pl": 7157.32,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-13",
+      "gross_pl": null,
+      "net_pl": 22144.19,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-14",
+      "gross_pl": null,
+      "net_pl": 14649.36,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-18",
+      "gross_pl": null,
+      "net_pl": 10723.8,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-19",
+      "gross_pl": null,
+      "net_pl": 12900.24,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-20",
+      "gross_pl": null,
+      "net_pl": 4449.08,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-21",
+      "gross_pl": null,
+      "net_pl": 7118.18,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-22",
+      "gross_pl": null,
+      "net_pl": 3701.21,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-25",
+      "gross_pl": null,
+      "net_pl": 3337.17,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-26",
+      "gross_pl": null,
+      "net_pl": 8471.3,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-27",
+      "gross_pl": null,
+      "net_pl": 38514.42,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-28",
+      "gross_pl": null,
+      "net_pl": 10377.85,
+      "result": "Win",
+      "source": "2022_LS-Retirement2.png"
+    },
+    {
+      "date": "2022-04-29",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2022_LS-Main.png"
+    },
+    {
+      "date": "2022-05-02",
+      "gross_pl": 945287.5,
+      "net_pl": 2818.83,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-03",
+      "gross_pl": 949186.7,
+      "net_pl": 3899.2,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-04",
+      "gross_pl": 957372.46,
+      "net_pl": 8185.76,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-05",
+      "gross_pl": 958603.76,
+      "net_pl": 1231.3,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-06",
+      "gross_pl": 984571.58,
+      "net_pl": 25967.8,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-09",
+      "gross_pl": 985642.4,
+      "net_pl": 1070.81,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-10",
+      "gross_pl": 986169.35,
+      "net_pl": 526.95,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-11",
+      "gross_pl": 973930.49,
+      "net_pl": 12238.86,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-12",
+      "gross_pl": 70096.65,
+      "net_pl": 0.0,
+      "result": "Win",
+      "source": "2022_MAY-Main-Acct.png"
+    },
+    {
+      "date": "2022-05-13",
+      "gross_pl": 70387.27,
+      "net_pl": 291.45,
+      "result": "Win",
+      "source": "2022_MAY-Main-Acct.png"
+    },
+    {
+      "date": "2022-05-16",
+      "gross_pl": 70387.27,
+      "net_pl": 0.0,
+      "result": "Win",
+      "source": "2022_MAY-Main-Acct.png"
+    },
+    {
+      "date": "2022-05-17",
+      "gross_pl": 975876.45,
+      "net_pl": 1945.96,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-18",
+      "gross_pl": 989394.41,
+      "net_pl": 13517.97,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-19",
+      "gross_pl": 995085.03,
+      "net_pl": 5690.62,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-20",
+      "gross_pl": 1001749.18,
+      "net_pl": 6664.14,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-23",
+      "gross_pl": 1000374.16,
+      "net_pl": 1375.02,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-24",
+      "gross_pl": 990461.75,
+      "net_pl": 9912.41,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-25",
+      "gross_pl": 980236.84,
+      "net_pl": 10224.91,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-26",
+      "gross_pl": 985768.87,
+      "net_pl": 5532.04,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-27",
+      "gross_pl": 985864.34,
+      "net_pl": 95.47,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-05-31",
+      "gross_pl": 990790.97,
+      "net_pl": 4926.63,
+      "result": "Win",
+      "source": "2022_MAY-Retirement-Acct.png"
+    },
+    {
+      "date": "2022-06-01",
+      "gross_pl": null,
+      "net_pl": 8818.12,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-02",
+      "gross_pl": null,
+      "net_pl": 780.68,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-03",
+      "gross_pl": null,
+      "net_pl": 4294.07,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-06",
+      "gross_pl": null,
+      "net_pl": 130.95,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-07",
+      "gross_pl": null,
+      "net_pl": 3545.55,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-08",
+      "gross_pl": null,
+      "net_pl": 2103.89,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-09",
+      "gross_pl": null,
+      "net_pl": 10014.02,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-10",
+      "gross_pl": null,
+      "net_pl": 3812.24,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-13",
+      "gross_pl": null,
+      "net_pl": 7095.82,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-14",
+      "gross_pl": null,
+      "net_pl": 10112.03,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-15",
+      "gross_pl": null,
+      "net_pl": 3581.23,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-16",
+      "gross_pl": null,
+      "net_pl": 6666.2,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-17",
+      "gross_pl": null,
+      "net_pl": 3432.45,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-21",
+      "gross_pl": null,
+      "net_pl": 1880.14,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-22",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2022_Lightspeed-Margin.png"
+    },
+    {
+      "date": "2022-06-23",
+      "gross_pl": null,
+      "net_pl": 4187.04,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-24",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2022_Lightspeed-Margin.png"
+    },
+    {
+      "date": "2022-06-27",
+      "gross_pl": null,
+      "net_pl": 2271.45,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-28",
+      "gross_pl": null,
+      "net_pl": 714.24,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-29",
+      "gross_pl": null,
+      "net_pl": 318.08,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-06-30",
+      "gross_pl": null,
+      "net_pl": 4334.75,
+      "result": "Win",
+      "source": "2022_Lightspeed-Retirement.png"
+    },
+    {
+      "date": "2022-07-01",
+      "gross_pl": null,
+      "net_pl": 559.27,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-05",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2022_LS-Main-July.png"
+    },
+    {
+      "date": "2022-07-06",
+      "gross_pl": null,
+      "net_pl": 1540.86,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-07",
+      "gross_pl": null,
+      "net_pl": 1003.13,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-08",
+      "gross_pl": null,
+      "net_pl": 569.76,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-11",
+      "gross_pl": null,
+      "net_pl": 1720.06,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-12",
+      "gross_pl": null,
+      "net_pl": 4459.4,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-13",
+      "gross_pl": null,
+      "net_pl": 2227.01,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-14",
+      "gross_pl": null,
+      "net_pl": 1738.32,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-15",
+      "gross_pl": null,
+      "net_pl": 2279.95,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-18",
+      "gross_pl": null,
+      "net_pl": 150.94,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-19",
+      "gross_pl": null,
+      "net_pl": 1461.08,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-20",
+      "gross_pl": null,
+      "net_pl": 1510.94,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-21",
+      "gross_pl": null,
+      "net_pl": 1685.19,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-22",
+      "gross_pl": null,
+      "net_pl": 8502.02,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-25",
+      "gross_pl": null,
+      "net_pl": 3108.96,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-26",
+      "gross_pl": null,
+      "net_pl": 5062.42,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-27",
+      "gross_pl": null,
+      "net_pl": 7248.92,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-28",
+      "gross_pl": null,
+      "net_pl": 5084.55,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-07-29",
+      "gross_pl": null,
+      "net_pl": 17247.61,
+      "result": "Win",
+      "source": "2022_LS-RetireJuly.png"
+    },
+    {
+      "date": "2022-08-01",
+      "gross_pl": 5488.19,
+      "net_pl": 4300.3,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-02",
+      "gross_pl": 28113.62,
+      "net_pl": 25958.16,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-03",
+      "gross_pl": 26300.78,
+      "net_pl": 24579.16,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-04",
+      "gross_pl": 3129.41,
+      "net_pl": 1281.65,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-05",
+      "gross_pl": 4235.98,
+      "net_pl": 3544.62,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-08",
+      "gross_pl": 9521.14,
+      "net_pl": 9233.41,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-09",
+      "gross_pl": 1606.8,
+      "net_pl": 1303.98,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-10",
+      "gross_pl": 2444.4,
+      "net_pl": 2312.18,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-11",
+      "gross_pl": 2463.43,
+      "net_pl": 2136.64,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-12",
+      "gross_pl": 15520.75,
+      "net_pl": 14826.07,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-15",
+      "gross_pl": 12998.44,
+      "net_pl": 11596.33,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-16",
+      "gross_pl": 8719.25,
+      "net_pl": 8198.21,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-17",
+      "gross_pl": 5287.47,
+      "net_pl": 4589.11,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-18",
+      "gross_pl": 3027.88,
+      "net_pl": 2520.63,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-19",
+      "gross_pl": 1063.86,
+      "net_pl": 214.12,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-22",
+      "gross_pl": 7299.35,
+      "net_pl": 6989.83,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-23",
+      "gross_pl": 2158.93,
+      "net_pl": 1541.05,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-24",
+      "gross_pl": 1033.88,
+      "net_pl": 627.63,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-25",
+      "gross_pl": 2304.9,
+      "net_pl": 1988.25,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-26",
+      "gross_pl": 10940.65,
+      "net_pl": 10035.55,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-29",
+      "gross_pl": 1921.52,
+      "net_pl": 1584.31,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-30",
+      "gross_pl": 18601.81,
+      "net_pl": 17993.62,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-08-31",
+      "gross_pl": 10124.73,
+      "net_pl": 9601.94,
+      "result": "Win",
+      "source": "2022_Retirement-Acct.png"
+    },
+    {
+      "date": "2022-09-01",
+      "gross_pl": 679135.01,
+      "net_pl": 18621.38,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-02",
+      "gross_pl": 693152.21,
+      "net_pl": 14017.18,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-06",
+      "gross_pl": 694107.49,
+      "net_pl": 955.29,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-07",
+      "gross_pl": 68976.07,
+      "net_pl": 1172.27,
+      "result": "Win",
+      "source": "2022_Margin-Sept.png"
+    },
+    {
+      "date": "2022-09-08",
+      "gross_pl": 705712.19,
+      "net_pl": 11534.65,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-09",
+      "gross_pl": 716680.93,
+      "net_pl": 10968.72,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-12",
+      "gross_pl": 726167.69,
+      "net_pl": 9486.72,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-13",
+      "gross_pl": 69518.71,
+      "net_pl": 542.59,
+      "result": "Win",
+      "source": "2022_Margin-Sept.png"
+    },
+    {
+      "date": "2022-09-14",
+      "gross_pl": 729976.08,
+      "net_pl": 4127.63,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-15",
+      "gross_pl": 737694.54,
+      "net_pl": 7718.43,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-16",
+      "gross_pl": 740413.76,
+      "net_pl": 2719.2,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-19",
+      "gross_pl": 760002.32,
+      "net_pl": 19588.49,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-20",
+      "gross_pl": 764986.77,
+      "net_pl": 4984.42,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-21",
+      "gross_pl": 768272.89,
+      "net_pl": 3286.09,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-22",
+      "gross_pl": 773414.42,
+      "net_pl": 5141.54,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-23",
+      "gross_pl": 771845.7,
+      "net_pl": 1568.73,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-26",
+      "gross_pl": 771929.3,
+      "net_pl": 83.6,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-27",
+      "gross_pl": 776209.82,
+      "net_pl": 4280.44,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-28",
+      "gross_pl": 782013.46,
+      "net_pl": 5803.63,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-29",
+      "gross_pl": 785576.9,
+      "net_pl": 3563.42,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-09-30",
+      "gross_pl": 789432.74,
+      "net_pl": 3808.27,
+      "result": "Win",
+      "source": "2022_Retirement-Sept.png"
+    },
+    {
+      "date": "2022-10-03",
+      "gross_pl": null,
+      "net_pl": 5072.82,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-04",
+      "gross_pl": null,
+      "net_pl": 3253.16,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-05",
+      "gross_pl": null,
+      "net_pl": 2206.82,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-06",
+      "gross_pl": null,
+      "net_pl": 9139.67,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-07",
+      "gross_pl": null,
+      "net_pl": 4948.58,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-10",
+      "gross_pl": null,
+      "net_pl": 731.01,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-11",
+      "gross_pl": null,
+      "net_pl": 5899.95,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-12",
+      "gross_pl": null,
+      "net_pl": 3173.22,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-13",
+      "gross_pl": null,
+      "net_pl": 1380.01,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-14",
+      "gross_pl": null,
+      "net_pl": 391.22,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-17",
+      "gross_pl": null,
+      "net_pl": 1532.67,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-18",
+      "gross_pl": null,
+      "net_pl": 7415.53,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-19",
+      "gross_pl": null,
+      "net_pl": 5142.6,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-20",
+      "gross_pl": null,
+      "net_pl": 2848.56,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-21",
+      "gross_pl": null,
+      "net_pl": 6889.03,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-24",
+      "gross_pl": null,
+      "net_pl": 3287.34,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-25",
+      "gross_pl": null,
+      "net_pl": 4450.3,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-26",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2022_October-Margin.png"
+    },
+    {
+      "date": "2022-10-27",
+      "gross_pl": null,
+      "net_pl": 8620.87,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-28",
+      "gross_pl": null,
+      "net_pl": 4627.15,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-10-31",
+      "gross_pl": null,
+      "net_pl": 6242.56,
+      "result": "Win",
+      "source": "2022_October-Retirement.png"
+    },
+    {
+      "date": "2022-11-01",
+      "gross_pl": 72.7,
+      "net_pl": 516.42,
+      "result": "Win",
+      "source": "2022_Retirement-November.png"
+    },
+    {
+      "date": "2022-11-02",
+      "gross_pl": 1070.74,
+      "net_pl": 683.02,
+      "result": "Win",
+      "source": "2022_Retirement-November.png"
+    },
+    {
+      "date": "2022-11-04",
+      "gross_pl": 3855.83,
+      "net_pl": 2938.06,
+      "result": "Win",
+      "source": "2022_Retirement-November.png"
+    },
+    {
+      "date": "2022-11-07",
+      "gross_pl": 713.04,
+      "net_pl": 553.5,
+      "result": "Win",
+      "source": "2022_Retirement-November.png"
+    },
+    {
+      "date": "2022-11-08",
+      "gross_pl": 1468.73,
+      "net_pl": 1422.31,
+      "result": "Win",
+      "source": "2022_Retirement-November.png"
+    },
+    {
+      "date": "2022-11-09",
+      "gross_pl": 3117.97,
+      "net_pl": 3380.47,
+      "result": "Win",
+      "source": "2022_Retirement-November.png"
+    },
+    {
+      "date": "2022-11-10",
+      "gross_pl": 4.44,
+      "net_pl": 247.71,
+      "result": "Win",
+      "source": "2022_Retirement-November.png"
+    },
+    {
+      "date": "2022-11-14",
+      "gross_pl": 6516.41,
+      "net_pl": 6320.44,
+      "result": "Win",
+      "source": "2022_Retirement-November.png"
+    },
+    {
+      "date": "2022-11-15",
+      "gross_pl": 1684.55,
+      "net_pl": 1539.36,
+      "result": "Win",
+      "source": "2022_Retirement-November.png"
+    },
+    {
+      "date": "2022-11-16",
+      "gross_pl": 2621.23,
+      "net_pl": 2395.35,
+      "result": "Win",
+      "source": "2022_Retirement-November.png"
+    },
+    {
+      "date": "2022-11-22",
+      "gross_pl": 81.83,
+      "net_pl": 74.21,
+      "result": "Win",
+      "source": "2022_Margin-Nov-2022.png"
+    },
+    {
+      "date": "2022-11-25",
+      "gross_pl": 5032.94,
+      "net_pl": 5289.11,
+      "result": "Win",
+      "source": "2022_Retirement-November.png"
+    },
+    {
+      "date": "2022-12-01",
+      "gross_pl": 1635.8,
+      "net_pl": 1566.21,
+      "result": "Win",
+      "source": "2022_LS-IRA-Dec.png"
+    },
+    {
+      "date": "2022-12-02",
+      "gross_pl": 289.93,
+      "net_pl": 719.55,
+      "result": "Win",
+      "source": "2022_LS-IRA-Dec.png"
+    },
+    {
+      "date": "2022-12-05",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2022_LS-Margin-Dec.png"
+    },
+    {
+      "date": "2022-12-06",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2022_LS-Margin-Dec.png"
+    },
+    {
+      "date": "2022-12-07",
+      "gross_pl": 987.98,
+      "net_pl": 922.94,
+      "result": "Win",
+      "source": "2022_LS-IRA-Dec.png"
+    },
+    {
+      "date": "2022-12-08",
+      "gross_pl": 2094.53,
+      "net_pl": 1637.87,
+      "result": "Win",
+      "source": "2022_LS-IRA-Dec.png"
+    },
+    {
+      "date": "2022-12-09",
+      "gross_pl": 4877.84,
+      "net_pl": 3640.64,
+      "result": "Win",
+      "source": "2022_LS-IRA-Dec.png"
+    },
+    {
+      "date": "2022-12-12",
+      "gross_pl": 361.28,
+      "net_pl": 228.01,
+      "result": "Win",
+      "source": "2022_LS-IRA-Dec.png"
+    },
+    {
+      "date": "2022-12-13",
+      "gross_pl": 2082.23,
+      "net_pl": 1668.05,
+      "result": "Win",
+      "source": "2022_LS-IRA-Dec.png"
+    },
+    {
+      "date": "2022-12-14",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2022_LS-Margin-Dec.png"
+    },
+    {
+      "date": "2022-12-15",
+      "gross_pl": 6360.0,
+      "net_pl": 596.32,
+      "result": "Win",
+      "source": "2022_LS-IRA-Dec.png"
+    },
+    {
+      "date": "2022-12-16",
+      "gross_pl": 2567.68,
+      "net_pl": 2281.42,
+      "result": "Win",
+      "source": "2022_LS-IRA-Dec.png"
+    },
+    {
+      "date": "2022-12-19",
+      "gross_pl": 430.48,
+      "net_pl": 234.48,
+      "result": "Win",
+      "source": "2022_LS-IRA-Dec.png"
+    },
+    {
+      "date": "2022-12-20",
+      "gross_pl": 1260.12,
+      "net_pl": 1178.94,
+      "result": "Win",
+      "source": "2022_LS-IRA-Dec.png"
+    },
+    {
+      "date": "2022-12-21",
+      "gross_pl": 1842.39,
+      "net_pl": 1615.09,
+      "result": "Win",
+      "source": "2022_LS-IRA-Dec.png"
+    },
+    {
+      "date": "2022-12-22",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2022_LS-Margin-Dec.png"
+    },
+    {
+      "date": "2022-12-23",
+      "gross_pl": 559.83,
+      "net_pl": 475.35,
+      "result": "Win",
+      "source": "2022_LS-IRA-Dec.png"
+    },
+    {
+      "date": "2022-12-27",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2022_LS-Margin-Dec.png"
+    },
+    {
+      "date": "2022-12-28",
+      "gross_pl": 1947.76,
+      "net_pl": 1226.91,
+      "result": "Win",
+      "source": "2022_LS-IRA-Dec.png"
+    },
+    {
+      "date": "2022-12-29",
+      "gross_pl": 8015.1,
+      "net_pl": 7391.03,
+      "result": "Win",
+      "source": "2022_LS-IRA-Dec.png"
+    },
+    {
+      "date": "2022-12-30",
+      "gross_pl": 3599.77,
+      "net_pl": 2636.12,
+      "result": "Win",
+      "source": "2022_LS-IRA-Dec.png"
+    },
+    {
+      "date": "2023-01-03",
+      "gross_pl": null,
+      "net_pl": 6070.14,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-04",
+      "gross_pl": null,
+      "net_pl": 782.27,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-05",
+      "gross_pl": null,
+      "net_pl": 289.46,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-06",
+      "gross_pl": null,
+      "net_pl": 885.59,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-09",
+      "gross_pl": null,
+      "net_pl": 620.32,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-10",
+      "gross_pl": null,
+      "net_pl": 366.67,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-11",
+      "gross_pl": null,
+      "net_pl": 2794.57,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-12",
+      "gross_pl": null,
+      "net_pl": 1653.83,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-13",
+      "gross_pl": null,
+      "net_pl": 239.78,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-17",
+      "gross_pl": null,
+      "net_pl": 7334.6,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-18",
+      "gross_pl": null,
+      "net_pl": 2144.34,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-19",
+      "gross_pl": null,
+      "net_pl": 2783.18,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-20",
+      "gross_pl": null,
+      "net_pl": 6515.13,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-23",
+      "gross_pl": null,
+      "net_pl": 10155.86,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-24",
+      "gross_pl": null,
+      "net_pl": 7874.46,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-25",
+      "gross_pl": null,
+      "net_pl": 4290.42,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-26",
+      "gross_pl": null,
+      "net_pl": 1044.91,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-27",
+      "gross_pl": null,
+      "net_pl": 181.56,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-30",
+      "gross_pl": null,
+      "net_pl": 554.69,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-01-31",
+      "gross_pl": null,
+      "net_pl": 3345.29,
+      "result": "Win",
+      "source": "2023_Retirement-2023.png"
+    },
+    {
+      "date": "2023-02-01",
+      "gross_pl": 751719.12,
+      "net_pl": 5275.86,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-02",
+      "gross_pl": 754295.6,
+      "net_pl": 2576.45,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-03",
+      "gross_pl": 759234.55,
+      "net_pl": 4938.9,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-06",
+      "gross_pl": 765478.93,
+      "net_pl": 6244.37,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-07",
+      "gross_pl": 770607.44,
+      "net_pl": 5128.46,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-08",
+      "gross_pl": 771259.96,
+      "net_pl": 652.52,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-09",
+      "gross_pl": 771569.51,
+      "net_pl": 309.51,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-10",
+      "gross_pl": 775661.43,
+      "net_pl": 4091.9,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-13",
+      "gross_pl": 770285.86,
+      "net_pl": 5375.58,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-14",
+      "gross_pl": 766410.36,
+      "net_pl": 3875.52,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-15",
+      "gross_pl": 761461.12,
+      "net_pl": 4949.24,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-16",
+      "gross_pl": 753881.88,
+      "net_pl": 7579.24,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-17",
+      "gross_pl": 753432.84,
+      "net_pl": 449.05,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-21",
+      "gross_pl": 753641.28,
+      "net_pl": 208.4,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-22",
+      "gross_pl": 753996.13,
+      "net_pl": 354.85,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-23",
+      "gross_pl": 760227.59,
+      "net_pl": 6231.36,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-24",
+      "gross_pl": 777502.13,
+      "net_pl": 17274.44,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-27",
+      "gross_pl": 780769.99,
+      "net_pl": 3267.83,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-02-28",
+      "gross_pl": 786099.0,
+      "net_pl": 4899.21,
+      "result": "Win",
+      "source": "2023_Feb-2023.png"
+    },
+    {
+      "date": "2023-03-01",
+      "gross_pl": 787435.05,
+      "net_pl": 1336.05,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-02",
+      "gross_pl": 778362.76,
+      "net_pl": 9072.34,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-03",
+      "gross_pl": 775986.04,
+      "net_pl": 2376.73,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-06",
+      "gross_pl": 776320.58,
+      "net_pl": 334.54,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-07",
+      "gross_pl": 777918.51,
+      "net_pl": 1597.92,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-08",
+      "gross_pl": 779661.99,
+      "net_pl": 1743.45,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-09",
+      "gross_pl": 789379.58,
+      "net_pl": 9717.56,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-10",
+      "gross_pl": 786525.03,
+      "net_pl": 2854.53,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-13",
+      "gross_pl": 787576.99,
+      "net_pl": 1051.96,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-14",
+      "gross_pl": 787364.88,
+      "net_pl": 212.12,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-15",
+      "gross_pl": 784743.27,
+      "net_pl": 2621.6,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-16",
+      "gross_pl": 783489.05,
+      "net_pl": 1254.21,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-17",
+      "gross_pl": 778231.07,
+      "net_pl": 5257.98,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-20",
+      "gross_pl": 778231.07,
+      "net_pl": 0.0,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-21",
+      "gross_pl": 778283.04,
+      "net_pl": 51.97,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-22",
+      "gross_pl": 777053.76,
+      "net_pl": 1229.28,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-23",
+      "gross_pl": 777053.76,
+      "net_pl": 0.0,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-24",
+      "gross_pl": 777053.76,
+      "net_pl": 0.0,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-27",
+      "gross_pl": 777053.76,
+      "net_pl": 0.0,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-28",
+      "gross_pl": 778606.12,
+      "net_pl": 1552.36,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-29",
+      "gross_pl": 778606.12,
+      "net_pl": 0.0,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-30",
+      "gross_pl": 778606.12,
+      "net_pl": 0.0,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-03-31",
+      "gross_pl": 780251.53,
+      "net_pl": 1147.72,
+      "result": "Win",
+      "source": "2023_Lightspeed-IRA-March.png"
+    },
+    {
+      "date": "2023-04-03",
+      "gross_pl": null,
+      "net_pl": 2712.47,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-04",
+      "gross_pl": null,
+      "net_pl": 3732.7,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-05",
+      "gross_pl": null,
+      "net_pl": 3632.78,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-06",
+      "gross_pl": null,
+      "net_pl": 166.51,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-10",
+      "gross_pl": null,
+      "net_pl": 6345.53,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-11",
+      "gross_pl": null,
+      "net_pl": 37.57,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-12",
+      "gross_pl": null,
+      "net_pl": 8235.0,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-13",
+      "gross_pl": null,
+      "net_pl": 5264.83,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-14",
+      "gross_pl": null,
+      "net_pl": 4772.37,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-17",
+      "gross_pl": null,
+      "net_pl": 8129.4,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-18",
+      "gross_pl": null,
+      "net_pl": 3442.85,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-19",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-20",
+      "gross_pl": null,
+      "net_pl": 1565.24,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-21",
+      "gross_pl": null,
+      "net_pl": 464.66,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-24",
+      "gross_pl": null,
+      "net_pl": 736.82,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-25",
+      "gross_pl": null,
+      "net_pl": 1456.52,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-26",
+      "gross_pl": null,
+      "net_pl": 4942.22,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-27",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-04-28",
+      "gross_pl": null,
+      "net_pl": 1124.03,
+      "result": "Win",
+      "source": "2023_April-Statement.png"
+    },
+    {
+      "date": "2023-05-01",
+      "gross_pl": 1121.55,
+      "net_pl": 708.55,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-02",
+      "gross_pl": 4139.21,
+      "net_pl": 3808.82,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-03",
+      "gross_pl": 1075.04,
+      "net_pl": 615.57,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-04",
+      "gross_pl": 2080.88,
+      "net_pl": 1831.48,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-05",
+      "gross_pl": 1542.12,
+      "net_pl": 1511.96,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-09",
+      "gross_pl": 1535.81,
+      "net_pl": 1051.05,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-10",
+      "gross_pl": 1694.99,
+      "net_pl": 1930.03,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-11",
+      "gross_pl": 1160.38,
+      "net_pl": 924.78,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-12",
+      "gross_pl": 90.31,
+      "net_pl": 336.28,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-15",
+      "gross_pl": 104.45,
+      "net_pl": 62.62,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-16",
+      "gross_pl": 11409.37,
+      "net_pl": 11797.75,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-17",
+      "gross_pl": 385.72,
+      "net_pl": 725.17,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-18",
+      "gross_pl": 5953.02,
+      "net_pl": 5834.63,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-19",
+      "gross_pl": 2430.14,
+      "net_pl": 2319.06,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-22",
+      "gross_pl": 204.81,
+      "net_pl": 134.95,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-23",
+      "gross_pl": 1331.0,
+      "net_pl": 1137.1,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-24",
+      "gross_pl": 5452.45,
+      "net_pl": 4820.61,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-25",
+      "gross_pl": 1276.66,
+      "net_pl": 722.24,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-05-26",
+      "gross_pl": 6184.55,
+      "net_pl": 6429.84,
+      "result": "Win",
+      "source": "2023_May-2023.png"
+    },
+    {
+      "date": "2023-10-02",
+      "gross_pl": null,
+      "net_pl": 1006.48,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-03",
+      "gross_pl": null,
+      "net_pl": 11469.8,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-04",
+      "gross_pl": null,
+      "net_pl": 4769.04,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-05",
+      "gross_pl": null,
+      "net_pl": 5271.0,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-06",
+      "gross_pl": null,
+      "net_pl": 1946.64,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-09",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-10",
+      "gross_pl": null,
+      "net_pl": 568.53,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-11",
+      "gross_pl": null,
+      "net_pl": 886.67,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-12",
+      "gross_pl": null,
+      "net_pl": 2157.02,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-13",
+      "gross_pl": null,
+      "net_pl": 2977.11,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-16",
+      "gross_pl": null,
+      "net_pl": 1463.53,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-17",
+      "gross_pl": null,
+      "net_pl": 5332.12,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-18",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-19",
+      "gross_pl": null,
+      "net_pl": 735.15,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-20",
+      "gross_pl": null,
+      "net_pl": 642.43,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-23",
+      "gross_pl": null,
+      "net_pl": 87.57,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-24",
+      "gross_pl": null,
+      "net_pl": 4062.97,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-25",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-26",
+      "gross_pl": null,
+      "net_pl": 9782.18,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-27",
+      "gross_pl": null,
+      "net_pl": 2245.1,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-30",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2023-10-31",
+      "gross_pl": null,
+      "net_pl": 3176.84,
+      "result": "Win",
+      "source": "2023_October-2023-Profits.png"
+    },
+    {
+      "date": "2024-01-01",
+      "gross_pl": null,
+      "net_pl": 3768.45,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-02",
+      "gross_pl": null,
+      "net_pl": 5919.34,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-04",
+      "gross_pl": null,
+      "net_pl": 4058.36,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-05",
+      "gross_pl": null,
+      "net_pl": 208.12,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-08",
+      "gross_pl": null,
+      "net_pl": 2515.67,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-09",
+      "gross_pl": null,
+      "net_pl": 960.74,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-10",
+      "gross_pl": null,
+      "net_pl": 1693.24,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-11",
+      "gross_pl": null,
+      "net_pl": 2540.48,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-12",
+      "gross_pl": null,
+      "net_pl": 2745.78,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-16",
+      "gross_pl": null,
+      "net_pl": 3290.1,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-17",
+      "gross_pl": null,
+      "net_pl": 6214.16,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-18",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-19",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-22",
+      "gross_pl": null,
+      "net_pl": 10306.47,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-23",
+      "gross_pl": null,
+      "net_pl": 495.14,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-24",
+      "gross_pl": null,
+      "net_pl": 872.85,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-25",
+      "gross_pl": null,
+      "net_pl": 1150.23,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-26",
+      "gross_pl": null,
+      "net_pl": 1198.5,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-29",
+      "gross_pl": null,
+      "net_pl": 3671.48,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-01-31",
+      "gross_pl": null,
+      "net_pl": 179.1,
+      "result": "Win",
+      "source": "2024_january-2024-broker-statement-1024x499.png"
+    },
+    {
+      "date": "2024-02-01",
+      "gross_pl": null,
+      "net_pl": 3388.41,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-02",
+      "gross_pl": null,
+      "net_pl": 2711.24,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-05",
+      "gross_pl": null,
+      "net_pl": 3616.63,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-06",
+      "gross_pl": null,
+      "net_pl": 56.75,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-07",
+      "gross_pl": null,
+      "net_pl": 665.72,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-08",
+      "gross_pl": null,
+      "net_pl": 3516.31,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-09",
+      "gross_pl": null,
+      "net_pl": 2712.44,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-12",
+      "gross_pl": null,
+      "net_pl": 7014.79,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-13",
+      "gross_pl": null,
+      "net_pl": 15452.0,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-14",
+      "gross_pl": null,
+      "net_pl": 19485.9,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-15",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-16",
+      "gross_pl": null,
+      "net_pl": 11371.36,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-20",
+      "gross_pl": null,
+      "net_pl": 8848.87,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-21",
+      "gross_pl": null,
+      "net_pl": 3056.84,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-22",
+      "gross_pl": null,
+      "net_pl": 3811.88,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-23",
+      "gross_pl": null,
+      "net_pl": 1625.9,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-26",
+      "gross_pl": null,
+      "net_pl": 3922.96,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-27",
+      "gross_pl": null,
+      "net_pl": 2606.13,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-02-28",
+      "gross_pl": null,
+      "net_pl": 15423.51,
+      "result": "Win",
+      "source": "2024_image-10-1024x502.png"
+    },
+    {
+      "date": "2024-03-01",
+      "gross_pl": null,
+      "net_pl": 5247.95,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-04",
+      "gross_pl": null,
+      "net_pl": 4971.51,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-05",
+      "gross_pl": null,
+      "net_pl": 3794.24,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-06",
+      "gross_pl": null,
+      "net_pl": 4271.01,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-07",
+      "gross_pl": null,
+      "net_pl": 7526.52,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-08",
+      "gross_pl": null,
+      "net_pl": 1387.24,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-11",
+      "gross_pl": null,
+      "net_pl": -9834.55,
+      "result": "Loss",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-12",
+      "gross_pl": null,
+      "net_pl": 19366.19,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-13",
+      "gross_pl": null,
+      "net_pl": 7000.92,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-14",
+      "gross_pl": null,
+      "net_pl": 3999.32,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-15",
+      "gross_pl": null,
+      "net_pl": 1844.63,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-18",
+      "gross_pl": null,
+      "net_pl": 472.77,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-19",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-20",
+      "gross_pl": null,
+      "net_pl": 1070.09,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-21",
+      "gross_pl": null,
+      "net_pl": 64.65,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-22",
+      "gross_pl": null,
+      "net_pl": 3015.15,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-25",
+      "gross_pl": null,
+      "net_pl": 6995.69,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-26",
+      "gross_pl": null,
+      "net_pl": 1408.34,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-27",
+      "gross_pl": null,
+      "net_pl": 649.32,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-03-28",
+      "gross_pl": null,
+      "net_pl": 1311.81,
+      "result": "Win",
+      "source": "2024_March-Statement-1024x488.png"
+    },
+    {
+      "date": "2024-04-01",
+      "gross_pl": null,
+      "net_pl": 4505.19,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-02",
+      "gross_pl": null,
+      "net_pl": 2504.28,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-03",
+      "gross_pl": null,
+      "net_pl": 3638.1,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-04",
+      "gross_pl": null,
+      "net_pl": 241.48,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-05",
+      "gross_pl": null,
+      "net_pl": 349.4,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-08",
+      "gross_pl": null,
+      "net_pl": 625.08,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-09",
+      "gross_pl": null,
+      "net_pl": 5447.92,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-10",
+      "gross_pl": null,
+      "net_pl": 5333.5,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-11",
+      "gross_pl": null,
+      "net_pl": 1135.9,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-12",
+      "gross_pl": null,
+      "net_pl": 1387.4,
+      "result": "Win",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-04-15",
+      "gross_pl": null,
+      "net_pl": 66.33,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-16",
+      "gross_pl": null,
+      "net_pl": 826.59,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-17",
+      "gross_pl": null,
+      "net_pl": 5279.55,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-19",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-22",
+      "gross_pl": null,
+      "net_pl": 3354.34,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-23",
+      "gross_pl": null,
+      "net_pl": 1992.48,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-24",
+      "gross_pl": null,
+      "net_pl": 2.34,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-25",
+      "gross_pl": null,
+      "net_pl": 1829.88,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-26",
+      "gross_pl": null,
+      "net_pl": 696.41,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-29",
+      "gross_pl": null,
+      "net_pl": 694.78,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-04-30",
+      "gross_pl": null,
+      "net_pl": 1799.11,
+      "result": "Win",
+      "source": "2024_April2024-1024x513.png"
+    },
+    {
+      "date": "2024-05-03",
+      "gross_pl": null,
+      "net_pl": 13968.51,
+      "result": "Win",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-05-04",
+      "gross_pl": null,
+      "net_pl": 895.83,
+      "result": "Win",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-05-07",
+      "gross_pl": null,
+      "net_pl": 4756.24,
+      "result": "Win",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-05-10",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-05-11",
+      "gross_pl": null,
+      "net_pl": 850.37,
+      "result": "Win",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-05-13",
+      "gross_pl": null,
+      "net_pl": 2067.69,
+      "result": "Win",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-05-14",
+      "gross_pl": null,
+      "net_pl": 6203.76,
+      "result": "Win",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-05-21",
+      "gross_pl": null,
+      "net_pl": 1479.65,
+      "result": "Win",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-05-24",
+      "gross_pl": null,
+      "net_pl": 0.0,
+      "result": "Loss",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-05-27",
+      "gross_pl": null,
+      "net_pl": 163.42,
+      "result": "Win",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-05-28",
+      "gross_pl": null,
+      "net_pl": 29517.17,
+      "result": "Win",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-06-05",
+      "gross_pl": null,
+      "net_pl": 3100.12,
+      "result": "Win",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-06-06",
+      "gross_pl": null,
+      "net_pl": 9829.36,
+      "result": "Win",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-06-17",
+      "gross_pl": null,
+      "net_pl": 1133.07,
+      "result": "Win",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-06-18",
+      "gross_pl": null,
+      "net_pl": 857.08,
+      "result": "Win",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-06-20",
+      "gross_pl": null,
+      "net_pl": 4574.64,
+      "result": "Win",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-06-25",
+      "gross_pl": null,
+      "net_pl": 723.48,
+      "result": "Win",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-06-26",
+      "gross_pl": null,
+      "net_pl": -1057.32,
+      "result": "Loss",
+      "source": "2024_June-PL-1024x477.png"
+    },
+    {
+      "date": "2024-08-01",
+      "gross_pl": null,
+      "net_pl": 621.43,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-02",
+      "gross_pl": null,
+      "net_pl": 4856.09,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-06",
+      "gross_pl": null,
+      "net_pl": 3330.03,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-07",
+      "gross_pl": null,
+      "net_pl": 2490.59,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-08",
+      "gross_pl": null,
+      "net_pl": 1422.78,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-09",
+      "gross_pl": null,
+      "net_pl": 104.51,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-12",
+      "gross_pl": null,
+      "net_pl": 1019.39,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-13",
+      "gross_pl": null,
+      "net_pl": 22952.09,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-14",
+      "gross_pl": null,
+      "net_pl": 2559.33,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-15",
+      "gross_pl": null,
+      "net_pl": 8820.41,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-19",
+      "gross_pl": null,
+      "net_pl": 13666.96,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-20",
+      "gross_pl": null,
+      "net_pl": 2201.78,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-21",
+      "gross_pl": null,
+      "net_pl": 28114.59,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-23",
+      "gross_pl": null,
+      "net_pl": 12837.97,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-26",
+      "gross_pl": null,
+      "net_pl": 10774.73,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-27",
+      "gross_pl": null,
+      "net_pl": 5961.72,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-29",
+      "gross_pl": null,
+      "net_pl": 3052.81,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-08-30",
+      "gross_pl": null,
+      "net_pl": 2832.95,
+      "result": "Win",
+      "source": "2024_August-2024-1024x507.png"
+    },
+    {
+      "date": "2024-09-03",
+      "gross_pl": null,
+      "net_pl": 34.89,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-04",
+      "gross_pl": null,
+      "net_pl": 4971.4,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-05",
+      "gross_pl": null,
+      "net_pl": 5631.56,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-06",
+      "gross_pl": null,
+      "net_pl": 5897.32,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-09",
+      "gross_pl": null,
+      "net_pl": 13492.29,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-10",
+      "gross_pl": null,
+      "net_pl": 8307.38,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-11",
+      "gross_pl": null,
+      "net_pl": 2386.49,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-12",
+      "gross_pl": null,
+      "net_pl": 9396.16,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-13",
+      "gross_pl": null,
+      "net_pl": 1940.7,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-16",
+      "gross_pl": null,
+      "net_pl": 2393.22,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-17",
+      "gross_pl": null,
+      "net_pl": 1697.85,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-18",
+      "gross_pl": null,
+      "net_pl": 3471.25,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-19",
+      "gross_pl": null,
+      "net_pl": 9318.69,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-20",
+      "gross_pl": null,
+      "net_pl": 1477.65,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-23",
+      "gross_pl": null,
+      "net_pl": 2965.38,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-24",
+      "gross_pl": null,
+      "net_pl": 9582.3,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-25",
+      "gross_pl": null,
+      "net_pl": 4140.33,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-26",
+      "gross_pl": null,
+      "net_pl": 6735.56,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-27",
+      "gross_pl": null,
+      "net_pl": 3464.72,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-09-30",
+      "gross_pl": null,
+      "net_pl": 4465.61,
+      "result": "Win",
+      "source": "2024_Ross-Cameron-Sept-2024-Broker-Statement-v2.png"
+    },
+    {
+      "date": "2024-10-01",
+      "gross_pl": null,
+      "net_pl": 866.62,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-02",
+      "gross_pl": null,
+      "net_pl": 661.59,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-03",
+      "gross_pl": null,
+      "net_pl": 5248.04,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-04",
+      "gross_pl": null,
+      "net_pl": 4110.04,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-07",
+      "gross_pl": null,
+      "net_pl": 203.48,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-08",
+      "gross_pl": null,
+      "net_pl": -5829.2,
+      "result": "Loss",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-09",
+      "gross_pl": null,
+      "net_pl": 9798.76,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-10",
+      "gross_pl": null,
+      "net_pl": 502.75,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-11",
+      "gross_pl": null,
+      "net_pl": 4844.92,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-14",
+      "gross_pl": null,
+      "net_pl": 13485.77,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-15",
+      "gross_pl": null,
+      "net_pl": 9274.93,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-16",
+      "gross_pl": null,
+      "net_pl": 91865.94,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-17",
+      "gross_pl": null,
+      "net_pl": 34656.9,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-18",
+      "gross_pl": null,
+      "net_pl": 39046.03,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-21",
+      "gross_pl": null,
+      "net_pl": 20622.24,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-22",
+      "gross_pl": null,
+      "net_pl": 18590.83,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-23",
+      "gross_pl": null,
+      "net_pl": 4001.14,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-24",
+      "gross_pl": null,
+      "net_pl": 19436.3,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-25",
+      "gross_pl": null,
+      "net_pl": 5115.33,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-28",
+      "gross_pl": null,
+      "net_pl": 46644.28,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-29",
+      "gross_pl": null,
+      "net_pl": 17060.0,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-30",
+      "gross_pl": null,
+      "net_pl": 22014.17,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    },
+    {
+      "date": "2024-10-31",
+      "gross_pl": null,
+      "net_pl": 9425.37,
+      "result": "Win",
+      "source": "2024_Rosss-October-2024-Broker-Statement-1024x519.png"
+    }
+  ],
+  "total": 772,
+  "errors": []
+}

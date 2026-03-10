@@ -18,6 +18,7 @@ export default defineConfig({
       '/history':   { target: API, changeOrigin: true },
       '/health':    { target: API, changeOrigin: true },
       '/backtest': { target: API, changeOrigin: true },
+      '/scan':    { target: API, changeOrigin: true },
     }
   }
 })

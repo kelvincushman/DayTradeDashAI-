@@ -42,8 +42,6 @@ def calc_squeeze(ticker):
     except:
         return 0, 0
 
-def build_payload():
-
 def get_squeeze(ticker):
     now = _time.time()
     if ticker in _squeeze_cache:
@@ -53,6 +51,8 @@ def get_squeeze(ticker):
     sq5, sq10 = calc_squeeze(ticker)
     _squeeze_cache[ticker] = (sq5, sq10, now)
     return sq5, sq10
+
+def build_payload():
     candidates = rc_db.get_all_active()
     out = {}
     for c in candidates:

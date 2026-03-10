@@ -27,7 +27,7 @@ DEFAULTS = {
     "max_float_m": "10",
     "min_price": "2.00",
     "max_price": "20.00",
-    "scan_interval": "60",
+    "scan_interval": "30",
     "active_hours_start": "04:00",
     "active_hours_end": "12:00",
     "telegram_alerts": "on",
@@ -481,9 +481,9 @@ def _upsert_candidate(con, data):
 
 def run_five_pillars_scan():
     """
-    Ross Cameron 5 Pillars scanner.
-    Returns dict keyed by scanner_id with lists of stock dicts.
-    Also persists results to candidates DB.
+    Ross Cameron 5 Pillars scanner — Fast edition.
+    Uses Alpaca bulk snapshots to scan the full ~8k stock universe every 30s.
+    Float cached in SQLite with 14-day TTL.
     """
     _scan_status['five_pillars']['running'] = True
     _scan_status['five_pillars']['error'] = None
@@ -495,88 +495,20 @@ def run_five_pillars_scan():
         'relvol': [],
     }
     try:
-        print(f"[FivePillars] Starting scan at {datetime.utcnow().strftime('%H:%M:%S UTC')}")
-        raw = _get_finviz_tickers()
-        print(f"[FivePillars] Finviz returned {len(raw)} tickers")
+        from fast_scanner import run_fast_scan
+        cfg = load_scanner_config()
+        candidates = run_fast_scan(cfg)
 
         con = db()
-        av_calls = 0
-
-        for item in raw[:25]:  # Cap at 25 to avoid rate limits
-            ticker = item['ticker']
-            try:
-                # Use Finviz float if available, fallback to yfinance
-                float_m_finviz = item.get('float_m_finviz')
-                if float_m_finviz is not None:
-                    stats = {'float_m': float_m_finviz, 'avgvol_1d': item.get('volume'), 'avgvol_200d': item.get('avgvol_200d'), 'relvol_yf': None}
-                else:
-                    stats = _check_float_and_stats(ticker)
-                float_m = stats.get('float_m')
-                relvol = item.get('relvol') or stats.get('relvol_yf') or 0
-                price = item.get('price') or 0
-                gap_pct = item.get('gap_pct') or 0
-
-                # Check news (AV rate limit: ~5 calls/min on free tier)
-                has_news, headline = False, ''
-                if av_calls < 15:
-                    has_news, headline = _check_news_av(ticker)
-                    av_calls += 1
-                    time.sleep(1.3)  # Respect AV rate limit
-
-                candidate = {
-                    'ticker': ticker,
-                    'name': item.get('name', ''),
-                    'price': price,
-                    'gap_pct': gap_pct,
-                    'relvol': relvol,
-                    'float_m': float_m,
-                    'news': headline if has_news else '',
-                    'avgvol_1d': stats.get('avgvol_1d'),
-                    'avgvol_200d': stats.get('avgvol_200d'),
-                    'volume': item.get('volume'),
-                    'has_news': has_news,
-                }
-
-                # Tag with scanner IDs (RC 5 Pillars requires float <10M + news)
-                # Low float (<10M)
-                is_low_float = float_m is not None and float_m < 10
-                passes_5_pillars = (
-                    1 <= price <= 20 and
-                    gap_pct >= 10 and
-                    relvol >= 5 and
-                    is_low_float and
-                    has_news
-                )
-                scanner_tags = []
-                if is_low_float and relvol >= 5 and 1 <= price <= 20 and gap_pct >= 10:
-                    scanner_tags.append('lf_high_relvol')
-                if is_low_float and 3 <= relvol < 5 and 1 <= price <= 20 and gap_pct >= 10:
-                    scanner_tags.append('lf_med_relvol')
-                if is_low_float and relvol >= 5 and price > 20 and gap_pct >= 10:
-                    scanner_tags.append('lf_high_relvol_20')
-                if gap_pct > 0:
-                    scanner_tags.append('gainers')
-                scanner_tags.append('relvol')  # All in relvol list
-
-                candidate['scanner_tags'] = scanner_tags
-                candidate['passes_5_pillars'] = passes_5_pillars
-
-                # Persist to DB
-                _upsert_candidate(con, candidate)
-
-                # Add to results
-                for tag in scanner_tags:
-                    if tag in results:
-                        results[tag].append(candidate)
-
-            except Exception as e:
-                print(f"[FivePillars] Error processing {ticker}: {e}")
-                continue
-
+        for candidate in candidates:
+            _upsert_candidate(con, candidate)
+            for tag in candidate.get('scanner_tags', []):
+                if tag in results:
+                    results[tag].append(candidate)
         con.commit()
         con.close()
 
-        # Sort each bucket
+        # Sort buckets
         results['lf_high_relvol'].sort(key=lambda x: x.get('relvol', 0), reverse=True)
         results['lf_med_relvol'].sort(key=lambda x: x.get('relvol', 0), reverse=True)
         results['lf_high_relvol_20'].sort(key=lambda x: x.get('relvol', 0), reverse=True)
@@ -584,7 +516,7 @@ def run_five_pillars_scan():
         results['relvol'].sort(key=lambda x: x.get('relvol', 0), reverse=True)
 
         total = sum(len(v) for v in results.values())
-        print(f"[FivePillars] Done — {len(raw)} scanned, results: lf_high={len(results['lf_high_relvol'])}, gainers={len(results['gainers'])}")
+        print(f"[FivePillars] Done — {len(candidates)} candidates, lf_high={len(results['lf_high_relvol'])}, gainers={len(results['gainers'])}")
 
         with _scan_lock:
             _scan_results.update(results)
@@ -595,7 +527,8 @@ def run_five_pillars_scan():
         return results
 
     except Exception as e:
-        print(f"[FivePillars] Scan error: {e}")
+        import traceback
+        print(f"[FivePillars] Scan error: {e}\n{traceback.format_exc()}")
         _scan_status['five_pillars']['error'] = str(e)
         _scan_status['five_pillars']['running'] = False
         return results
@@ -806,6 +739,16 @@ def _background_scanner():
     last_squeeze = 0
     last_former_momo = 0
 
+    # Pre-build universe on startup (background, non-blocking)
+    def _prebuild_universe():
+        try:
+            from fast_scanner import build_universe
+            syms = build_universe()
+            print(f"[Scanner] Universe ready: {len(syms)} symbols")
+        except Exception as e:
+            print(f"[Scanner] Universe pre-build error: {e}")
+    threading.Thread(target=_prebuild_universe, daemon=True).start()
+
     # Initial delay to let server start up
     time.sleep(10)
 
@@ -814,8 +757,8 @@ def _background_scanner():
             now = time.time()
             in_market = _is_market_hours()
 
-            # Five pillars: every 60s during market hours, every 5min otherwise
-            fp_interval = 60 if in_market else 300
+            # Five pillars: every 30s during market hours, every 5min otherwise
+            fp_interval = 30 if in_market else 300
             if now - last_five_pillars >= fp_interval:
                 if not _scan_status['five_pillars']['running']:
                     threading.Thread(target=run_five_pillars_scan, daemon=True).start()
@@ -1057,6 +1000,86 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 finally:
                     con.close()
 
+        # ── Training Lab endpoints ────────────────────────────────────────
+        if parts[0] == 'training':
+            sub = parts[1] if len(parts) > 1 else ''
+
+            if sub == 'next':
+                import base64
+                from urllib.parse import parse_qs, urlparse
+                qs = parse_qs(urlparse(self.path).query)
+                after_id = int(qs.get('after_id', ['0'])[0])
+                filt = qs.get('filter', ['unlabelled'])[0]
+
+                con = db()
+                # Stats first
+                total = con.execute("SELECT COUNT(*) FROM pattern_events").fetchone()[0]
+                labelled = con.execute("SELECT COUNT(*) FROM pattern_events WHERE human_label IS NOT NULL AND human_label != ''").fetchone()[0]
+
+                # Query next row
+                if filt == 'unlabelled':
+                    row = con.execute("""SELECT id, ticker, detected_at, pattern, confidence, screenshot, bboxes
+                        FROM pattern_events WHERE (human_label IS NULL OR human_label = '') AND id > ?
+                        ORDER BY id ASC LIMIT 1""", (after_id,)).fetchone()
+                    if not row:
+                        # Wrap around from beginning
+                        row = con.execute("""SELECT id, ticker, detected_at, pattern, confidence, screenshot, bboxes
+                            FROM pattern_events WHERE (human_label IS NULL OR human_label = '')
+                            ORDER BY id ASC LIMIT 1""").fetchone()
+                elif filt == 'all':
+                    row = con.execute("""SELECT id, ticker, detected_at, pattern, confidence, screenshot, bboxes
+                        FROM pattern_events WHERE id > ? ORDER BY id ASC LIMIT 1""", (after_id,)).fetchone()
+                    if not row:
+                        row = con.execute("""SELECT id, ticker, detected_at, pattern, confidence, screenshot, bboxes
+                            FROM pattern_events ORDER BY id ASC LIMIT 1""").fetchone()
+                else:
+                    # filter by pattern type
+                    row = con.execute("""SELECT id, ticker, detected_at, pattern, confidence, screenshot, bboxes
+                        FROM pattern_events WHERE pattern = ? AND (human_label IS NULL OR human_label = '') AND id > ?
+                        ORDER BY id ASC LIMIT 1""", (filt, after_id)).fetchone()
+                    if not row:
+                        row = con.execute("""SELECT id, ticker, detected_at, pattern, confidence, screenshot, bboxes
+                            FROM pattern_events WHERE pattern = ? AND (human_label IS NULL OR human_label = '')
+                            ORDER BY id ASC LIMIT 1""", (filt,)).fetchone()
+                con.close()
+
+                if not row:
+                    return self.send_json({"error": "no_rows", "stats": {"total": total, "labelled": labelled, "remaining": total - labelled}}, 404)
+
+                screenshot_b64 = ''
+                if row[5]:
+                    try:
+                        screenshot_b64 = base64.b64encode(bytes(row[5])).decode('ascii')
+                    except Exception:
+                        pass
+
+                bboxes = []
+                if row[6]:
+                    try: bboxes = json.loads(row[6])
+                    except: pass
+
+                return self.send_json({
+                    "id": row[0],
+                    "ticker": row[1],
+                    "detected_at": row[2],
+                    "pattern": row[3],
+                    "confidence": row[4],
+                    "screenshot_b64": screenshot_b64,
+                    "bboxes": bboxes,
+                    "stats": {"total": total, "labelled": labelled, "remaining": total - labelled}
+                })
+
+            if sub == 'stats':
+                con = db()
+                total = con.execute("SELECT COUNT(*) FROM pattern_events").fetchone()[0]
+                labelled = con.execute("SELECT COUNT(*) FROM pattern_events WHERE human_label IS NOT NULL AND human_label != ''").fetchone()[0]
+                by_label_rows = con.execute("""SELECT human_label, COUNT(*) as cnt FROM pattern_events
+                    WHERE human_label IS NOT NULL AND human_label != ''
+                    GROUP BY human_label ORDER BY cnt DESC""").fetchall()
+                con.close()
+                by_label = {r[0]: r[1] for r in by_label_rows}
+                return self.send_json({"total": total, "labelled": labelled, "remaining": total - labelled, "by_label": by_label})
+
         self.send_response(404); self.end_headers()
 
     def do_POST(self):
@@ -1075,6 +1098,20 @@ class Handler(http.server.BaseHTTPRequestHandler):
             if sub == 'former-momo':
                 results = run_former_momo_scan()
                 return self.send_json({'status': _scan_status['former_momo'], 'results': results})
+
+        # ── Training label POST ───────────────────────────────────────────
+        if parts[0] == 'training' and len(parts) > 1 and parts[1] == 'label':
+            body = self._read_body()
+            row_id = body.get('id')
+            human_label = body.get('human_label', '').strip()
+            outcome = body.get('outcome', '').strip() or None
+            if not row_id or not human_label:
+                return self.send_json({"error": "id and human_label required"}, 400)
+            con = db()
+            con.execute("UPDATE pattern_events SET human_label=?, outcome=? WHERE id=?",
+                (human_label, outcome, int(row_id)))
+            con.commit(); con.close()
+            return self.send_json({"ok": True})
 
         if parts[0] == 'trades' and len(parts) == 1:
             body = self._read_body()

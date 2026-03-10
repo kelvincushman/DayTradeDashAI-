@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-08T18:45:11.553811Z",
+  "timestamp": "2026-03-10T21:31:33.634454Z",
   "overall": "healthy",
   "watchdog_ok": true,
   "services": {
@@ -7,53 +7,77 @@
       "status": "up",
       "label": "WebSocket Bridge",
       "port_ok": true,
-      "uptime_mins": 455.8
+      "uptime_mins": 660.6
     },
     "rc-research-server": {
       "status": "up",
       "label": "Research Server",
       "port_ok": true,
-      "uptime_mins": 372.3
+      "uptime_mins": 660.6
     },
     "daytrade-dash": {
       "status": "up",
       "label": "Dashboard",
       "port_ok": true,
-      "uptime_mins": 445.7
+      "uptime_mins": 1536.0
     },
     "trading-signals": {
       "status": "up",
       "label": "Trading Signals",
       "port_ok": true,
-      "uptime_mins": 3532.0
+      "uptime_mins": 6578.4
     }
   },
   "eodhd": {
-    "status": "up",
-    "last_check": "2026-03-08T18:45:11.553811Z"
+    "status": "down",
+    "last_check": "2026-03-10T21:31:33.634454Z"
   },
   "db": {
     "status": "up",
-    "size_mb": 0.1,
-    "candidates": 251,
+    "size_mb": 521.49,
+    "candidates": 278,
     "trades": 1
   },
   "alerts": [
     {
-      "time": "2026-03-08T12:23:54.708555Z",
+      "time": "2026-03-09T19:42:41.169966Z",
+      "message": "T1 RESTART: Dashboard"
+    },
+    {
+      "time": "2026-03-09T19:43:12.582442Z",
+      "message": "RECOVERED: Dashboard after 1m"
+    },
+    {
+      "time": "2026-03-09T20:58:24.392092Z",
       "message": "T1 RESTART: Research Server"
     },
     {
-      "time": "2026-03-08T12:25:58.432331Z",
-      "message": "T2 TELEGRAM: Research Server down 2m"
+      "time": "2026-03-09T20:58:57.325230Z",
+      "message": "RECOVERED: Research Server after 1m"
     },
     {
-      "time": "2026-03-08T12:29:12.479893Z",
-      "message": "T3 SMS: Research Server down 5m"
+      "time": "2026-03-09T21:00:50.757918Z",
+      "message": "T1 RESTART: Research Server"
     },
     {
-      "time": "2026-03-08T12:33:27.285363Z",
-      "message": "RECOVERED: Research Server after 10m"
+      "time": "2026-03-09T21:01:24.101850Z",
+      "message": "RECOVERED: Research Server after 1m"
+    },
+    {
+      "time": "2026-03-09T21:04:40.627914Z",
+      "message": "T1 RESTART: Research Server"
+    },
+    {
+      "time": "2026-03-09T21:05:14.992748Z",
+      "message": "RECOVERED: Research Server after 1m"
+    },
+    {
+      "time": "2026-03-09T22:37:48.099582Z",
+      "message": "T1 RESTART: Research Server"
+    },
+    {
+      "time": "2026-03-09T22:38:23.367866Z",
+      "message": "RECOVERED: Research Server after 1m"
     }
   ]
 }

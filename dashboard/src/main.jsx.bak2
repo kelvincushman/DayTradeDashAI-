@@ -21,39 +21,6 @@ function useIsMobile() {
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
-function WorldClocks() {
-  var _t = React.useState(new Date()), now = _t[0], setNow = _t[1]
-  React.useEffect(function () {
-    var t = setInterval(function () { setNow(new Date()) }, 1000)
-    return function () { clearInterval(t) }
-  }, [])
-  var clocks = [
-    { label: 'Frankfurt', tz: 'Europe/Berlin',    flag: '🇩🇪' },
-    { label: 'London',    tz: 'Europe/London',    flag: '🇬🇧' },
-    { label: 'New York',  tz: 'America/New_York', flag: '🇺🇸' },
-  ]
-  var sharedDate = now.toLocaleDateString('en-GB', { timeZone: 'UTC', weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' })
-  return (
-    <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
-      {/* Single shared date on the left */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingRight: 16, borderRight: '1px solid #1e2a44', lineHeight: 1.4 }}>
-        <span style={{ fontSize: 13, color: '#94a3b8', fontWeight: 700, letterSpacing: 0.5 }}>{sharedDate.split(' ').slice(0,2).join(' ')}</span>
-        <span style={{ fontSize: 11, color: '#4b5563', letterSpacing: 0.3 }}>{sharedDate.split(' ').slice(2).join(' ')}</span>
-      </div>
-      {/* Clocks */}
-      {clocks.map(function (c) {
-        var timeStr = now.toLocaleTimeString('en-GB', { timeZone: c.tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })
-        return (
-          <div key={c.label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', lineHeight: 1.3 }}>
-            <span style={{ fontSize: 10, color: '#6b7280', letterSpacing: 0.6, fontWeight: 500 }}>{c.flag} {c.label}</span>
-            <span style={{ fontSize: 15, fontFamily: "'SF Mono','Cascadia Code','Consolas',monospace", color: '#e2e8f0', fontWeight: 700, letterSpacing: 1 }}>{timeStr}</span>
-          </div>
-        )
-      })}
-    </div>
-  )
-}
-
 function getMarketStatus() {
   const et = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }))
   const h = et.getHours(), m = et.getMinutes(), d = et.getDay()
@@ -84,30 +51,6 @@ function negColor(p) {
 }
 function pnlColor(v) { return v > 0 ? '#22c55e' : v < 0 ? '#ef4444' : '#6b7280' }
 function fmt(n, d = 2) { return n != null ? Number(n).toFixed(d) : '—' }
-
-// ── Reusable sortable table hook ────────────────────────────────────────────
-function useSortable(rows, defaultCol, defaultDir) {
-  var _s = React.useState({ col: defaultCol || null, dir: defaultDir || 'desc' })
-  var state = _s[0], setState = _s[1]
-  function toggle(col) { setState(function(s) { return { col, dir: s.col === col && s.dir === 'desc' ? 'asc' : 'desc' } }) }
-  function thStyle(col, align) {
-    return { padding: '7px 12px', color: state.col === col ? '#60a5fa' : '#4b5563', fontSize: 10, textTransform: 'uppercase', letterSpacing: 0.8, fontWeight: 600, whiteSpace: 'nowrap', cursor: col ? 'pointer' : 'default', userSelect: 'none', textAlign: align || 'right' }
-  }
-  function icon(col) {
-    if (!col || state.col !== col) return col ? <span style={{ opacity: 0.25, marginLeft: 2 }}>⇅</span> : null
-    return <span style={{ color: '#60a5fa', marginLeft: 2 }}>{state.dir === 'asc' ? '↑' : '↓'}</span>
-  }
-  var sorted = React.useMemo(function() {
-    if (!state.col || !rows || !rows.length) return rows || []
-    return rows.slice().sort(function(a, b) {
-      var va = a[state.col], vb = b[state.col]
-      if (va == null) return 1; if (vb == null) return -1
-      if (typeof va === 'string') return state.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va)
-      return state.dir === 'asc' ? va - vb : vb - va
-    })
-  }, [rows, state.col, state.dir])
-  return { sorted, toggle, thStyle, icon, state }
-}
 function fmtMoney(n) { return n != null ? '$' + Number(n).toFixed(2) : '—' }
 function fmtVol(n) {
   if (n == null) return '—'; if (n >= 1e9) return (n / 1e9).toFixed(1) + 'B'
@@ -183,70 +126,30 @@ function VerdictBadge({ verdict }) {
   return <span style={{ background: color + '22', color, border: '1px solid ' + color + '55', borderRadius: 4, padding: '3px 10px', fontWeight: 900, fontSize: 14 }}>{verdict}</span>
 }
 
-function ResearchPanel({ r, deepResearch }) {
-  if (!r && !deepResearch) return <div style={{ padding: '20px 24px', color: C.textMuted, fontSize: 13, fontStyle: 'italic' }}>🔬 Stock Scout is researching…</div>
-  const risks = r ? (typeof r.risk_flags === 'string' ? JSON.parse(r.risk_flags || '[]') : (r.risk_flags || [])) : []
-  var dr = deepResearch || {}
-  var drItems = dr.items || []
-  var drSentiment = dr.sentiment || {}
-  var sentimentPct = drSentiment.overall != null ? Math.round((drSentiment.overall + 1) / 2 * 100) : 50
-  var sentimentColor = drSentiment.label === 'bullish' ? '#22c55e' : drSentiment.label === 'bearish' ? '#ef4444' : '#6b7280'
+function ResearchPanel({ r }) {
+  if (!r) return <div style={{ padding: '20px 24px', color: C.textMuted, fontSize: 13, fontStyle: 'italic' }}>🔬 Stock Scout is researching…</div>
+  const risks = typeof r.risk_flags === 'string' ? JSON.parse(r.risk_flags || '[]') : (r.risk_flags || [])
   return (
     <div style={{ padding: '16px 20px', background: C.panel, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 20 }} className="dt-research-grid">
       <div>
-        {r && <>
-          <div style={{ color: C.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>🎯 Catalyst</div>
-          <div style={{ fontSize: 12, lineHeight: 1.6, color: C.textPrimary }}>{r.catalyst || 'Unknown'}</div>
-          <div style={{ color: C.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8, marginTop: 14 }}>🏢 Company</div>
-          <div style={{ fontSize: 12, lineHeight: 1.6, color: C.textPrimary }}>{r.what_it_does || '—'}</div>
-          {r.ceo && <div style={{ fontSize: 11, color: C.textMuted, marginTop: 4 }}>CEO: {r.ceo}</div>}
-        </>}
-        {!r && drItems.length > 0 && <>
-          <div style={{ color: C.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>📊 Deep Research</div>
-          <div style={{ fontSize: 11, color: '#94a3b8' }}>{drItems.length} items from {Object.keys(drItems.reduce(function(a,i){a[i.source]=1;return a},{})).length} sources</div>
-        </>}
+        <div style={{ color: C.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>🎯 Catalyst</div>
+        <div style={{ fontSize: 12, lineHeight: 1.6, color: C.textPrimary }}>{r.catalyst || 'Unknown'}</div>
+        <div style={{ color: C.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8, marginTop: 14 }}>🏢 Company</div>
+        <div style={{ fontSize: 12, lineHeight: 1.6, color: C.textPrimary }}>{r.what_it_does || '—'}</div>
+        {r.ceo && <div style={{ fontSize: 11, color: C.textMuted, marginTop: 4 }}>CEO: {r.ceo}</div>}
       </div>
       <div>
-        {risks.length > 0 && <>
-          <div style={{ color: C.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>⚠️ Risk Flags</div>
-          {risks.map(function (f, i) { return <RiskRow key={i} flag={f.flag} level={f.level} /> })}
-        </>}
-        {r && r.sentiment && <>
-          <div style={{ color: C.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8, marginTop: risks.length ? 14 : 0 }}>📱 Sentiment</div>
+        <div style={{ color: C.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>⚠️ Risk Flags</div>
+        {risks.map(function (f, i) { return <RiskRow key={i} flag={f.flag} level={f.level} /> })}
+        {r.sentiment && <>
+          <div style={{ color: C.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8, marginTop: 14 }}>📱 Sentiment</div>
           <div style={{ fontSize: 11, color: '#94a3b8', lineHeight: 1.5 }}>{r.sentiment}</div>
         </>}
-        {drSentiment.overall != null && <>
-          <div style={{ color: C.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8, marginTop: 14 }}>📊 Overall Sentiment</div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-            <div style={{ flex: 1, background: '#1e2a44', borderRadius: 4, height: 8, overflow: 'hidden' }}>
-              <div style={{ width: sentimentPct + '%', height: '100%', background: sentimentColor, borderRadius: 4, transition: 'width 0.3s' }} />
-            </div>
-            <span style={{ fontSize: 12, fontWeight: 700, color: sentimentColor }}>{drSentiment.overall != null ? drSentiment.overall.toFixed(2) : '—'}</span>
-          </div>
-          <span style={{ fontSize: 10, color: sentimentColor, fontWeight: 700 }}>{(drSentiment.label || 'neutral').toUpperCase()}</span>
-          {drSentiment.counts && <span style={{ fontSize: 10, color: C.textMuted, marginLeft: 8 }}>🟢{drSentiment.counts.bullish||0} 🔴{drSentiment.counts.bearish||0} ⚪{drSentiment.counts.neutral||0}</span>}
-        </>}
       </div>
       <div>
-        {r && <>
-          <div style={{ color: C.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 12 }}>🏆 Scout Verdict</div>
-          <VerdictBadge verdict={r.verdict} />
-          {r.verdict_note && <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 10, lineHeight: 1.6 }}>{r.verdict_note}</div>}
-        </>}
-        {drItems.length > 0 && <>
-          <div style={{ color: C.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8, marginTop: r ? 14 : 0 }}>📰 Top Headlines</div>
-          {drItems.slice(0, 5).map(function(item, i) {
-            var sentIcon = item.sentiment_label === 'bullish' ? '🟢' : item.sentiment_label === 'bearish' ? '🔴' : '⚪'
-            var srcIcon = item.source === 'sec_edgar' ? '🏛️' : item.source === 'google_news' ? '📰' : item.source === 'reddit' ? '💬' : item.source === 'eodhd' ? '📊' : '🏢'
-            return (
-              <div key={i} style={{ fontSize: 11, color: '#94a3b8', lineHeight: 1.5, marginBottom: 4, cursor: item.url ? 'pointer' : 'default' }}
-                onClick={function() { if (item.url) window.open(item.url, '_blank') }}>
-                <span>{sentIcon} {srcIcon} </span>
-                <span style={{ color: C.textPrimary }}>{(item.headline || '').slice(0, 80)}{(item.headline || '').length > 80 ? '…' : ''}</span>
-              </div>
-            )
-          })}
-        </>}
+        <div style={{ color: C.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 12 }}>🏆 Scout Verdict</div>
+        <VerdictBadge verdict={r.verdict} />
+        {r.verdict_note && <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 10, lineHeight: 1.6 }}>{r.verdict_note}</div>}
       </div>
     </div>
   )
@@ -263,105 +166,10 @@ function Toast({ message, type, onDone }) {
   )
 }
 
-
-const PATTERN_SHORT = {
-  bull_flag_breakout: 'BF↑',
-  bull_flag_forming: 'BF~',
-  bear_flag_breakout: 'BF↓',
-  macd_momentum: 'MACD',
-  gap_and_go: 'GAP',
-  orb: 'ORB',
-  no_pattern: null,
-}
-
-function AiBadge({ aiData }) {
-  if (!aiData || aiData.pattern === 'no_pattern') return <span style={{ color: '#4b5563', fontSize: 11 }}>⚪ —</span>
-  const short = PATTERN_SHORT[aiData.pattern] || aiData.pattern
-  const conf = aiData.confidence || 0
-  const green = conf >= 0.65, amber = conf >= 0.45
-  if (!green && !amber) return <span style={{ color: '#4b5563', fontSize: 11 }}>⚪ —</span>
-  const bg = green ? 'rgba(34,197,94,0.15)' : 'rgba(245,158,11,0.15)'
-  const color = green ? '#22c55e' : '#f59e0b'
-  const border = green ? 'rgba(34,197,94,0.4)' : 'rgba(245,158,11,0.4)'
-  return (
-    <span style={{ background: bg, color, border: '1px solid ' + border, borderRadius: 4, padding: '2px 6px', fontSize: 10, fontWeight: 700, whiteSpace: 'nowrap' }}>
-      {green ? '🟢' : '🟡'} {short} {(conf * 100).toFixed(0)}%
-    </span>
-  )
-}
-
-function AiSignalBadge({ data }) {
-  if (!data) return <span style={{ color: '#4b5563', fontSize: 11 }}>⚪ —</span>
-  const score = data.score || 0
-  const pct = Math.round(score * 100)
-  if (score >= 0.60) {
-    return <span style={{ background: 'rgba(34,197,94,0.15)', color: '#22c55e', border: '1px solid rgba(34,197,94,0.4)', borderRadius: 4, padding: '2px 6px', fontSize: 10, fontWeight: 700, whiteSpace: 'nowrap' }}>🟢 GO {pct}%</span>
-  }
-  if (score >= 0.40) {
-    return <span style={{ background: 'rgba(245,158,11,0.15)', color: '#f59e0b', border: '1px solid rgba(245,158,11,0.4)', borderRadius: 4, padding: '2px 6px', fontSize: 10, fontWeight: 700, whiteSpace: 'nowrap' }}>🟡 {pct}%</span>
-  }
-  if (pct > 0) return <span style={{ color: '#4b5563', fontSize: 11 }}>⚪ {pct}%</span>
-  return <span style={{ color: '#4b5563', fontSize: 11 }}>⚪ —</span>
-}
-
-function SignalDetailPanel({ detail, loading }) {
-  if (loading) return <div style={{ padding: '10px 20px', color: '#6b7280', fontSize: 12 }}>⏳ Loading AI signal…</div>
-  if (!detail) return null
-  const preds = detail.yolo_preds || []
-  return (
-    <div style={{ padding: '10px 20px', background: '#0a1020', borderTop: '1px solid #1e2a44', display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'flex-start' }}>
-      <div>
-        <div style={{ color: '#4b5563', fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 5 }}>🎯 AI Signal</div>
-        <AiSignalBadge data={detail} />
-        <div style={{ marginTop: 5, fontSize: 11, color: '#64748b' }}>
-          YOLO: {(detail.yolo_score * 100).toFixed(0)}% · 5P: {(detail.five_pillars_score * 100).toFixed(0)}%
-          {detail.screenshot_age_s != null && <span> · screenshot {detail.screenshot_age_s < 60 ? detail.screenshot_age_s + 's' : Math.round(detail.screenshot_age_s / 60) + 'm'} ago</span>}
-        </div>
-      </div>
-      {preds.length > 0 && (
-        <div>
-          <div style={{ color: '#4b5563', fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 5 }}>YOLO Detections ({preds.length})</div>
-          <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
-            {preds.slice(0, 8).map(function (p, i) {
-              const cls = String(p.class || p.label || p.name || '?')
-              const conf = ((p.confidence || 0) * 100).toFixed(0)
-              const isBull = ['hammer','engulfing','marubozu','bull_flag','gap_and_go','orb','macd','morning','bullish','piercing'].some(function(k){ return cls.toLowerCase().includes(k) })
-              return <span key={i} style={{ background: isBull ? 'rgba(34,197,94,0.1)' : '#1e2a44', color: isBull ? '#4ade80' : '#94a3b8', border: '1px solid ' + (isBull ? 'rgba(34,197,94,0.3)' : '#2d3a55'), borderRadius: 3, padding: '2px 7px', fontSize: 10 }}>{cls} {conf}%</span>
-            })}
-          </div>
-        </div>
-      )}
-      {preds.length === 0 && detail.screenshot_age_s == null && (
-        <span style={{ color: '#4b5563', fontSize: 11 }}>No screenshot available for this ticker yet</span>
-      )}
-      {preds.length === 0 && detail.screenshot_age_s != null && (
-        <span style={{ color: '#4b5563', fontSize: 11 }}>No YOLO detections (YOLO server may be offline)</span>
-      )}
-    </div>
-  )
-}
-
-function SentimentBadge({ score, label }) {
-  if (label === 'bullish') return <span style={{ color: '#22c55e', fontSize: 11, fontWeight: 700, whiteSpace: 'nowrap' }}>🟢 {score != null ? score.toFixed(2) : ''}</span>
-  if (label === 'bearish') return <span style={{ color: '#ef4444', fontSize: 11, fontWeight: 700, whiteSpace: 'nowrap' }}>🔴 {score != null ? score.toFixed(2) : ''}</span>
-  if (score === 0 && label === 'neutral') return <span style={{ color: '#4b5563', fontSize: 11 }}>⚪ —</span>
-  return <span style={{ color: '#6b7280', fontSize: 11, whiteSpace: 'nowrap' }}>⚪ {score != null ? score.toFixed(2) : '—'}</span>
-}
-
 // ── Scanner Row (with TRADE button) ─────────────────────────────────────
 
-function ScannerRow({ s, research, idx, onTickerClick, onTrade, aiData, deepResearch, signalData }) {
+function ScannerRow({ s, research, idx, onTickerClick, onTrade }) {
   const [open, setOpen] = useState(false)
-  const [signalDetail, setSignalDetail] = useState(null)
-  const [signalLoading, setSignalLoading] = useState(false)
-  useEffect(function () {
-    if (!open) return
-    setSignalLoading(true)
-    API('signal/' + s.ticker).then(function (d) {
-      if (d) setSignalDetail(d)
-      setSignalLoading(false)
-    })
-  }, [open, s.ticker])
   const scoutStatus = research ? 'done' : (s.scout_status === 'pending' ? 'pending' : 'none')
   const isGainer = (s.gap_pct || 0) >= 0
   const rowBg = idx % 2 === 0 ? C.panel : C.rowAlt
@@ -372,30 +180,14 @@ function ScannerRow({ s, research, idx, onTickerClick, onTrade, aiData, deepRese
         onMouseEnter={function (e) { e.currentTarget.style.background = '#1e2a44' }}
         onMouseLeave={function (e) { e.currentTarget.style.background = open ? '#0d1525' : rowBg }}>
         <td onClick={function () { onTickerClick(s.ticker) }} style={{ padding: '8px 12px', fontWeight: 700, color: C.accent, fontSize: 13, fontFamily: mono, cursor: 'pointer' }}>{s.ticker}</td>
-        <td className="dt-col-seen" style={{ padding: '8px 8px', fontFamily: mono, textAlign: 'right', fontSize: 11, color: '#64748b', whiteSpace: 'nowrap' }}>
-          {(s.first_seen || s.timestamp) ? (function() {
-            var d = new Date(s.first_seen || s.timestamp)
-            var now = new Date()
-            var diffM = Math.floor((now - d) / 60000)
-            var timeStr = d.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', hour12: false })
-            var age = diffM < 1 ? 'now' : diffM < 60 ? diffM + 'm' : diffM < 1440 ? Math.floor(diffM/60) + 'h' : Math.floor(diffM/1440) + 'd'
-            var ageColor = diffM > 120 ? '#6b2121' : diffM > 30 ? '#374151' : '#94a3b8'
-            return <span title={d.toISOString()}><span style={{ color: '#94a3b8' }}>{timeStr}</span><span style={{ color: ageColor, marginLeft: 3 }}>({age})</span></span>
-          })() : '—'}
-        </td>
         <td style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', fontWeight: 600, color: C.textPrimary }}>${fmt(s.price)}</td>
-        <td className="dt-col-vol" style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', color: C.textSecondary, fontSize: 12 }}>{fmtVol(s.avgvol_1d || s.volume)}</td>
+        <td style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', color: C.textSecondary, fontSize: 12 }}>{fmtVol(s.avgvol_1d || s.volume)}</td>
         <td style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', fontWeight: 700, color: floatColor(s.float_m), fontSize: 12 }}>{s.float_m != null ? fmt(s.float_m, 1) + 'M' : '—'}</td>
-        <td style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', color: relvolDaily >= 10 ? '#22c55e' : relvolDaily >= 5 ? '#f59e0b' : relvolDaily == null || relvolDaily === 0 ? '#92400e' : C.textSecondary, fontWeight: relvolDaily >= 5 ? 700 : 400 }}>
-          {relvolDaily != null && relvolDaily > 0 ? fmt(relvolDaily, 1) + 'x' : <span title="RelVol calculating — avg volume not yet cached">?</span>}
-        </td>
-        <td className="dt-col-rvol5m" style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', color: C.textMuted }}>—</td>
+        <td style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', color: relvolDaily >= 10 ? '#22c55e' : relvolDaily >= 5 ? '#f59e0b' : C.textSecondary, fontWeight: relvolDaily >= 5 ? 700 : 400 }}>{relvolDaily != null ? fmt(relvolDaily, 1) + 'x' : '—'}</td>
+        <td style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', color: C.textMuted }}>—</td>
         <td style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', fontWeight: 700, color: isGainer ? gapGreen(s.gap_pct) : negColor(s.gap_pct), fontSize: 13 }}>{isGainer ? '+' : ''}{fmt(s.gap_pct)}%</td>
-        <td className="dt-col-chg" style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', fontWeight: 600, color: isGainer ? gapGreen(s.gap_pct) : negColor(s.gap_pct), fontSize: 12 }}>{isGainer ? '+' : ''}{fmt(s.gap_pct)}%</td>
+        <td style={{ padding: '8px 12px', fontFamily: mono, textAlign: 'right', fontWeight: 600, color: isGainer ? gapGreen(s.gap_pct) : negColor(s.gap_pct), fontSize: 12 }}>{isGainer ? '+' : ''}{fmt(s.gap_pct)}%</td>
         <td onClick={function () { setOpen(function (o) { return !o }) }} style={{ padding: '8px 10px', fontSize: 11, color: C.textMuted, maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{s.news || '—'}</td>
-        <td style={{ padding: '8px 8px', textAlign: 'center' }}><AiBadge aiData={aiData} /></td>
-        <td style={{ padding: '8px 8px', textAlign: 'center' }}><AiSignalBadge data={signalData} /></td>
-        <td style={{ padding: '8px 8px', textAlign: 'center' }}><SentimentBadge score={s.sentiment_score} label={s.sentiment_label} /></td>
         <td style={{ padding: '8px 8px', textAlign: 'center' }}><ScoutBadge status={scoutStatus} /></td>
         <td style={{ padding: '8px 8px', textAlign: 'center' }}>
           <button onClick={function (e) { e.stopPropagation(); onTrade(s.ticker, s.price) }} style={{ background: '#1e3a5f', border: '1px solid #2563eb44', color: '#60a5fa', padding: '3px 8px', borderRadius: 3, fontSize: 10, fontWeight: 700, cursor: 'pointer' }}
@@ -403,92 +195,13 @@ function ScannerRow({ s, research, idx, onTickerClick, onTrade, aiData, deepRese
             onMouseLeave={function (e) { e.currentTarget.style.background = '#1e3a5f' }}>TRADE</button>
         </td>
       </tr>
-      {open && <tr style={{ borderBottom: '2px solid ' + C.border }}><td colSpan={15} style={{ padding: 0 }}>
-        <ResearchPanel r={research} deepResearch={deepResearch} />
-        <SignalDetailPanel detail={signalDetail} loading={signalLoading} />
-      </td></tr>}
+      {open && <tr style={{ borderBottom: '2px solid ' + C.border }}><td colSpan={11} style={{ padding: 0 }}><ResearchPanel r={research} /></td></tr>}
     </>
   )
 }
 
 function ScannerTable({ stocks, research, title, emptyMsg, onTickerClick, onTrade }) {
-  const [aiPatterns, setAiPatterns] = React.useState({})
-  const [deepResearchData, setDeepResearchData] = React.useState({})
-  const [signalDataMap, setSignalDataMap] = React.useState({})
-  React.useEffect(function () {
-    function fetchAI() {
-      fetch('http://localhost:8769/patterns/today').then(function(r){ return r.json() }).then(function(data){
-        var map = {}
-        data.forEach(function(d){ map[d.ticker] = d })
-        setAiPatterns(map)
-      }).catch(function(){})
-    }
-    fetchAI()
-    var t = setInterval(fetchAI, 90000)
-    return function(){ clearInterval(t) }
-  }, [])
-  // Fetch AI signals for all visible tickers (every 30s)
-  React.useEffect(function () {
-    function fetchSignals() {
-      API('signals/all').then(function (d) {
-        if (d && d.signals) {
-          var map = {}
-          d.signals.forEach(function (s) { map[s.ticker] = s })
-          setSignalDataMap(map)
-        }
-      })
-    }
-    fetchSignals()
-    var t = setInterval(fetchSignals, 30000)
-    return function () { clearInterval(t) }
-  }, [])
-  // Fetch deep research for visible tickers
-  React.useEffect(function () {
-    var tickers = stocks.map(function(s){ return s.ticker }).filter(Boolean).slice(0, 30)
-    tickers.forEach(function(ticker) {
-      if (deepResearchData[ticker]) return
-      API('research/' + ticker + '/deep').then(function(d) {
-        if (d && d.items) setDeepResearchData(function(prev) { var n = Object.assign({}, prev); n[ticker] = d; return n })
-      })
-    })
-  }, [stocks.length])
-  const _sort = React.useState({ col: 'seen', dir: 'desc' }), sortState = _sort[0], setSortState = _sort[1]
-  function toggleSort(col) {
-    setSortState(function(s) { return { col, dir: s.col === col && s.dir === 'desc' ? 'asc' : 'desc' } })
-  }
-  function sortIcon(col) {
-    if (sortState.col !== col) return <span style={{ opacity: 0.25, marginLeft: 2 }}>⇅</span>
-    return <span style={{ color: '#60a5fa', marginLeft: 2 }}>{sortState.dir === 'asc' ? '↑' : '↓'}</span>
-  }
-  // col → accessor function
-  var sortAccessors = {
-    ticker:  function(s) { return s.ticker || '' },
-    seen:    function(s) { return new Date(s.first_seen || s.timestamp || 0).getTime() },
-    price:   function(s) { return s.price || 0 },
-    vol:     function(s) { return s.avgvol_1d || s.volume || 0 },
-    float:   function(s) { return s.float_m != null ? s.float_m : 999 },
-    relvol:  function(s) { return (s.avgvol_1d && s.avgvol_200d) ? s.avgvol_1d/s.avgvol_200d : (s.relvol || 0) },
-    gap:     function(s) { return s.gap_pct || 0 },
-    sentiment: function(s) { return s.sentiment_score || 0 },
-    signal:  function(s) { return (signalDataMap[s.ticker] || {}).score || 0 },
-  }
-  const cols = [
-    { label: 'Symbol',   cls: '',              sort: 'ticker' },
-    { label: 'Seen',     cls: 'dt-col-seen',   sort: 'seen' },
-    { label: 'Price',    cls: '',              sort: 'price' },
-    { label: 'Vol Today',cls: 'dt-col-vol',    sort: 'vol' },
-    { label: 'Float',    cls: '',              sort: 'float' },
-    { label: 'RelVol',   cls: '',              sort: 'relvol' },
-    { label: 'RV 5min',  cls: 'dt-col-rvol5m', sort: null },
-    { label: 'Gap %',    cls: '',              sort: 'gap' },
-    { label: 'Chg %',    cls: 'dt-col-chg',   sort: 'gap' },
-    { label: 'News',     cls: '',              sort: null },
-    { label: '🤖 AI',   cls: '',              sort: null },
-    { label: '🎯 Signal',cls: '',              sort: 'signal' },
-    { label: '📊 Sent',  cls: '',              sort: 'sentiment' },
-    { label: '',         cls: '',              sort: null },
-    { label: '',         cls: '',              sort: null },
-  ]
+  const cols = ['Symbol', 'Price', 'Vol Today', 'Float', 'RelVol', 'RV 5min', 'Gap %', 'Chg %', 'News', '', '']
   const _cf = React.useState({ sym: '', minPrice: '', maxPrice: '', minFloat: '', maxFloat: '', minRV: '', maxRV: '', minGap: '', maxGap: '', news: '' })
   const cf = _cf[0], setCf = _cf[1]
   const set = function(k,v){ setCf(function(p){ return Object.assign({},p,{[k]:v}) }) }
@@ -516,15 +229,6 @@ function ScannerTable({ stocks, research, title, emptyMsg, onTickerClick, onTrad
 
   var hasFilter = Object.values(cf).some(function(v){return v!==''})
 
-  // Apply sort to displayed
-  var sortedDisplayed = displayed.slice().sort(function(a, b) {
-    var acc = sortAccessors[sortState.col]
-    if (!acc) return 0
-    var va = acc(a), vb = acc(b)
-    if (typeof va === 'string') return sortState.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va)
-    return sortState.dir === 'asc' ? va - vb : vb - va
-  })
-
   return (
     <div style={{ background: C.panel, border: '1px solid ' + C.border, borderRadius: 4, overflow: 'hidden', height: '100%', display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: C.header, padding: '8px 16px', borderBottom: '1px solid ' + C.border, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
@@ -539,33 +243,25 @@ function ScannerTable({ stocks, research, title, emptyMsg, onTickerClick, onTrad
         <table className="dt-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead style={{ position: 'sticky', top: 0, zIndex: 1 }}>
             <tr style={{ background: C.header, borderBottom: '1px solid #1e2a44' }}>
-              {cols.map(function (c, i) {
-                var align = i === 0 || i === 8 ? 'left' : i >= 9 ? 'center' : 'right'
-                var isSortable = !!c.sort
-                return <th key={i} className={c.cls}
-                  onClick={isSortable ? function() { toggleSort(c.sort) } : undefined}
-                  style={{ padding: '7px 12px', color: sortState.col === c.sort ? '#60a5fa' : C.textMuted, fontSize: 10, textAlign: align, textTransform: 'uppercase', letterSpacing: 0.8, fontWeight: 600, whiteSpace: 'nowrap', cursor: isSortable ? 'pointer' : 'default', userSelect: 'none' }}>
-                  {c.label}{isSortable ? sortIcon(c.sort) : null}
-                </th>
-              })}
+              {cols.map(function (c, i) { return <th key={i} style={{ padding: '7px 12px', color: C.textMuted, fontSize: 10, textAlign: i === 0 || i === 8 ? 'left' : i >= 9 ? 'center' : 'right', textTransform: 'uppercase', letterSpacing: 0.8, fontWeight: 600, whiteSpace: 'nowrap' }}>{c}</th> })}
             </tr>
             <tr style={{ background: '#0d1117', borderBottom: '2px solid ' + C.border }}>
               <td style={{ padding: '3px 8px' }}>{inp('sym','SYM',50)}</td>
               <td style={{ padding: '3px 4px', textAlign: 'right' }}>{inp('minPrice','min')}{' '}{inp('maxPrice','max')}</td>
-              <td className="dt-col-vol" style={{ padding: '3px 4px' }}></td>
+              <td style={{ padding: '3px 4px' }}></td>
               <td style={{ padding: '3px 4px', textAlign: 'right' }}>{inp('minFloat','min')}{' '}{inp('maxFloat','max')}</td>
               <td style={{ padding: '3px 4px', textAlign: 'right' }}>{inp('minRV','min')}{' '}{inp('maxRV','max')}</td>
-              <td className="dt-col-rvol5m" style={{ padding: '3px 4px' }}></td>
+              <td style={{ padding: '3px 4px' }}></td>
               <td style={{ padding: '3px 4px', textAlign: 'right' }}>{inp('minGap','min')}{' '}{inp('maxGap','max')}</td>
-              <td className="dt-col-chg" style={{ padding: '3px 4px' }}></td>
+              <td style={{ padding: '3px 4px' }}></td>
               <td style={{ padding: '3px 8px' }}>{inp('news','keyword',78)}</td>
-              <td></td><td></td><td></td><td></td><td></td>
+              <td></td><td></td>
             </tr>
           </thead>
           <tbody>
             {displayed.length === 0
-              ? <tr><td colSpan={14} style={{ padding: '40px 20px', textAlign: 'center', color: C.textMuted, fontSize: 12 }}>{hasFilter ? 'No stocks match filters' : emptyMsg}</td></tr>
-              : sortedDisplayed.map(function (s, i) { return <ScannerRow key={s.ticker + i} s={s} research={research[s.ticker]} idx={i} onTickerClick={onTickerClick} onTrade={onTrade} aiData={aiPatterns[s.ticker]} deepResearch={deepResearchData[s.ticker]} signalData={signalDataMap[s.ticker]} /> })}
+              ? <tr><td colSpan={11} style={{ padding: '40px 20px', textAlign: 'center', color: C.textMuted, fontSize: 12 }}>{hasFilter ? 'No stocks match filters' : emptyMsg}</td></tr>
+              : displayed.map(function (s, i) { return <ScannerRow key={s.ticker + i} s={s} research={research[s.ticker]} idx={i} onTickerClick={onTickerClick} onTrade={onTrade} /> })}
           </tbody>
         </table>
       </div>
@@ -575,21 +271,21 @@ function ScannerTable({ stocks, research, title, emptyMsg, onTickerClick, onTrad
 
 // ── TradingView Chart ───────────────────────────────────────────────────────
 
-function TradingViewChart({ symbol, interval, height }) {
+function TradingViewChart({ symbol }) {
   const containerRef = useRef(null)
   const widgetRef = useRef(null)
   useEffect(function () {
     if (!containerRef.current) return
     containerRef.current.innerHTML = ''
-    const div = document.createElement('div'); div.id = 'tv_' + interval + '_' + Date.now()
+    const div = document.createElement('div'); div.id = 'tv_' + Date.now()
     div.style.width = '100%'; div.style.height = '100%'; containerRef.current.appendChild(div)
     function init() {
       if (window.TradingView) {
         widgetRef.current = new window.TradingView.widget({
-          container_id: div.id, symbol: symbol || 'SPY', interval: interval || '1', theme: 'dark', style: '1',
+          container_id: div.id, symbol: symbol || 'SPY', interval: '1', theme: 'dark', style: '1',
           locale: 'en', width: '100%', height: '100%',
-          studies: ['Volume@tv-basicstudies', 'MAExp@tv-basicstudies', 'MAExp@tv-basicstudies', 'MAExp@tv-basicstudies', 'VWAP@tv-basicstudies'],
-          hide_top_toolbar: false, allow_symbol_change: false, save_image: false,
+          studies: ['Volume@tv-basicstudies', 'MACD@tv-basicstudies'],
+          hide_top_toolbar: false, allow_symbol_change: true, save_image: false,
           timezone: 'America/New_York', backgroundColor: C.bg,
         })
       }
@@ -599,45 +295,8 @@ function TradingViewChart({ symbol, interval, height }) {
       s.async = true; s.onload = init; document.head.appendChild(s)
     }
     return function () { widgetRef.current = null }
-  }, [symbol, interval])
-  return <div ref={containerRef} style={{ width: '100%', height: height || '100%' }} />
-}
-
-// ── Multi-Timeframe Chart Grid (Ross Cameron style) ─────────────────────────
-
-const ALL_FRAMES = [
-  { label: '5min', interval: '5' },
-  { label: '1min', interval: '1' },
-  { label: '1D',   interval: '1D' },
-  { label: '10s',  interval: '10S' },
-]
-
-const GRID_LAYOUTS = {
-  1: { cols: '1fr',        rows: '1fr',        count: 1 },
-  2: { cols: '1fr 1fr',   rows: '1fr',        count: 2 },
-  3: { cols: '1fr 1fr',   rows: '1fr 1fr',    count: 3 },
-  4: { cols: '1fr 1fr',   rows: '1fr 1fr',    count: 4 },
-}
-
-function MultiTimeframeCharts({ symbol, viewCount }) {
-  const layout = GRID_LAYOUTS[viewCount] || GRID_LAYOUTS[4]
-  const frames = ALL_FRAMES.slice(0, layout.count)
-  return (
-    <div style={{ display: 'grid', gridTemplateColumns: layout.cols, gridTemplateRows: layout.rows, gap: 6, width: '100%', height: '100%' }}>
-      {frames.map(function (f) {
-        return (
-          <div key={f.interval} style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden', border: '1px solid ' + C.border, borderRadius: 4 }}>
-            <div style={{ padding: '3px 8px', background: C.panel, borderBottom: '1px solid ' + C.border, fontSize: 10, fontWeight: 700, color: C.textMuted, letterSpacing: 1, flexShrink: 0 }}>
-              {f.label}
-            </div>
-            <div style={{ flex: 1, minHeight: 0 }}>
-              <TradingViewChart symbol={symbol} interval={f.interval} height="100%" />
-            </div>
-          </div>
-        )
-      })}
-    </div>
-  )
+  }, [symbol])
+  return <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
 }
 
 // ── Breaking News Item ──────────────────────────────────────────────────────
@@ -645,30 +304,15 @@ function MultiTimeframeCharts({ symbol, viewCount }) {
 function BreakingNewsItem({ item }) {
   const headline = item.headline || item.title || ''
   const parts = headline.split(/(\$[A-Z]{1,5})/g)
-  const rawDate = item.published || item.timestamp || item.date
-  var timeStr = '', dateStr = ''
-  if (rawDate) {
-    try {
-      var d = new Date(rawDate)
-      timeStr = d.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', hour12: false })
-      dateStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
-    } catch(e) { dateStr = rawDate.slice(0,10) }
-  }
-  var srcColor = item.source === 'Stock Scout' ? '#a78bfa' : item.source === 'EODHD' ? '#38bdf8' : '#6b7280'
   return (
-    <div style={{ padding: '10px 16px', borderBottom: '1px solid ' + C.border + '22', display: 'flex', justifyContent: 'space-between', gap: 12, cursor: item.url ? 'pointer' : 'default' }}
-      onClick={function () { if (item.url) window.open(item.url, '_blank') }}
+    <div style={{ padding: '12px 16px', borderBottom: '1px solid ' + C.border + '22', display: 'flex', justifyContent: 'space-between', gap: 16 }}
       onMouseEnter={function (e) { e.currentTarget.style.background = C.rowAlt }}
       onMouseLeave={function (e) { e.currentTarget.style.background = 'transparent' }}>
-      <div style={{ flex: 1, fontSize: 12, color: C.textPrimary, lineHeight: 1.5 }}>
-        {item.ticker && <span style={{ color: C.pink, fontWeight: 700, marginRight: 8, fontSize: 11, background: 'rgba(244,114,182,0.1)', padding: '1px 5px', borderRadius: 3 }}>${item.ticker}</span>}
+      <div style={{ flex: 1, fontSize: 13, color: C.textPrimary, lineHeight: 1.5 }}>
+        {item.ticker && <span style={{ color: C.pink, fontWeight: 700, marginRight: 8 }}>${item.ticker}</span>}
         {parts.map(function (p, i) { return p.startsWith('$') ? <span key={i} style={{ color: C.pink, fontWeight: 700 }}>{p}</span> : <span key={i}>{p}</span> })}
-        <span style={{ marginLeft: 8, fontSize: 9, color: srcColor, background: srcColor + '18', padding: '1px 5px', borderRadius: 3, verticalAlign: 'middle' }}>{item.source || 'news'}</span>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0, gap: 1, minWidth: 70 }}>
-        {timeStr && <span style={{ color: C.textMuted, fontSize: 11, whiteSpace: 'nowrap' }}>{timeStr} NY</span>}
-        {dateStr && <span style={{ color: '#374151', fontSize: 10, whiteSpace: 'nowrap' }}>{dateStr}</span>}
-      </div>
+      <span style={{ color: C.textMuted, fontSize: 11, whiteSpace: 'nowrap', flexShrink: 0, marginTop: 2 }}>{item.time || fmtTimeShort(item.published || item.timestamp) || ''}</span>
     </div>
   )
 }
@@ -679,36 +323,24 @@ function PnlBarChart({ daily }) {
   if (!daily || daily.length === 0) return <div style={{ color: C.textMuted, fontSize: 11, padding: 10 }}>No P&L data yet</div>
   const sorted = [...daily].sort(function (a, b) { return a.date < b.date ? -1 : 1 })
   const maxAbs = Math.max(1, ...sorted.map(function (d) { return Math.abs(d.gross_pnl || 0) }))
-  const barW = Math.min(32, Math.max(6, Math.floor(560 / Math.max(sorted.length, 10)) - 2))
-  const gap = 2
-  const totalW = sorted.length * (barW + gap) + 20
-  const svgW = Math.max(totalW, 300)
-  const h = 100, mid = h / 2
+  const barW = Math.max(8, Math.floor(400 / sorted.length) - 2)
+  const h = 120, mid = h / 2
   return (
-    <div style={{ overflowX: 'auto', width: '100%' }}>
-      <svg width={svgW} height={h + 30} style={{ display: 'block', minWidth: 300 }}>
-        {/* Zero line */}
-        <line x1={5} y1={mid} x2={svgW - 5} y2={mid} stroke="#2d3a55" strokeWidth={1} />
-        {/* Bars */}
-        {sorted.map(function (d, i) {
-          var val = d.gross_pnl || 0
-          var barH = Math.max(2, Math.abs(val) / maxAbs * (mid - 6))
-          var y = val >= 0 ? mid - barH : mid
-          var fill = val >= 0 ? '#22c55e' : '#ef4444'
-          var x = i * (barW + gap) + 10
-          return (
-            <g key={i}>
-              <rect x={x} y={y} width={barW} height={barH} fill={fill} rx={1} opacity={0.9} />
-              <title>{d.date}: ${val >= 0 ? '+' : ''}{val.toFixed(2)}</title>
-            </g>
-          )
-        })}
-        {/* Date labels — show first, mid, last */}
-        {[0, Math.floor(sorted.length / 2), sorted.length - 1].filter(function(i,_,a){return a.indexOf(i)===i&&i<sorted.length}).map(function(i) {
-          return <text key={i} x={i * (barW + gap) + 10 + barW/2} y={h + 22} fontSize={9} fill="#4b5563" textAnchor="middle">{sorted[i].date.slice(5)}</text>
-        })}
-      </svg>
-    </div>
+    <svg width={sorted.length * (barW + 2) + 10} height={h + 20} style={{ display: 'block' }}>
+      <line x1={0} y1={mid} x2={sorted.length * (barW + 2) + 10} y2={mid} stroke="#1e2a44" strokeWidth={1} />
+      {sorted.map(function (d, i) {
+        var val = d.gross_pnl || 0
+        var barH = Math.abs(val) / maxAbs * (mid - 5)
+        var y = val >= 0 ? mid - barH : mid
+        var fill = val >= 0 ? '#22c55e' : '#ef4444'
+        return (
+          <g key={i}>
+            <rect x={i * (barW + 2) + 5} y={y} width={barW} height={Math.max(1, barH)} fill={fill} rx={1} />
+            <title>{d.date}: ${val.toFixed(2)}</title>
+          </g>
+        )
+      })}
+    </svg>
   )
 }
 
@@ -719,15 +351,12 @@ function TradeForm({ prefill, alpacaMode, settings, onSubmit, onAlpaca }) {
   const [side, setSide] = useState('buy')
   const [qty, setQty] = useState('')
   const [price, setPrice] = useState('')
-  const [stopPrice, setStopPrice] = useState('')
-  const [qtyOverride, setQtyOverride] = useState(false)
   const [notes, setNotes] = useState('')
 
   useEffect(function () {
     if (prefill) {
       if (prefill.ticker) setTicker(prefill.ticker)
       if (prefill.price) setPrice(String(prefill.price))
-      setQty(''); setStopPrice(''); setQtyOverride(false)
     }
   }, [prefill])
 
@@ -736,124 +365,52 @@ function TradeForm({ prefill, alpacaMode, settings, onSubmit, onAlpaca }) {
   var maxPosPct = parseFloat(settings.max_position_pct || '20')
   var riskPerTrade = startingBalance * maxRiskPct / 100
   var maxPosSize = startingBalance * maxPosPct / 100
-
   var entryPrice = parseFloat(price) || 0
-  var stop = parseFloat(stopPrice) || 0
-  var riskPerShare = (entryPrice > 0 && stop > 0 && stop < entryPrice) ? entryPrice - stop : 0
+  var suggestedQty = entryPrice > 0 ? Math.floor(maxPosSize / entryPrice) : 0
+  var suggestedTotal = suggestedQty * entryPrice
+  var proposedTotal = (parseFloat(qty) || 0) * entryPrice
 
-  // Foolproof qty: risk-based if stop set, else max-position-based
-  var calcQty = 0
-  var sizeMethod = ''
-  if (riskPerShare > 0) {
-    calcQty = Math.floor(riskPerTrade / riskPerShare)
-    sizeMethod = 'risk-based'
-  } else if (entryPrice > 0) {
-    calcQty = Math.floor(maxPosSize / entryPrice)
-    sizeMethod = 'position-based'
-  }
-  // Cap at max position size
-  if (calcQty > 0 && entryPrice > 0) {
-    calcQty = Math.min(calcQty, Math.floor(maxPosSize / entryPrice))
-  }
-
-  // Use override qty or calculated qty
-  var effectiveQty = qtyOverride ? (parseInt(qty) || 0) : calcQty
-  var totalCost = effectiveQty * entryPrice
-  var totalRisk = riskPerShare > 0 ? effectiveQty * riskPerShare : null
-  var riskPct = totalRisk ? (totalRisk / startingBalance * 100) : null
-
-  // Risk status
-  var riskStatus = null
-  if (totalRisk != null) {
-    if (totalRisk > riskPerTrade * 1.5) riskStatus = { color: '#ef4444', label: '🚨 OVER LIMIT', bg: '#5c1a1a' }
-    else if (totalRisk > riskPerTrade) riskStatus = { color: '#f97316', label: '⚠️ Above max risk', bg: '#3a1f00' }
-    else riskStatus = { color: '#22c55e', label: '✅ Within limits', bg: '#0a2a0a' }
-  } else if (totalCost > startingBalance * 0.5) {
-    riskStatus = { color: '#ef4444', label: '🚨 >50% of account — set a stop!', bg: '#5c1a1a' }
+  var posWarning = null
+  if (proposedTotal > startingBalance * 0.5) {
+    posWarning = { color: '#ef4444', text: '⚠️ Exceeds 50% of account — are you sure?' }
+  } else if (proposedTotal > startingBalance * 0.25) {
+    posWarning = { color: '#f97316', text: 'Large position — high risk' }
   }
 
   var inputStyle = { background: C.header, border: '1px solid ' + C.border, color: C.textPrimary, padding: '6px 10px', borderRadius: 3, fontSize: 13, fontFamily: mono, outline: 'none', width: 90 }
   var labelStyle = { fontSize: 11, color: C.textMuted, marginBottom: 2 }
 
-  function handleSubmit(useAlpaca) {
-    var finalQty = effectiveQty
-    if (!finalQty || finalQty <= 0) return
-    var payload = { ticker, side, qty: finalQty, entry_price: entryPrice, stop_price: stop || null, notes }
-    if (useAlpaca) onAlpaca(payload)
-    else onSubmit(payload)
-    setQty(''); setStopPrice(''); setQtyOverride(false); setNotes('')
-  }
-
   return (
     <div style={{ background: C.panel, border: '1px solid ' + C.border, borderRadius: 4, padding: 16 }}>
       <div style={{ fontSize: 14, fontWeight: 700, color: C.textPrimary, marginBottom: 12 }}>📝 New Trade</div>
-
-      {/* Row 1: inputs */}
-      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'flex-end', marginBottom: 10 }}>
-        <div><div style={labelStyle}>Ticker</div>
-          <input value={ticker} onChange={function(e){setTicker(e.target.value.toUpperCase())}} style={{...inputStyle,width:80}} placeholder="PRSO" />
-        </div>
+      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'flex-end' }}>
+        <div><div style={labelStyle}>Ticker</div><input value={ticker} onChange={function (e) { setTicker(e.target.value.toUpperCase()) }} style={{ ...inputStyle, width: 80 }} placeholder="PRSO" /></div>
         <div><div style={labelStyle}>Side</div>
-          <select value={side} onChange={function(e){setSide(e.target.value)}} style={{...inputStyle,width:80}}>
+          <select value={side} onChange={function (e) { setSide(e.target.value) }} style={{ ...inputStyle, width: 80 }}>
             <option value="buy">BUY</option><option value="sell">SELL</option>
           </select>
         </div>
-        <div><div style={labelStyle}>Entry $</div>
-          <input type="number" step="0.01" value={price} onChange={function(e){setPrice(e.target.value)}} style={inputStyle} placeholder="2.04" />
-        </div>
-        <div>
-          <div style={labelStyle}>Stop $ <span style={{color:'#f59e0b',fontSize:10}}>(bottom of flag)</span></div>
-          <input type="number" step="0.01" value={stopPrice} onChange={function(e){setStopPrice(e.target.value)}} style={{...inputStyle, borderColor: stop > 0 && stop < entryPrice ? '#22c55e' : C.border}} placeholder="1.94" />
-        </div>
-        <div>
-          <div style={labelStyle}>
-            Shares
-            {!qtyOverride && calcQty > 0 && <span style={{color:'#22c55e',marginLeft:6,fontSize:10}}>auto ✓</span>}
-            {!qtyOverride && <button onClick={function(){setQtyOverride(true);setQty(String(calcQty))}} style={{marginLeft:8,background:'none',border:'none',color:C.textMuted,fontSize:10,cursor:'pointer',textDecoration:'underline'}}>override</button>}
-            {qtyOverride && <button onClick={function(){setQtyOverride(false);setQty('')}} style={{marginLeft:8,background:'none',border:'none',color:'#f59e0b',fontSize:10,cursor:'pointer',textDecoration:'underline'}}>reset</button>}
-          </div>
-          {qtyOverride
-            ? <input type="number" value={qty} onChange={function(e){setQty(e.target.value)}} style={{...inputStyle,borderColor:'#f59e0b'}} />
-            : <div style={{...inputStyle, color: calcQty > 0 ? '#22c55e' : C.textMuted, fontWeight:700, display:'flex', alignItems:'center', height:32}}>
-                {calcQty > 0 ? calcQty : '—'}
-              </div>
-          }
-        </div>
-        <div style={{flex:1,minWidth:140}}><div style={labelStyle}>Notes</div>
-          <input value={notes} onChange={function(e){setNotes(e.target.value)}} style={{...inputStyle,width:'100%'}} placeholder="Bull flag setup" />
-        </div>
-      </div>
-
-      {/* Row 2: risk breakdown */}
-      {entryPrice > 0 && effectiveQty > 0 && (
-        <div style={{background: riskStatus ? riskStatus.bg : C.header, border:'1px solid '+(riskStatus ? riskStatus.color+'44' : C.border), borderRadius:4, padding:'8px 12px', marginBottom:10, display:'flex', gap:24, flexWrap:'wrap', alignItems:'center'}}>
-          {riskPerShare > 0 && <span style={{fontSize:12}}><span style={{color:C.textMuted}}>Risk/share: </span><span style={{color:'#f59e0b',fontWeight:700}}>${riskPerShare.toFixed(2)}</span></span>}
-          <span style={{fontSize:12}}><span style={{color:C.textMuted}}>Shares: </span><span style={{color:C.accent,fontWeight:700}}>{effectiveQty}</span></span>
-          <span style={{fontSize:12}}><span style={{color:C.textMuted}}>Total cost: </span><span style={{color:C.textPrimary,fontWeight:700}}>${totalCost.toFixed(2)}</span></span>
-          {totalRisk != null && <span style={{fontSize:12}}><span style={{color:C.textMuted}}>Max loss: </span><span style={{color:riskStatus.color,fontWeight:700}}>${totalRisk.toFixed(2)} ({riskPct.toFixed(1)}%)</span></span>}
-          {riskStatus && <span style={{fontSize:12,fontWeight:700,color:riskStatus.color,marginLeft:'auto'}}>{riskStatus.label}</span>}
-          {sizeMethod && !qtyOverride && <span style={{fontSize:10,color:C.textMuted}}>({sizeMethod})</span>}
-        </div>
-      )}
-
-      {/* Row 3: action buttons */}
-      <div style={{display:'flex',gap:10,flexWrap:'wrap'}}>
-        <button onClick={function(){handleSubmit(false)}} disabled={effectiveQty <= 0 || !ticker}
-          style={{background: effectiveQty > 0 ? '#1e3a5f' : '#111', border:'1px solid '+(effectiveQty > 0 ? '#2563eb' : C.border), color: effectiveQty > 0 ? '#60a5fa' : C.textMuted, padding:'8px 16px', borderRadius:4, fontWeight:700, fontSize:12, cursor: effectiveQty > 0 ? 'pointer' : 'not-allowed'}}
-          onMouseEnter={function(e){if(effectiveQty>0)e.currentTarget.style.background='#2563eb'}}
-          onMouseLeave={function(e){e.currentTarget.style.background=effectiveQty>0?'#1e3a5f':'#111'}}>
-          Log Manual
+        <div><div style={labelStyle}>Qty</div><input type="number" value={qty} onChange={function (e) { setQty(e.target.value) }} style={inputStyle} placeholder={suggestedQty > 0 ? String(suggestedQty) : '100'} /></div>
+        <div><div style={labelStyle}>Price</div><input type="number" step="0.01" value={price} onChange={function (e) { setPrice(e.target.value) }} style={inputStyle} placeholder="2.04" /></div>
+        <div style={{ flex: 1, minWidth: 150 }}><div style={labelStyle}>Notes</div><input value={notes} onChange={function (e) { setNotes(e.target.value) }} style={{ ...inputStyle, width: '100%' }} placeholder="Bull flag setup" /></div>
+        <button onClick={function () { onSubmit({ ticker: ticker, side: side, qty: parseInt(qty), entry_price: parseFloat(price), notes: notes }); setQty(''); setNotes('') }}
+          style={{ background: '#1e3a5f', border: '1px solid #2563eb', color: '#60a5fa', padding: '8px 16px', borderRadius: 4, fontWeight: 700, fontSize: 12, cursor: 'pointer' }}
+          onMouseEnter={function (e) { e.currentTarget.style.background = '#2563eb' }}
+          onMouseLeave={function (e) { e.currentTarget.style.background = '#1e3a5f' }}>Submit Manual</button>
+        <button onClick={function () { onAlpaca({ ticker: ticker, side: side, qty: parseInt(qty), entry_price: parseFloat(price) }) }}
+          style={{ background: alpacaMode === 'live' ? '#5c1a1a' : '#1a3a1a', border: '1px solid ' + (alpacaMode === 'live' ? '#ef4444' : '#22c55e'), color: alpacaMode === 'live' ? '#fca5a5' : '#86efac', padding: '8px 16px', borderRadius: 4, fontWeight: 700, fontSize: 12, cursor: 'pointer' }}
+          onMouseEnter={function (e) { e.currentTarget.style.opacity = '0.8' }}
+          onMouseLeave={function (e) { e.currentTarget.style.opacity = '1' }}>
+          {alpacaMode === 'live' ? '⚠️ Via Alpaca LIVE' : '📄 Via Alpaca Paper'}
         </button>
-        <button onClick={function(){handleSubmit(true)}} disabled={effectiveQty <= 0 || !ticker || (riskStatus && riskStatus.label.includes('OVER'))}
-          style={{background: alpacaMode==='live' ? '#5c1a1a' : '#1a3a1a', border:'1px solid '+(alpacaMode==='live'?'#ef4444':'#22c55e'), color: alpacaMode==='live'?'#fca5a5':'#86efac', padding:'8px 16px', borderRadius:4, fontWeight:700, fontSize:12, cursor:'pointer'}}
-          onMouseEnter={function(e){e.currentTarget.style.opacity='0.8'}}
-          onMouseLeave={function(e){e.currentTarget.style.opacity='1'}}>
-          {alpacaMode==='live' ? '⚠️ SEND LIVE ORDER' : '📄 Send Paper Order'}
-        </button>
-        <span style={{fontSize:11,color:C.textMuted,alignSelf:'center'}}>
-          Budget: <b style={{color:'#f59e0b'}}>${riskPerTrade.toFixed(2)}</b> risk · <b style={{color:'#f59e0b'}}>${maxPosSize.toFixed(2)}</b> max pos
-        </span>
       </div>
+      {/* Position sizing hints */}
+      <div style={{ marginTop: 10, display: 'flex', gap: 20, flexWrap: 'wrap', fontSize: 11 }}>
+        <span style={{ color: C.textMuted }}>Max risk/trade ({maxRiskPct}%): <span style={{ color: '#f59e0b', fontWeight: 600 }}>${riskPerTrade.toFixed(2)}</span></span>
+        <span style={{ color: C.textMuted }}>Max position ({maxPosPct}%): <span style={{ color: '#f59e0b', fontWeight: 600 }}>${maxPosSize.toFixed(2)}</span></span>
+        {entryPrice > 0 && suggestedQty > 0 && <span style={{ color: C.textMuted }}>Suggested: <span style={{ color: C.accent }}>~{suggestedQty} shares</span> @ ${entryPrice.toFixed(2)} = ${suggestedTotal.toFixed(2)}</span>}
+      </div>
+      {posWarning && <div style={{ marginTop: 6, fontSize: 12, fontWeight: 700, color: posWarning.color, background: posWarning.color + '15', border: '1px solid ' + posWarning.color + '44', borderRadius: 3, padding: '4px 10px' }}>{posWarning.text}</div>}
     </div>
   )
 }
@@ -988,7 +545,6 @@ function App() {
   var _cn = _s(false), connected = _cn[0], setConnected = _cn[1]
   var _lu = _s(null), lastUpdate = _lu[0], setLastUpdate = _lu[1]
   var _cs = _s('SPY'), chartSymbol = _cs[0], setChartSymbol = _cs[1]
-  var _cv = _s(4), chartViewCount = _cv[0], setChartViewCount = _cv[1]
   var _am = _s('paper'), alpacaMode = _am[0], setAlpacaMode = _am[1]
   var _aa = _s(null), alpacaAcct = _aa[0], setAlpacaAcct = _aa[1]
   var _ot = _s([]), openTrades = _ot[0], setOpenTrades = _ot[1]
@@ -999,93 +555,9 @@ function App() {
   var _to = _s(null), toast = _to[0], setToast = _to[1]
   var _cm = _s(null), confirmModal = _cm[0], setConfirmModal = _cm[1]
   var _hf = _s('month'), histFilter = _hf[0], setHistFilter = _hf[1]
-  var _os = _s({ col: 'entry_time', dir: 'desc' }), openSort = _os[0], setOpenSort = _os[1]
-  var _cs2 = _s({ col: 'entry_time', dir: 'desc' }), closedSort = _cs2[0], setClosedSort = _cs2[1]
-  var _hs = _s({ col: 'scan_date', dir: 'desc' }), histSort = _hs[0], setHistSort = _hs[1]
-  function mkSortToggle(setter) { return function(col) { setter(function(s) { return { col, dir: s.col === col && s.dir === 'desc' ? 'asc' : 'desc' } }) } }
-  function SortTh({ label, col, sortState, onSort, align }) {
-    var active = sortState.col === col
-    return <th onClick={col ? function(){onSort(col)} : undefined}
-      style={{ padding:'7px 12px', color: active ? '#60a5fa' : '#4b5563', fontSize:10, textTransform:'uppercase', letterSpacing:0.8, fontWeight:600, whiteSpace:'nowrap', cursor: col ? 'pointer' : 'default', userSelect:'none', textAlign: align||'right' }}>
-      {label}{col ? <span style={{ marginLeft:2, opacity: active ? 1 : 0.25, color: active ? '#60a5fa' : 'inherit' }}>{active ? (sortState.dir==='asc' ? '↑' : '↓') : '⇅'}</span> : null}
-    </th>
-  }
-  function applySortRows(rows, sortState) {
-    if (!sortState.col) return rows
-    return rows.slice().sort(function(a,b) {
-      var va = a[sortState.col], vb = b[sortState.col]
-      if (va == null) return 1; if (vb == null) return -1
-      if (typeof va === 'string') return sortState.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va)
-      return sortState.dir === 'asc' ? va - vb : vb - va
-    })
-  }
-  var _nf = _s(''), newsTickerFilter = _nf[0], setNewsTickerFilter = _nf[1]
   var ws = _r(null)
-  var seenTickers = _r(new Set())
-  var audioCtx = _r(null)
-  var _snd = _s(true), soundEnabled = _snd[0], setSoundEnabled = _snd[1]
-  var _ate = _s(false), autoTradeEnabled = _ate[0], setAutoTradeEnabled = _ate[1]
-  var _atf = _s(new Set()), autoTradeFired = _atf[0], setAutoTradeFired = _atf[1]
 
-  function getAudioCtx() {
-    if (!audioCtx.current) audioCtx.current = new (window.AudioContext || window.webkitAudioContext)()
-    return audioCtx.current
-  }
-
-  function playAlertTone() {
-    try {
-      var ctx = getAudioCtx()
-      var freqs = [880, 1100, 1320]
-      freqs.forEach(function(freq, i) {
-        var osc = ctx.createOscillator()
-        var gain = ctx.createGain()
-        osc.connect(gain); gain.connect(ctx.destination)
-        osc.type = 'sine'
-        osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.12)
-        gain.gain.setValueAtTime(0, ctx.currentTime + i * 0.12)
-        gain.gain.linearRampToValueAtTime(0.3, ctx.currentTime + i * 0.12 + 0.02)
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.12 + 0.18)
-        osc.start(ctx.currentTime + i * 0.12)
-        osc.stop(ctx.currentTime + i * 0.12 + 0.2)
-      })
-    } catch(e) {}
-  }
-
-  function announceStock(ticker, gapPct, relVol) {
-    try {
-      if (!window.speechSynthesis) return
-      var msg = new SpeechSynthesisUtterance()
-      var gap = gapPct ? Math.round(gapPct) + ' percent' : ''
-      var vol = relVol ? 'rel vol ' + Math.round(relVol) + 'x' : ''
-      msg.text = ticker + ' on scanner. ' + [gap, vol].filter(Boolean).join(', ')
-      msg.rate = 1.1
-      msg.pitch = 1.0
-      msg.volume = 0.9
-      window.speechSynthesis.speak(msg)
-    } catch(e) {}
-  }
-
-  function handleNewStocks(arr) {
-    var isFirstLoad = seenTickers.current.size === 0
-    var newOnes = []
-    arr.forEach(function(s) {
-      if (!seenTickers.current.has(s.ticker)) {
-        seenTickers.current.add(s.ticker)
-        newOnes.push(s)
-      }
-    })
-    // Don't alert on the very first load — just seed the seen set
-    if (isFirstLoad || !soundEnabled) return
-    if (newOnes.length > 0) {
-      playAlertTone()
-      // Announce each new ticker (max 3 to avoid spam)
-      newOnes.slice(0, 3).forEach(function(s) {
-        announceStock(s.ticker, s.gap_pct, s.relvol)
-      })
-    }
-  }
-
-  var handleTickerClick = _cb(function (t) { setChartSymbol(t); setNewsTickerFilter(t); setActiveTab('charts') }, [])
+  var handleTickerClick = _cb(function (t) { setChartSymbol(t); setActiveTab('charts') }, [])
   var handleTrade = _cb(function (ticker, price) { setTradePrefill({ ticker: ticker, price: price, _ts: Date.now() }); setActiveTab('trades') }, [])
 
   function showToast(msg, type) { setToast({ message: msg, type: type || 'success' }) }
@@ -1167,7 +639,6 @@ function App() {
         try {
           var data = JSON.parse(e.data)
           var arr = Object.values(data).sort(function (a, b) { return new Date(b.first_seen || b.timestamp) - new Date(a.first_seen || a.timestamp) })
-          handleNewStocks(arr)
           setStocks(arr); setLastUpdate(new Date())
           arr.forEach(function (s) { loadResearch(s.ticker) })
         } catch (ex) {}
@@ -1177,7 +648,7 @@ function App() {
     API('news').then(function (d) { if (d) setNews(d) })
     API('candidates/history').then(function (d) { if (d) setHistory(d) })
     // Always load candidates via REST on mount (don't rely solely on WS)
-    API('candidates').then(function (d) { if (d) { var arr = Object.values(d).sort(function(a,b){return new Date(b.first_seen||b.timestamp)-new Date(a.first_seen||a.timestamp)}); if (arr.length) { handleNewStocks(arr); setStocks(arr); setLastUpdate(new Date()) } } })
+    API('candidates').then(function (d) { if (d) { var arr = Object.values(d).sort(function(a,b){return new Date(b.first_seen||b.timestamp)-new Date(a.first_seen||a.timestamp)}); if (arr.length) { setStocks(arr); setLastUpdate(new Date()) } } })
     var poll = setInterval(function () {
       if (!connected) API('candidates').then(function (d) { if (d) setStocks(Object.values(d)) })
       API('news').then(function (d) { if (d) setNews(d) })
@@ -1190,13 +661,11 @@ function App() {
     var arr = [].concat(stocks)
     switch (activeScanner) {
       case 'lf_high_relvol':
-        // Include relvol>=5 AND unknowns (relvol=0 means not yet calculated); sort knowns first
-        return arr.filter(function(s){return (s.float_m==null||(s.float_m||99)<10) && (s.relvol>=5||s.relvol===0||s.relvol==null) && s.price>=1 && s.price<=20 && s.gap_pct>=10})
-          .sort(function(a,b){ var ra=a.relvol||0, rb=b.relvol||0; if(ra>0&&rb===0)return -1; if(ra===0&&rb>0)return 1; return rb-ra })
+        return arr.filter(function(s){return (s.float_m||99)<10 && s.relvol>=5 && s.price>=2 && s.price<=20 && s.gap_pct>=10}).sort(function(a,b){return b.relvol-a.relvol})
       case 'lf_med_relvol':
-        return arr.filter(function(s){return (s.float_m==null||(s.float_m||99)<10) && s.relvol>=3 && s.relvol<5 && s.price>=1 && s.price<=20 && s.gap_pct>=10}).sort(function(a,b){return b.relvol-a.relvol})
+        return arr.filter(function(s){return (s.float_m||99)<10 && s.relvol>=3 && s.relvol<5 && s.price>=2 && s.price<=20 && s.gap_pct>=10}).sort(function(a,b){return b.relvol-a.relvol})
       case 'lf_high_relvol_20':
-        return arr.filter(function(s){return (s.float_m==null||(s.float_m||99)<10) && (s.relvol>=5||s.relvol===0||s.relvol==null) && s.price>20 && s.gap_pct>=10}).sort(function(a,b){return b.relvol-a.relvol})
+        return arr.filter(function(s){return (s.float_m||99)<10 && s.relvol>=5 && s.price>20 && s.gap_pct>=10}).sort(function(a,b){return b.relvol-a.relvol})
       case 'former_momo':
         return arr.filter(function(s){return s.former_momo===true||s.former_momo===1}).sort(function(a,b){return b.gap_pct-a.gap_pct})
       case 'squeeze_5_5':
@@ -1224,30 +693,6 @@ function App() {
     return function () { clearInterval(t) }
   }, [])
 
-
-  // Auto-trade: poll signals every 30s when enabled, fire paper trades at score >= 0.85
-  _e(function () {
-    if (!autoTradeEnabled) return
-    function checkAutoTrade() {
-      API('signals/all').then(function (d) {
-        if (!d || !d.signals) return
-        d.signals.forEach(function (sig) {
-          if (sig.score >= 0.85 && !autoTradeFired.has(sig.ticker)) {
-            POST('trade/paper', { ticker: sig.ticker, side: 'buy', stop_loss_pct: 5, risk_dollars: 100 })
-              .then(function (r) {
-                if (r && r.ok) {
-                  setAutoTradeFired(function (prev) { var n = new Set(prev); n.add(sig.ticker); return n })
-                  showToast('🤖 AUTO: Paper trade fired ' + sig.ticker + ' (score ' + Math.round(sig.score * 100) + '%)', 'success')
-                }
-              })
-          }
-        })
-      })
-    }
-    checkAutoTrade()
-    var t = setInterval(checkAutoTrade, 30000)
-    return function () { clearInterval(t) }
-  }, [autoTradeEnabled, autoTradeFired])
 
   // Backtest state
   var _bt = _s(null), btSummary = _bt[0], setBtSummary = _bt[1]
@@ -1281,13 +726,11 @@ function App() {
     ['scanners', '🔍 Scanners'],
     ['charts', '📊 Charts'],
     ['trades', '💰 Trades'],
-    ['signals', '🎯 Signals'],
     ['news', '📰 News'],
     ['history', '🕐 History'],
     ['settings', '⚙️ Settings'],
     ['system', '🛡️ System'],
     ['backtest', '🔁 Backtest'],
-    ['training', '🏷️ Training'],
   ]
 
   var startingBalance = parseFloat(settings.starting_balance || '600')
@@ -1322,45 +765,28 @@ function App() {
         </div>
       )}
 
-      {/* ── Clock Bar (row 1) ── */}
-      <div style={{ background: '#0a0f1e', borderBottom: '1px solid #161f35', padding: '10px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
-        {/* Left: brand */}
-        <div style={{ fontWeight: 900, fontSize: 15, color: C.accent, letterSpacing: -0.5 }}>
+      {/* Top Bar */}
+      <div className="dt-topbar" style={{ background: C.header, borderBottom: '1px solid ' + C.border, padding: '0 20px', display: 'flex', alignItems: 'center', gap: 0, height: 48, flexShrink: 0 }}>
+        <div className="dt-topbar-title" style={{ fontWeight: 900, fontSize: 17, color: C.accent, letterSpacing: -0.5, marginRight: 32 }}>
           📈 Day<span style={{ color: '#22c55e' }}>Trade</span><span style={{ color: C.textPrimary, fontWeight: 400 }}> Dash</span>
         </div>
-        {/* Centre: world clocks — prominent */}
-        <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
-          <WorldClocks />
-        </div>
-        {/* Right: status + market badge */}
-        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-          <span style={{ color: connected ? '#22c55e' : '#ef4444', fontSize: 11, fontWeight: 600 }}>● {connected ? 'LIVE' : 'OFFLINE'}</span>
-          <span style={{ width: 7, height: 7, borderRadius: '50%', background: health ? (health.overall === 'healthy' ? '#22c55e' : '#ef4444') : '#555', display: 'inline-block' }} title={'System: ' + (health ? health.overall : 'loading')} />
-          <span className="dt-market-badge" style={{ background: status.bg, color: status.color, border: '1px solid ' + status.color + '44', padding: '3px 10px', borderRadius: 4, fontWeight: 700, fontSize: 10, letterSpacing: 0.5 }}>{status.text}</span>
-        </div>
-      </div>
-
-      {/* ── Nav Bar (row 2) ── */}
-      <div className="dt-topbar" style={{ background: C.header, borderBottom: '1px solid ' + C.border, padding: '0 20px', display: 'flex', alignItems: 'center', gap: 0, height: 44, flexShrink: 0 }}>
-        <div className="dt-tabs dt-nav" style={{ display: 'flex', overflow: 'hidden', flex: 1 }}>{tabs.map(function (t) {
+        <div className="dt-tabs">{tabs.map(function (t) {
           return <button key={t[0]} onClick={function () { setActiveTab(t[0]) }} style={{
             background: 'none', border: 'none', color: activeTab === t[0] ? '#60a5fa' : C.textMuted,
             borderBottom: activeTab === t[0] ? '2px solid #60a5fa' : '2px solid transparent',
-            padding: '0 14px', height: 44, cursor: 'pointer', fontSize: 12, fontWeight: activeTab === t[0] ? 700 : 400, whiteSpace: 'nowrap',
+            padding: '0 16px', height: 48, cursor: 'pointer', fontSize: 12, fontWeight: activeTab === t[0] ? 700 : 400,
           }}>{t[1]}</button>
         })}</div>
-        <div className="dt-topbar-right" style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+        <div className="dt-topbar-right" style={{ marginLeft: 'auto', display: 'flex', gap: 12, alignItems: 'center' }}>
+          {/* Mode toggle */}
           <button onClick={function () { switchMode(alpacaMode === 'paper' ? 'live' : 'paper') }} style={{
             background: alpacaMode === 'live' ? '#5c1a1a' : '#2a1f00', border: '1px solid ' + (alpacaMode === 'live' ? '#ef4444' : '#f59e0b'),
             color: alpacaMode === 'live' ? '#fca5a5' : '#f59e0b', padding: '4px 10px', borderRadius: 4, fontSize: 10, fontWeight: 700, cursor: 'pointer',
           }}>{alpacaMode === 'live' ? '💰 LIVE' : '📄 PAPER'}</button>
           {lastUpdate && <span className="dt-last-update" style={{ fontSize: 10, color: C.textMuted }}>Updated {lastUpdate.toLocaleTimeString()}</span>}
-          <button onClick={function () { setSoundEnabled(function(v){return !v}) }} title={soundEnabled ? 'Mute scanner alerts' : 'Unmute scanner alerts'} style={{ background: 'transparent', border: '1px solid ' + (soundEnabled ? '#22c55e44' : C.border), borderRadius: 4, color: soundEnabled ? '#22c55e' : C.textMuted, padding: '3px 8px', fontSize: 12, cursor: 'pointer', lineHeight: 1 }}>{soundEnabled ? '🔊' : '🔇'}</button>
-          <button onClick={function () { setAutoTradeEnabled(function(v){ if(v){ setAutoTradeFired(new Set()); return false } return true }) }}
-            title={autoTradeEnabled ? 'Auto-trade ON: firing paper trades at score ≥85%. Click to disable.' : 'Enable auto-trade (fires paper trades when AI score ≥85%)'}
-            style={{ background: autoTradeEnabled ? '#0a2a0a' : 'transparent', border: '1px solid ' + (autoTradeEnabled ? '#22c55e' : '#374151'), borderRadius: 4, color: autoTradeEnabled ? '#22c55e' : C.textMuted, padding: '3px 10px', fontSize: 10, fontWeight: 700, cursor: 'pointer', lineHeight: 1, whiteSpace: 'nowrap' }}>
-            {autoTradeEnabled ? '🤖 AUTO: ON' : '🤖 AUTO: OFF'}
-          </button>
+          <span style={{ color: connected ? '#22c55e' : '#ef4444', fontSize: 11, fontWeight: 600 }}>● {connected ? 'LIVE' : 'OFFLINE'}</span>
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: health ? (health.overall === 'healthy' ? '#22c55e' : '#ef4444') : '#555', display: 'inline-block', animation: health && health.overall !== 'healthy' ? 'pulse-red 1.2s ease-in-out infinite' : 'none' }} title={'System: ' + (health ? health.overall : 'loading')} />
+          <span className="dt-market-badge" style={{ background: status.bg, color: status.color, border: '1px solid ' + status.color + '44', padding: '4px 12px', borderRadius: 4, fontWeight: 700, fontSize: 10, letterSpacing: 0.5 }}>{status.text}</span>
         </div>
       </div>
 
@@ -1436,27 +862,13 @@ function App() {
 
           {activeTab === 'charts' && (
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-              <div style={{ padding: '8px 16px', background: C.panel, borderBottom: '1px solid ' + C.border, display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0, flexWrap: 'wrap' }}>
+              <div style={{ padding: '8px 16px', background: C.panel, borderBottom: '1px solid ' + C.border, display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
                 <span style={{ fontSize: 12, color: C.textMuted }}>Symbol:</span>
                 <input type="text" value={chartSymbol} onChange={function (e) { setChartSymbol(e.target.value.toUpperCase()) }}
                   style={{ background: C.header, border: '1px solid ' + C.border, color: C.accent, padding: '4px 10px', borderRadius: 3, fontSize: 14, fontWeight: 700, fontFamily: mono, width: 100, outline: 'none' }} />
                 <span style={{ fontSize: 14, fontWeight: 700, color: C.textPrimary }}>{chartSymbol}</span>
-                <div style={{ marginLeft: 'auto', display: 'flex', gap: 4 }}>
-                  {[1,2,3,4].map(function(n) {
-                    const icons = ['▣','⊞','⊟','⊞⊞']
-                    const labels = ['1','2','3','4']
-                    return (
-                      <button key={n} onClick={function(){ setChartViewCount(n) }} style={{
-                        background: chartViewCount === n ? '#1e3a5f' : C.header,
-                        border: '1px solid ' + (chartViewCount === n ? '#2563eb' : C.border),
-                        color: chartViewCount === n ? '#60a5fa' : C.textMuted,
-                        padding: '4px 10px', borderRadius: 3, fontSize: 12, fontWeight: 700, cursor: 'pointer', minWidth: 32
-                      }}>{labels[n-1]}</button>
-                    )
-                  })}
-                </div>
               </div>
-              <div style={{ flex: 1, padding: 8, minHeight: 0 }}><MultiTimeframeCharts symbol={chartSymbol} viewCount={chartViewCount} /></div>
+              <div style={{ flex: 1, padding: 12 }}><TradingViewChart symbol={chartSymbol} /></div>
             </div>
           )}
 
@@ -1496,14 +908,14 @@ function App() {
                 </div>
                 <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <thead><tr style={{ background: C.header, borderBottom: '1px solid ' + C.border }}>
-                    {[['Ticker','ticker','left'],['Side','side','left'],['Qty','qty',null],['Entry','entry_price',null],['Current',null,null],['P&L $','pnl',null],['P&L %','pnl_pct',null],['Time Open','entry_time','right'],['Source','source','left'],['',null,null]].map(function(h) {
-                      return <SortTh key={h[0]} label={h[0]} col={h[1]} align={h[2]} sortState={openSort} onSort={mkSortToggle(setOpenSort)} />
+                    {['Ticker', 'Side', 'Qty', 'Entry', 'Current', 'P&L $', 'P&L %', 'Time Open', 'Source', ''].map(function (h) {
+                      return <th key={h} style={{ padding: '7px 12px', color: C.textMuted, fontSize: 10, textTransform: 'uppercase', textAlign: h === 'Ticker' || h === 'Side' || h === 'Source' ? 'left' : 'right' }}>{h}</th>
                     })}
                   </tr></thead>
                   <tbody>
                     {openTrades.length === 0
                       ? <tr><td colSpan={10} style={{ padding: 30, textAlign: 'center', color: C.textMuted, fontSize: 12 }}>No open positions</td></tr>
-                      : applySortRows(openTrades, openSort).map(function (t) {
+                      : openTrades.map(function (t) {
                         return <tr key={t.id} style={{ borderBottom: '1px solid ' + C.border + '22' }}>
                           <td style={{ padding: '8px 12px', fontWeight: 700, color: C.accent, fontFamily: mono }}>{t.ticker}</td>
                           <td style={{ padding: '8px 12px', color: t.side === 'buy' ? '#22c55e' : '#ef4444', fontWeight: 600, textTransform: 'uppercase', fontSize: 11 }}>{t.side}</td>
@@ -1541,14 +953,14 @@ function App() {
                 </div>
                 <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <thead><tr style={{ background: C.header, borderBottom: '1px solid ' + C.border }}>
-                    {[['Ticker','ticker','left'],['Side','side','left'],['Qty','qty',null],['Entry','entry_price',null],['Exit','exit_price',null],['P&L $','pnl',null],['P&L %','pnl_pct',null],['Date','entry_time','left'],['Source','source','left']].map(function(h) {
-                      return <SortTh key={h[0]} label={h[0]} col={h[1]} align={h[2]} sortState={closedSort} onSort={mkSortToggle(setClosedSort)} />
+                    {['Ticker', 'Side', 'Qty', 'Entry', 'Exit', 'P&L $', 'P&L %', 'Date', 'Source'].map(function (h) {
+                      return <th key={h} style={{ padding: '7px 12px', color: C.textMuted, fontSize: 10, textTransform: 'uppercase', textAlign: h === 'Ticker' || h === 'Side' || h === 'Source' || h === 'Date' ? 'left' : 'right' }}>{h}</th>
                     })}
                   </tr></thead>
                   <tbody>
                     {allTrades.filter(function (t) { return t.status === 'closed' }).length === 0
                       ? <tr><td colSpan={9} style={{ padding: 30, textAlign: 'center', color: C.textMuted, fontSize: 12 }}>No closed trades yet</td></tr>
-                      : applySortRows(allTrades.filter(function (t) { return t.status === 'closed' }), closedSort).map(function (t) {
+                      : allTrades.filter(function (t) { return t.status === 'closed' }).map(function (t) {
                         return <tr key={t.id} style={{ borderBottom: '1px solid ' + C.border + '22' }}>
                           <td style={{ padding: '7px 12px', fontWeight: 700, color: C.accent, fontFamily: mono, fontSize: 12 }}>{t.ticker}</td>
                           <td style={{ padding: '7px 12px', color: t.side === 'buy' ? '#22c55e' : '#ef4444', fontWeight: 600, textTransform: 'uppercase', fontSize: 11 }}>{t.side}</td>
@@ -1567,32 +979,20 @@ function App() {
             </div>
           )}
 
-          {activeTab === 'news' && (function() {
-            var tickerOptions = stocks.map(function(s){return s.ticker}).filter(function(v,i,a){return a.indexOf(v)===i})
-            var filteredNews = newsTickerFilter
-              ? news.filter(function(n){return (n.ticker||'').toUpperCase() === newsTickerFilter.toUpperCase() || (n.headline||n.title||'').toUpperCase().includes('$'+newsTickerFilter.toUpperCase())})
-              : news
-            return (
+          {activeTab === 'news' && (
             <div style={{ flex: 1, overflow: 'hidden', padding: 12 }}>
               <div style={{ background: C.panel, border: '1px solid ' + C.border, borderRadius: 4, overflow: 'hidden', height: '100%', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ background: C.header, padding: '10px 16px', borderBottom: '1px solid ' + C.border, flexShrink: 0, display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div style={{ background: C.header, padding: '10px 16px', borderBottom: '1px solid ' + C.border, flexShrink: 0 }}>
                   <span style={{ fontWeight: 700, fontSize: 14, color: C.textPrimary }}>Breaking News</span>
-                  <select value={newsTickerFilter} onChange={function(e){setNewsTickerFilter(e.target.value)}}
-                    style={{ background: C.header, border: '1px solid ' + C.border, color: C.textPrimary, padding: '4px 8px', borderRadius: 3, fontSize: 11, outline: 'none', marginLeft: 'auto' }}>
-                    <option value="">All Tickers</option>
-                    {tickerOptions.map(function(t){return <option key={t} value={t}>{t}</option>})}
-                  </select>
-                  {newsTickerFilter && <button onClick={function(){setNewsTickerFilter('')}} style={{ background: 'none', border: '1px solid rgba(239,68,68,0.3)', color: '#ef4444', padding: '2px 8px', borderRadius: 3, fontSize: 10, cursor: 'pointer' }}>x</button>}
                 </div>
                 <div style={{ flex: 1, overflowY: 'auto' }}>
-                  {filteredNews.length === 0
-                    ? <div style={{ padding: 40, textAlign: 'center', color: C.textMuted, fontSize: 13 }}>{newsTickerFilter ? 'No news for ' + newsTickerFilter : 'No news yet'}</div>
-                    : filteredNews.map(function (n, i) { return <BreakingNewsItem key={i} item={n} /> })}
+                  {news.length === 0
+                    ? <div style={{ padding: 40, textAlign: 'center', color: C.textMuted, fontSize: 13 }}>No news yet</div>
+                    : news.map(function (n, i) { return <BreakingNewsItem key={i} item={n} /> })}
                 </div>
               </div>
             </div>
-            )
-          })()}
+          )}
 
           {activeTab === 'history' && (
             <div style={{ flex: 1, overflow: 'hidden', padding: 12 }}>
@@ -1612,15 +1012,15 @@ function App() {
                   <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                     <thead style={{ position: 'sticky', top: 0, zIndex: 1 }}>
                       <tr style={{ background: C.header, borderBottom: '1px solid ' + C.border }}>
-                        {[['Date','scan_date','left'],['Ticker','ticker','left'],['Company','name','left'],['Price','price',null],['Gap%','gap_pct',null],['RelVol','relvol',null],['Float','float_m',null],['Scout','scout_status',null]].map(function(h) {
-                          return <SortTh key={h[0]} label={h[0]} col={h[1]} align={h[2]} sortState={histSort} onSort={mkSortToggle(setHistSort)} />
+                        {['Date', 'Ticker', 'Company', 'Price', 'Gap%', 'RelVol', 'Float', 'Scout'].map(function (h) {
+                          return <th key={h} style={{ padding: '7px 12px', color: C.textMuted, fontSize: 10, textAlign: h === 'Date' || h === 'Ticker' || h === 'Company' ? 'left' : 'right', textTransform: 'uppercase', letterSpacing: 0.8 }}>{h}</th>
                         })}
                       </tr>
                     </thead>
                     <tbody>
                       {filteredHistory.length === 0
                         ? <tr><td colSpan={8} style={{ padding: 40, textAlign: 'center', color: C.textMuted }}>No history for this period</td></tr>
-                        : applySortRows(filteredHistory, histSort).map(function (s, i) {
+                        : filteredHistory.map(function (s, i) {
                           return <tr key={i} style={{ borderBottom: '1px solid ' + C.border + '22', background: i % 2 === 0 ? C.panel : C.rowAlt, cursor: 'pointer' }}
                             onClick={function () { handleTickerClick(s.ticker) }}>
                             <td style={{ padding: '7px 12px', fontSize: 11, color: C.textMuted }}>{s.scan_date}</td>
@@ -1914,14 +1314,6 @@ function App() {
         </div>
       )}
 
-      {activeTab === 'signals' && (
-        <div style={{ flex: 1, overflowY: 'auto' }}>
-          <AiSignalsTab onTrade={handleTrade} autoTradeEnabled={autoTradeEnabled} />
-        </div>
-      )}
-
-      {activeTab === 'training' && React.createElement(TrainingLab, null)}
-
       {/* Confirm Modal */}
       {confirmModal && <ConfirmModal title={confirmModal.title} message={confirmModal.message} onConfirm={confirmModal.onConfirm} onCancel={function () { setConfirmModal(null) }} />}
 
@@ -1932,509 +1324,6 @@ function App() {
         .pulse-dot { width:7px; height:7px; border-radius:50%; background:#ef4444; display:inline-block; animation:pulse-red 1.2s ease-in-out infinite; margin-left:4px; flex-shrink:0; }\
       '}</style>
     </div>
-  )
-}
-
-
-// ── AI Signals Tab ──────────────────────────────────────────────────────────
-
-function AiSignalsTab({ onTrade, autoTradeEnabled }) {
-  var _s = React.useState
-  var _e = React.useEffect
-  var _signals = _s([]), signals = _signals[0], setSignals = _signals[1]
-  var _loading = _s(false), loading = _loading[0], setLoading = _loading[1]
-  var _autoRefresh = _s(false), autoRefresh = _autoRefresh[0], setAutoRefresh = _autoRefresh[1]
-  var _lastTrade = _s(null), lastTrade = _lastTrade[0], setLastTrade = _lastTrade[1]
-  var _lastTradeStatus = _s(null), lastTradeStatus = _lastTradeStatus[0], setLastTradeStatus = _lastTradeStatus[1]
-  var _ts = _s(null), lastTs = _ts[0], setLastTs = _ts[1]
-  var _firedTickers = _s(new Set()), firedTickers = _firedTickers[0], setFiredTickers = _firedTickers[1]
-
-  function fetchSignals() {
-    setLoading(true)
-    API('signals/all').then(function (d) {
-      if (d && d.signals) {
-        setSignals(d.signals)
-        setLastTs(d.ts)
-      }
-      setLoading(false)
-    }).catch(function () { setLoading(false) })
-  }
-
-  _e(function () { fetchSignals() }, [])
-
-  // Auto-refresh every 30s when enabled
-  _e(function () {
-    if (!autoRefresh) return
-    var t = setInterval(fetchSignals, 30000)
-    return function () { clearInterval(t) }
-  }, [autoRefresh])
-
-  function firePaperTrade(ticker, price) {
-    var body = { ticker: ticker, side: 'buy', stop_loss_pct: 5, risk_dollars: 100 }
-    setLastTradeStatus('firing')
-    POST('trade/paper', body).then(function (r) {
-      setLastTrade({ ticker: ticker, price: price, result: r, ts: new Date().toISOString() })
-      setLastTradeStatus(r && r.ok ? 'ok' : 'error')
-      setFiredTickers(function (prev) { var n = new Set(prev); n.add(ticker); return n })
-    }).catch(function (e) {
-      setLastTrade({ ticker: ticker, error: String(e), ts: new Date().toISOString() })
-      setLastTradeStatus('error')
-    })
-  }
-
-  var bg = C.bg, panel = C.panel, border = C.border
-
-  return (
-    <div style={{ padding: 16, maxWidth: 900, margin: '0 auto' }}>
-      {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14, flexWrap: 'wrap' }}>
-        <span style={{ fontSize: 18, fontWeight: 700, color: C.textPrimary }}>🎯 AI Signals</span>
-        <span style={{ fontSize: 11, color: C.textMuted }}>YOLO + 5-Pillars · Paper mode · Risk $100/trade</span>
-        <button onClick={fetchSignals} disabled={loading} style={{ background: '#1e3a5f', border: '1px solid #2563eb44', color: '#60a5fa', padding: '4px 12px', borderRadius: 4, fontSize: 11, fontWeight: 700, cursor: loading ? 'wait' : 'pointer', marginLeft: 'auto' }}>
-          {loading ? '⏳ Loading…' : '🔄 Refresh'}
-        </button>
-        <button onClick={function () { setAutoRefresh(function (v) { return !v }) }} style={{ background: autoRefresh ? '#0a2a0a' : panel, border: '1px solid ' + (autoRefresh ? '#22c55e55' : border), color: autoRefresh ? '#22c55e' : C.textMuted, padding: '4px 12px', borderRadius: 4, fontSize: 11, fontWeight: 700, cursor: 'pointer' }}>
-          {autoRefresh ? '⏹ Stop Auto' : '▶ Auto 30s'}
-        </button>
-        {autoTradeEnabled && <span style={{ background: '#0a2a0a', border: '1px solid #22c55e55', color: '#22c55e', padding: '4px 10px', borderRadius: 4, fontSize: 10, fontWeight: 700 }}>🤖 AUTO TRADE ACTIVE — fires at ≥85%</span>}
-        {lastTs && <span style={{ fontSize: 10, color: C.textMuted }}>Updated {new Date(lastTs).toLocaleTimeString()}</span>}
-      </div>
-
-      {/* Weights legend */}
-      <div style={{ background: panel, border: '1px solid ' + border, borderRadius: 4, padding: '8px 14px', marginBottom: 12, fontSize: 11, color: C.textMuted, display: 'flex', gap: 20, flexWrap: 'wrap' }}>
-        <span>Weights: <b style={{ color: '#60a5fa' }}>YOLO 40%</b> + <b style={{ color: '#a78bfa' }}>5-Pillars 15%</b> + <b style={{ color: '#4b5563' }}>MiniCPM 0% (soon)</b></span>
-        <span>🟢 GO ≥60% · 🟡 WATCH 40-59% · ⚪ – &lt;40%</span>
-      </div>
-
-      {/* Last trade fired */}
-      {lastTrade && (
-        <div style={{ background: lastTradeStatus === 'ok' ? '#052e16' : '#450a0a', border: '1px solid ' + (lastTradeStatus === 'ok' ? '#166534' : '#991b1b'), borderRadius: 4, padding: '8px 14px', marginBottom: 12, fontSize: 12, color: lastTradeStatus === 'ok' ? '#4ade80' : '#fca5a5' }}>
-          {lastTradeStatus === 'firing' && '⏳ Firing trade…'}
-          {lastTradeStatus === 'ok' && <span>✅ Paper trade fired: <b>{lastTrade.ticker}</b> · Order ID: {lastTrade.result && lastTrade.result.order_id} · Status: {lastTrade.result && lastTrade.result.status}</span>}
-          {lastTradeStatus === 'error' && <span>❌ Trade failed: {lastTrade.result && (lastTrade.result.error || JSON.stringify(lastTrade.result))}</span>}
-        </div>
-      )}
-
-      {/* Signal table */}
-      <div style={{ background: panel, border: '1px solid ' + border, borderRadius: 4, overflow: 'hidden' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr style={{ background: C.header, borderBottom: '1px solid ' + border }}>
-              {[['Rank','',20],['Ticker','left',80],['Score','',80],['Verdict','',80],['YOLO','',70],['5-Pillars','',80],['Screenshot','',100],['Top Detection','left',160],['Action','',100]].map(function (h) {
-                return <th key={h[0]} style={{ padding: '7px 10px', color: C.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 0.8, fontWeight: 600, textAlign: h[1] === 'left' ? 'left' : 'right', whiteSpace: 'nowrap' }}>{h[0]}</th>
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            {signals.length === 0 && !loading && (
-              <tr><td colSpan={9} style={{ padding: '40px 20px', textAlign: 'center', color: C.textMuted, fontSize: 12 }}>
-                No signal data yet — click Refresh to run the aggregator
-              </td></tr>
-            )}
-            {signals.map(function (sig, i) {
-              var topPred = (sig.yolo_preds || [])[0]
-              var topPredText = topPred ? (String(topPred.class || topPred.label || topPred.name || '?') + ' ' + ((topPred.confidence || 0) * 100).toFixed(0) + '%') : '—'
-              var ageText = sig.screenshot_age_s != null ? (sig.screenshot_age_s < 60 ? sig.screenshot_age_s + 's' : Math.round(sig.screenshot_age_s / 60) + 'm') : '—'
-              var rowBg = i % 2 === 0 ? panel : C.rowAlt
-              var alreadyFired = firedTickers.has(sig.ticker)
-              return (
-                <tr key={sig.ticker} style={{ background: rowBg, borderBottom: '1px solid ' + border + '22' }}
-                  onMouseEnter={function (e) { e.currentTarget.style.background = '#1e2a44' }}
-                  onMouseLeave={function (e) { e.currentTarget.style.background = rowBg }}>
-                  <td style={{ padding: '8px 10px', textAlign: 'right', color: C.textMuted, fontSize: 11, fontFamily: "'SF Mono',monospace" }}>#{i + 1}</td>
-                  <td style={{ padding: '8px 10px', fontWeight: 700, color: C.accent, fontSize: 13, fontFamily: "'SF Mono',monospace" }}>{sig.ticker}</td>
-                  <td style={{ padding: '8px 10px', textAlign: 'right' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6 }}>
-                      <div style={{ width: 40, height: 6, background: '#1e2a44', borderRadius: 3, overflow: 'hidden' }}>
-                        <div style={{ width: (sig.score * 100) + '%', height: '100%', background: sig.score >= 0.60 ? '#22c55e' : sig.score >= 0.40 ? '#f59e0b' : '#4b5563', borderRadius: 3 }} />
-                      </div>
-                      <span style={{ fontFamily: "'SF Mono',monospace", fontWeight: 700, color: sig.score >= 0.60 ? '#22c55e' : sig.score >= 0.40 ? '#f59e0b' : '#6b7280', fontSize: 12 }}>{Math.round(sig.score * 100)}%</span>
-                    </div>
-                  </td>
-                  <td style={{ padding: '8px 10px', textAlign: 'right' }}><AiSignalBadge data={sig} /></td>
-                  <td style={{ padding: '8px 10px', textAlign: 'right', fontFamily: "'SF Mono',monospace", fontSize: 11, color: '#94a3b8' }}>{Math.round(sig.yolo_score * 100)}%</td>
-                  <td style={{ padding: '8px 10px', textAlign: 'right', fontFamily: "'SF Mono',monospace", fontSize: 11, color: '#94a3b8' }}>{Math.round(sig.five_pillars_score * 100)}%</td>
-                  <td style={{ padding: '8px 10px', textAlign: 'right', fontSize: 11, color: C.textMuted }}>{ageText}</td>
-                  <td style={{ padding: '8px 10px', fontSize: 10, color: '#64748b', maxWidth: 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{topPredText}</td>
-                  <td style={{ padding: '8px 10px', textAlign: 'right' }}>
-                    <button
-                      onClick={function () { firePaperTrade(sig.ticker, null) }}
-                      disabled={alreadyFired}
-                      style={{ background: alreadyFired ? '#1a2035' : '#1e3a5f', border: '1px solid ' + (alreadyFired ? border : '#2563eb44'), color: alreadyFired ? C.textMuted : '#60a5fa', padding: '3px 10px', borderRadius: 3, fontSize: 10, fontWeight: 700, cursor: alreadyFired ? 'default' : 'pointer', whiteSpace: 'nowrap' }}>
-                      {alreadyFired ? '✅ Filed' : '📄 Paper Trade'}
-                    </button>
-                  </td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  )
-}
-
-
-// ── Training Lab ────────────────────────────────────────────────────────────
-
-function TrainingLab() {
-  var API = 'http://localhost:8767'
-  var _s = React.useState
-  var _e = React.useEffect
-  var _cb = React.useCallback
-  var _ref = React.useRef
-
-  var _current = _s(null); var current = _current[0]; var setCurrent = _current[1]
-  var _stats = _s(null); var stats = _stats[0]; var setStats = _stats[1]
-  var _loading = _s(false); var loading = _loading[0]; var setLoading = _loading[1]
-  var _submitting = _s(false); var submitting = _submitting[0]; var setSubmitting = _submitting[1]
-  var _selectedLabel = _s(null); var selectedLabel = _selectedLabel[0]; var setSelectedLabel = _selectedLabel[1]
-  var _selectedOutcome = _s(null); var selectedOutcome = _selectedOutcome[0]; var setSelectedOutcome = _selectedOutcome[1]
-  var _filter = _s('unlabelled'); var filter = _filter[0]; var setFilter = _filter[1]
-  var _patternFilter = _s('all'); var patternFilter = _patternFilter[0]; var setPatternFilter = _patternFilter[1]
-  var _afterId = _s(0); var afterId = _afterId[0]; var setAfterId = _afterId[1]
-  var _history = _s([]); var history = _history[0]; var setHistory = _history[1]
-  var _histIdx = _s(0); var histIdx = _histIdx[0]; var setHistIdx = _histIdx[1]
-  var _error = _s(''); var error = _error[0]; var setError = _error[1]
-
-  var bg = '#0f1320'; var panel = '#161b2e'; var border = '#1e2a44'
-  var text = '#e2e8f0'; var muted = '#6b7280'; var accent = '#60a5fa'
-
-  var loadStats = _cb(function() {
-    fetch(API + '/training/stats')
-      .then(function(r){return r.json()})
-      .then(function(d){setStats(d)})
-      .catch(function(){})
-  }, [])
-
-  var loadNext = _cb(function(id) {
-    setLoading(true); setError('')
-    var eff_filter = patternFilter !== 'all' ? patternFilter : filter
-    var url = API + '/training/next?after_id=' + (id || 0) + '&filter=' + eff_filter
-    fetch(url)
-      .then(function(r){return r.json()})
-      .then(function(d){
-        if (d.error) { setError(d.error === 'no_rows' ? 'All done! No more patterns to label.' : d.error); setLoading(false); return }
-        setCurrent(d)
-        if (d.stats) setStats(d.stats)
-        setSelectedLabel(null); setSelectedOutcome(null)
-        setLoading(false)
-      })
-      .catch(function(e){ setError('Failed to load: ' + e.message); setLoading(false) })
-  }, [filter, patternFilter])
-
-  _e(function() { loadNext(0); loadStats() }, [])
-
-  // Re-load when filter changes
-  _e(function() { loadNext(0) }, [filter, patternFilter])
-
-  // Keyboard shortcuts
-  _e(function() {
-    var labelMap = {
-      'b': 'bull_flag_forming',
-      'k': 'bull_flag_breakout',
-      'n': 'no_pattern',
-      'o': 'orb',
-      'm': 'macd_bullish_cross',
-      'e': 'bear_flag',
-    }
-    function onKey(e) {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return
-      if (e.key === 'ArrowRight') {
-        if (current) loadNext(current.id)
-        return
-      }
-      if (e.key === 'ArrowLeft') {
-        if (history.length > 0) {
-          var ni = Math.min(histIdx + 1, history.length - 1)
-          setHistIdx(ni); setCurrent(history[ni]); setSelectedLabel(null); setSelectedOutcome(null)
-        }
-        return
-      }
-      if (e.key === 's') {
-        if (current) loadNext(current.id)
-        return
-      }
-      if (e.key === 'w') { setSelectedOutcome(function(o){return o==='win'?null:'win'}); return }
-      if (e.key === 'l') { setSelectedOutcome(function(o){return o==='loss'?null:'loss'}); return }
-      if (e.key === 'Enter') {
-        if (selectedLabel) doSubmit(selectedLabel, selectedOutcome)
-        return
-      }
-      var lbl = labelMap[e.key]
-      if (lbl) { setSelectedLabel(function(s){return s===lbl?null:lbl}); return }
-    }
-    window.addEventListener('keydown', onKey)
-    return function(){ window.removeEventListener('keydown', onKey) }
-  }, [current, history, histIdx, selectedLabel, selectedOutcome, filter, patternFilter])
-
-  var doSubmit = _cb(function(label, outcome) {
-    if (!current || submitting) return
-    setSubmitting(true)
-    fetch(API + '/training/label', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({id: current.id, human_label: label, outcome: outcome || null})
-    }).then(function(r){return r.json()})
-      .then(function(d){
-        if (d.ok) {
-          setHistory(function(h){ return [current].concat(h).slice(0,20) })
-          setHistIdx(-1)
-          loadNext(current.id)
-          loadStats()
-        }
-      })
-      .catch(function(){})
-      .finally(function(){ setSubmitting(false) })
-  }, [current, submitting])
-
-  var LABELS = [
-    {key:'bull_flag_forming',   emoji:'🐂', text:'Bull Flag',  short:'b', color:'#166534', border:'#22c55e'},
-    {key:'bull_flag_breakout',  emoji:'🚀', text:'BF Break',   short:'k', color:'#1e3a5f', border:'#3b82f6'},
-    {key:'bear_flag',           emoji:'🐻', text:'Bear Flag',  short:'e', color:'#7f1d1d', border:'#ef4444'},
-    {key:'orb',                 emoji:'📊', text:'ORB',        short:'o', color:'#3b2600', border:'#f59e0b'},
-    {key:'macd_bullish_cross',  emoji:'📈', text:'MACD',       short:'m', color:'#1a1060', border:'#8b5cf6'},
-    {key:'no_pattern',          emoji:'❌', text:'No Pattern', short:'n', color:'#1a2035', border:'#6b7280'},
-  ]
-
-  var labelled = stats ? stats.labelled : 0
-  var total = stats ? stats.total : 7715
-  var remaining = stats ? stats.remaining : 7715
-  var pct = total > 0 ? Math.round(labelled / total * 100) : 0
-
-  var confColor = function(c) {
-    if (!c) return muted
-    if (c >= 0.7) return '#22c55e'
-    if (c >= 0.5) return '#f59e0b'
-    return '#ef4444'
-  }
-
-  return React.createElement('div', {style:{padding:16, maxWidth:900, margin:'0 auto', fontFamily:'system-ui,sans-serif'}},
-
-    // Header bar
-    React.createElement('div', {style:{display:'flex',alignItems:'center',gap:12,marginBottom:12,flexWrap:'wrap'}},
-      React.createElement('span', {style:{fontSize:18,fontWeight:700,color:text}}, '🏷️ Training Lab'),
-      React.createElement('span', {style:{background:'#1e2a44',padding:'3px 10px',borderRadius:20,fontSize:12,color:accent}},
-        remaining.toLocaleString() + ' remaining'
-      ),
-      // Progress bar
-      React.createElement('div', {style:{flex:1,minWidth:120,height:8,background:'#1e2a44',borderRadius:4,overflow:'hidden'}},
-        React.createElement('div', {style:{width:pct+'%',height:'100%',background:'linear-gradient(90deg,#3b82f6,#22c55e)',transition:'width 0.3s'}})
-      ),
-      React.createElement('span', {style:{fontSize:12,color:muted}}, labelled.toLocaleString() + ' / ' + total.toLocaleString() + ' (' + pct + '%)'),
-    ),
-
-    // Filters row
-    React.createElement('div', {style:{display:'flex',gap:8,marginBottom:16,flexWrap:'wrap'}},
-      React.createElement('select', {
-        value: filter,
-        onChange: function(e){ setFilter(e.target.value) },
-        style:{background:'#1a2035',border:'1px solid '+border,color:text,padding:'6px 10px',borderRadius:6,fontSize:13}
-      },
-        React.createElement('option',{value:'unlabelled'},'Unlabelled only'),
-        React.createElement('option',{value:'all'},'All patterns')
-      ),
-      React.createElement('select', {
-        value: patternFilter,
-        onChange: function(e){ setPatternFilter(e.target.value) },
-        style:{background:'#1a2035',border:'1px solid '+border,color:text,padding:'6px 10px',borderRadius:6,fontSize:13}
-      },
-        React.createElement('option',{value:'all'},'All pattern types'),
-        React.createElement('option',{value:'bull_flag_forming'},'Bull Flag Forming'),
-        React.createElement('option',{value:'bull_flag_breakout'},'Bull Flag Breakout'),
-        React.createElement('option',{value:'bear_flag'},'Bear Flag'),
-        React.createElement('option',{value:'orb'},'ORB'),
-        React.createElement('option',{value:'macd_bullish_cross'},'MACD Cross'),
-        React.createElement('option',{value:'no_pattern'},'No Pattern')
-      ),
-      stats && stats.by_label && Object.keys(stats.by_label).length > 0 &&
-        React.createElement('div', {style:{display:'flex',gap:8,alignItems:'center',flexWrap:'wrap'}},
-          React.createElement('span', {style:{fontSize:12,color:muted}},'Labels so far:'),
-          Object.entries(stats.by_label).map(function(kv){
-            return React.createElement('span', {key:kv[0], style:{background:'#1e2a44',padding:'2px 8px',borderRadius:12,fontSize:11,color:accent}},
-              kv[0] + ': ' + kv[1]
-            )
-          })
-        )
-    ),
-
-    // Error state
-    error && React.createElement('div', {style:{textAlign:'center',padding:60,color:'#f59e0b',fontSize:16}},
-      React.createElement('div',{style:{fontSize:36,marginBottom:12}},'🎉'),
-      error
-    ),
-
-    // Loading state
-    loading && React.createElement('div', {style:{textAlign:'center',padding:60,color:muted}},
-      React.createElement('div',{style:{fontSize:32,marginBottom:12}},'⏳'),
-      'Loading...'
-    ),
-
-    // Main card
-    !loading && !error && current && React.createElement('div', {style:{background:panel,borderRadius:10,border:'1px solid '+border,overflow:'hidden'}},
-
-      // Chart header
-      React.createElement('div', {style:{padding:'12px 16px',borderBottom:'1px solid '+border,display:'flex',alignItems:'center',gap:12,flexWrap:'wrap'}},
-        React.createElement('span', {style:{fontSize:22,fontWeight:800,fontFamily:'monospace',color:text}}, current.ticker),
-        React.createElement('span', {style:{color:muted,fontSize:13}}, '•'),
-        React.createElement('span', {style:{
-          background:'#1a2a4a',padding:'4px 12px',borderRadius:20,fontSize:13,fontWeight:700,
-          color: confColor(current.confidence), border:'1px solid '+confColor(current.confidence)
-        }},
-          'YOLO: ' + (current.pattern || '?') + ' ' + ((current.confidence || 0) * 100).toFixed(0) + '%'
-        ),
-        React.createElement('span', {style:{fontSize:12,color:muted}},
-          current.detected_at ? new Date(current.detected_at).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}) + ' ET' : ''
-        ),
-        React.createElement('span', {style:{marginLeft:'auto',fontSize:12,color:muted}}, 'ID #' + current.id)
-      ),
-
-      // Screenshot
-      React.createElement('div', {style:{background:'#0a0f1a',minHeight:200,display:'flex',alignItems:'center',justifyContent:'center'}},
-        current.screenshot_b64
-          ? React.createElement('img', {
-              src: 'data:image/png;base64,' + current.screenshot_b64,
-              alt: 'chart screenshot',
-              style:{width:'100%',display:'block',maxHeight:480,objectFit:'contain'}
-            })
-          : React.createElement('div', {style:{color:muted,padding:40}}, '🖼 No screenshot')
-      ),
-
-      // Label + action area
-      React.createElement('div', {style:{padding:'16px'}},
-
-        // YOLO prediction callout
-        React.createElement('div', {style:{marginBottom:14,padding:'8px 14px',background:'#0f1a30',borderRadius:8,border:'1px solid '+border,fontSize:13}},
-          React.createElement('span', {style:{color:muted}}, 'YOLO predicted: '),
-          React.createElement('span', {style:{color:confColor(current.confidence), fontWeight:700}},
-            (current.pattern || 'unknown') + ' (' + ((current.confidence||0)*100).toFixed(0) + '% confidence)'
-          ),
-          React.createElement('span', {style:{color:muted,marginLeft:8,fontSize:12}}, '— confirm or correct below')
-        ),
-
-        // Label buttons
-        React.createElement('div', {style:{marginBottom:14}},
-          React.createElement('div', {style:{fontSize:11,color:muted,marginBottom:8,textTransform:'uppercase',letterSpacing:'0.06em',fontWeight:600}}, 'Pattern Label'),
-          React.createElement('div', {style:{display:'flex',gap:8,flexWrap:'wrap'}},
-            LABELS.map(function(l){
-              var active = selectedLabel === l.key
-              return React.createElement('button', {
-                key: l.key,
-                onClick: function(){ setSelectedLabel(active ? null : l.key) },
-                style:{
-                  background: active ? l.color : '#1a2035',
-                  border: '2px solid ' + (active ? l.border : border),
-                  color: active ? '#fff' : text,
-                  padding:'10px 16px', borderRadius:8, cursor:'pointer', fontSize:14, fontWeight:active?700:400,
-                  minHeight:48, transition:'all 0.15s'
-                }
-              }, l.emoji + ' ' + l.text + ' [' + l.short + ']')
-            }),
-            // Quick confirm button
-            React.createElement('button', {
-              onClick: function(){
-                var pattern = current.pattern
-                if (LABELS.find(function(l){return l.key===pattern})) {
-                  setSelectedLabel(pattern)
-                }
-              },
-              style:{
-                background: selectedLabel === current.pattern ? '#166534' : '#0f1a2e',
-                border: '2px dashed ' + (selectedLabel === current.pattern ? '#22c55e' : '#2a3a5a'),
-                color: muted, padding:'10px 16px', borderRadius:8, cursor:'pointer', fontSize:13,
-                minHeight:48
-              }
-            }, '✓ Confirm YOLO')
-          )
-        ),
-
-        // Outcome buttons
-        React.createElement('div', {style:{marginBottom:16}},
-          React.createElement('div', {style:{fontSize:11,color:muted,marginBottom:8,textTransform:'uppercase',letterSpacing:'0.06em',fontWeight:600}}, 'Outcome (optional)'),
-          React.createElement('div', {style:{display:'flex',gap:8}},
-            React.createElement('button', {
-              onClick: function(){ setSelectedOutcome(selectedOutcome==='win'?null:'win') },
-              style:{
-                background:selectedOutcome==='win'?'#166534':'#1a2035',
-                border:'2px solid '+(selectedOutcome==='win'?'#22c55e':border),
-                color:text,padding:'10px 20px',borderRadius:8,cursor:'pointer',fontSize:14,fontWeight:600,minHeight:48
-              }
-            }, '✅ Win [w]'),
-            React.createElement('button', {
-              onClick: function(){ setSelectedOutcome(selectedOutcome==='loss'?null:'loss') },
-              style:{
-                background:selectedOutcome==='loss'?'#7f1d1d':'#1a2035',
-                border:'2px solid '+(selectedOutcome==='loss'?'#ef4444':border),
-                color:text,padding:'10px 20px',borderRadius:8,cursor:'pointer',fontSize:14,fontWeight:600,minHeight:48
-              }
-            }, '❌ Loss [l]'),
-            React.createElement('button', {
-              onClick: function(){ setSelectedOutcome(selectedOutcome==='watch'?null:'watch') },
-              style:{
-                background:selectedOutcome==='watch'?'#1e3a5f':'#1a2035',
-                border:'2px solid '+(selectedOutcome==='watch'?'#3b82f6':border),
-                color:text,padding:'10px 20px',borderRadius:8,cursor:'pointer',fontSize:14,fontWeight:600,minHeight:48
-              }
-            }, '➡️ Watch')
-          )
-        ),
-
-        // Action row
-        React.createElement('div', {style:{display:'flex',gap:10,alignItems:'center'}},
-          // Prev button
-          React.createElement('button', {
-            onClick: function(){
-              if (history.length > 0) {
-                var ni = Math.min(histIdx + 1, history.length - 1)
-                setHistIdx(ni); setCurrent(history[ni]); setSelectedLabel(null); setSelectedOutcome(null)
-              }
-            },
-            disabled: history.length === 0,
-            style:{background:'#1a2035',border:'1px solid '+border,color:history.length>0?text:muted,padding:'10px 18px',borderRadius:8,cursor:history.length>0?'pointer':'not-allowed',fontSize:14,minHeight:48}
-          }, '← Prev'),
-
-          // Counter
-          React.createElement('span', {style:{color:muted,fontSize:13,flex:1,textAlign:'center'}},
-            'ID #' + current.id + ' · ' + remaining.toLocaleString() + ' remaining'
-          ),
-
-          // Submit button
-          React.createElement('button', {
-            onClick: function(){ if(selectedLabel) doSubmit(selectedLabel, selectedOutcome) },
-            disabled: !selectedLabel || submitting,
-            style:{
-              background: selectedLabel ? '#1d4ed8' : '#1a2035',
-              border: '2px solid ' + (selectedLabel ? '#3b82f6' : border),
-              color: selectedLabel ? '#fff' : muted,
-              padding:'10px 24px',borderRadius:8,cursor:selectedLabel?'pointer':'not-allowed',
-              fontWeight:700,fontSize:15,minHeight:48,flex:2
-            }
-          }, submitting ? '⏳ Saving...' : selectedLabel ? '💾 Save & Next [Enter]' : 'Select a label above'),
-
-          // Skip button
-          React.createElement('button', {
-            onClick: function(){ if(current) loadNext(current.id) },
-            style:{background:'#1a2035',border:'1px solid '+border,color:muted,padding:'10px 18px',borderRadius:8,cursor:'pointer',fontSize:14,minHeight:48}
-          }, '⏭️ Skip [→]')
-        )
-      )
-    ),
-
-    // Keyboard legend
-    React.createElement('div', {style:{marginTop:14,padding:'10px 16px',background:panel,borderRadius:8,border:'1px solid '+border,fontSize:12,color:muted,display:'flex',flexWrap:'wrap',gap:'0 16px'}},
-      React.createElement('span',{style:{color:text,fontWeight:600,marginRight:4}},'⌨️'),
-      React.createElement('span',null, React.createElement('b',{style:{color:text}},'b'), '=bull_flag  '),
-      React.createElement('span',null, React.createElement('b',{style:{color:text}},'k'), '=bf_breakout  '),
-      React.createElement('span',null, React.createElement('b',{style:{color:text}},'e'), '=bear_flag  '),
-      React.createElement('span',null, React.createElement('b',{style:{color:text}},'o'), '=orb  '),
-      React.createElement('span',null, React.createElement('b',{style:{color:text}},'m'), '=macd  '),
-      React.createElement('span',null, React.createElement('b',{style:{color:text}},'n'), '=no_pattern  '),
-      React.createElement('span',null, React.createElement('b',{style:{color:text}},'w'), '=win  '),
-      React.createElement('span',null, React.createElement('b',{style:{color:text}},'l'), '=loss  '),
-      React.createElement('span',null, React.createElement('b',{style:{color:text}},'Enter'), '=save  '),
-      React.createElement('span',null, React.createElement('b',{style:{color:text}},'→/s'), '=skip  '),
-      React.createElement('span',null, React.createElement('b',{style:{color:text}},'←'), '=prev')
-    )
   )
 }
 
